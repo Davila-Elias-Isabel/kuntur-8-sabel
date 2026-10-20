@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  .font-mono-tech {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Scanlines and retro CRT subtle effects */
+.scanlines-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 38, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+@keyframes holoFlicker {
+  0% { transform: scale(1) skew(0deg); opacity: 0.85; }
+  20% { transform: scale(1.02, 0.98) skew(1deg); opacity: 0.75; }
+  40% { transform: scale(0.99, 1.01) skew(-1.5deg); opacity: 0.9; }
+  60% { transform: scale(1.01) skew(0.5deg); opacity: 0.8; }
+  80% { transform: scale(0.98, 1.02) skew(-1deg); opacity: 0.88; }
+  100% { transform: scale(1) skew(0deg); opacity: 0.85; }
+}
+
+.animate-holo {
+  animation: holoFlicker 3s infinite ease-in-out;
+}
+
+@keyframes scanSweep {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 0.3; }
+  100% { top: 100%; opacity: 0.8; }
+}
+
+.animate-scan-sweep {
+  animation: scanSweep 3s linear infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #5E4FA2;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E86AA8;
+}
