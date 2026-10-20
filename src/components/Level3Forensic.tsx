@@ -112,106 +112,101 @@ export const Level3Forensic: React.FC<Level3ForensicProps> = ({
         <div className="space-y-4">
           
           {/* Simulated Group Chat */}
-          <div className="bg-[#0A0A1C] p-4 rounded-xs border border-[#5E4FA2]/50 space-y-3 font-mono-tech">
-            <div className="flex items-center justify-between text-[11px] text-[#8F8CA8] border-b border-[#5E4FA2]/30 pb-2">
+          <div className="bg-[#0A0A1C] p-3 rounded-xs border border-[#5E4FA2]/50 space-y-2 font-mono-tech">
+            <div className="flex items-center justify-between text-[11px] text-[#8F8CA8] border-b border-[#5E4FA2]/30 pb-1.5">
               <span className="flex items-center gap-1.5 text-[#E86AA8]">
                 <MessageSquare className="w-3.5 h-3.5" />
-                CANAL PÚBLICO: #Tropa_Cadetes_Kuntur (24 integrantes activos)
+                #Tropa_Cadetes_Kuntur (24 conectados)
               </span>
-              <span>Hace un instante</span>
+              <span className="text-[#4FD1C5]">Ahora</span>
             </div>
 
             {/* Chat messages */}
-            <div className="space-y-2 text-xs">
-              <div className="p-2.5 bg-[#1C0D18] border-l-2 border-[#D7263D] text-[#EDEBFA] rounded-xs">
-                <span className="text-[#D7263D] font-bold">[El Eco - Remitente Anónimo]:</span> «Atención a todos: miren lo que llegó al buzón del escuadrón. La líder Vale negociando favoritismos en el hangar. Descárguenlo antes de que el mando lo censure: vale_comprometida.holo»
+            <div className="space-y-1.5 text-xs">
+              <div className="p-2 bg-[#1C0D18] border-l-2 border-[#D7263D] text-[#EDEBFA] rounded-xs">
+                <span className="text-[#D7263D] font-bold">[El Eco]:</span> «¡Miren el video prohibido de Vale en el hangar! Descárguenlo antes de que lo borren.»
               </div>
-              <div className="p-2 bg-[#121226] text-[#A6A2C5] rounded-xs">
-                <span className="text-[#F2B544] font-bold">Kevin_Cadete:</span> «¿Será cierto? Que alguien lo reenvíe al grupo de mensajería privada para revisarlo.»
+              <div className="p-1.5 bg-[#121226] text-[#A6A2C5] rounded-xs flex items-center justify-between">
+                <span><strong className="text-[#F2B544]">Kevin:</strong> «¡Pásenlo al grupo privado para chismear!»</span>
               </div>
-              <div className="p-2 bg-[#121226] text-[#A6A2C5] rounded-xs">
-                <span className="text-[#8F8CA8] font-bold">Sofi_Logística:</span> «Un momento... la iluminación en el rostro de Vale se ve extraña, como si no correspondiera al hangar.»
+              <div className="p-1.5 bg-[#121226] text-[#A6A2C5] rounded-xs flex items-center justify-between">
+                <span><strong className="text-[#4FD1C5]">Sofi:</strong> «Oigan... los ojos de Vale se ven raros, parece un filtro.»</span>
               </div>
             </div>
           </div>
 
-          {/* Technical Explanation on Deepfakes */}
-          <div className="bg-[#0C0C22] p-3 rounded-xs border-l-4 border-[#4FD1C5] text-xs text-[#EDEBFA] space-y-1">
-            <div className="text-[#4FD1C5] font-bold flex items-center gap-1.5">
-              <Info className="w-4 h-4 text-[#4FD1C5]" />
-              ¿Qué es un Holofake / Deepfake y cuál es el dilema pedagógico?:
+          {/* Quick Stakes Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono-tech">
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#D7263D] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">⚠️</span>
+              <span><strong>Peligro:</strong> Video falso hecho con IA (Deepfake).</span>
             </div>
-            <p>
-              Un <strong>holofake</strong> es un archivo audiovisual generado con Inteligencia Artificial que transfiere el rostro de una persona a otro cuerpo. La investigación de la <strong>UNESCO (2024)</strong> subraya que el daño de estas agresiones no proviene solo de su creador, sino de los <strong>testigos pasivos</strong> que eligen reenviar o comentar con morbo en vez de frenar la difusión.
-            </p>
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#4FD1C5] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">🎯</span>
+              <span><strong>Tu rol:</strong> 24 cadetes están listos para reenviarlo.</span>
+            </div>
           </div>
 
           {/* Player decision prompt */}
-          <div className="bg-[#15152E] p-4 border border-[#5E4FA2] rounded-xs space-y-3">
-            <div className="text-xs font-bold font-mono-tech text-[#EDEBFA] flex items-center gap-2">
-              <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="neutral" size={28} />
-              <span>¿QUÉ MENSAJE DECIDES PUBLICAR EN EL CANAL PÚBLICO?:</span>
+          <div className="bg-[#15152E] p-3.5 border border-[#5E4FA2] rounded-xs space-y-2.5">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold font-mono-tech text-[#EDEBFA]">
+              <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="neutral" size={24} />
+              <span>¿QUÉ ESCRIBES EN EL CHAT PARA FRENARLO?:</span>
             </div>
 
-            <div className="space-y-2.5">
-              {/* Option A: Neutral style */}
+            <div className="space-y-2">
+              {/* Option A */}
               <button
                 onClick={() => handleChoose({
                   id: 'forward',
-                  text: 'Reenvíen el archivo por privado para analizarlo con el resto del grupo y ver si es real.',
+                  text: '«Pásenlo al grupo privado para ver bien qué hizo.»',
                   isToxic: true,
                   points: -40,
-                  why: 'Solicitar o reenviar contenido difamatorio amplifica el alcance de la agresión y te convierte en difusor activo.',
-                  impact: 'La viralización descontrolada provoca estrés agudo y aislamiento en la persona afectada en cuestión de minutos.'
+                  why: 'Pedir el video por curiosidad alimenta el chisme.',
+                  impact: 'Reenviar contenido falso en privado multiplica el daño.'
                 })}
-                className="w-full text-left p-3.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-start gap-3 group shadow-sm"
+                className="w-full text-left p-2.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-center gap-2.5 group shadow-sm"
               >
-                <span className="w-6 h-6 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
+                <span className="w-5 h-5 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
                   A
                 </span>
-                <span className="leading-relaxed">
-                  «Reenvíen el archivo por privado para analizarlo con el resto del grupo y ver si es real.»
-                </span>
+                <span>«Pásenlo al grupo privado para ver bien qué hizo.»</span>
               </button>
 
-              {/* Option B: Neutral style */}
+              {/* Option B */}
               <button
                 onClick={() => handleChoose({
                   id: 'victim_blame',
-                  text: 'De seguro Vale se lo buscó por su actitud reservada desde que asumió el cargo.',
+                  text: '«Seguro Vale se lo buscó por creída.»',
                   isToxic: true,
                   points: -45,
-                  why: 'Culpabilizar a la víctima justifica la violencia digital y exime de responsabilidad al agresor.',
-                  impact: 'Inhibe a las víctimas de denunciar por temor al señalamiento social y la descalificación de su entorno.'
+                  why: 'Culpaste a la víctima en vez de rechazar al agresor.',
+                  impact: 'Culpar a quien atacan le da impunidad al que inventó la mentira.'
                 })}
-                className="w-full text-left p-3.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-start gap-3 group shadow-sm"
+                className="w-full text-left p-2.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-center gap-2.5 group shadow-sm"
               >
-                <span className="w-6 h-6 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
+                <span className="w-5 h-5 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
                   B
                 </span>
-                <span className="leading-relaxed">
-                  «De seguro Vale se lo buscó por su actitud reservada desde que asumió el cargo.»
-                </span>
+                <span>«Seguro Vale se lo buscó por creída.»</span>
               </button>
 
-              {/* Option C: Neutral style */}
+              {/* Option C */}
               <button
                 onClick={() => handleChoose({
                   id: 'stop_it',
-                  text: 'Detengan la difusión de inmediato. Difundir montajes personales es una forma grave de violencia digital. Este video es una falsificación creada con IA; someteré el archivo al escáner pericial ahora mismo para probar las anomalías.',
+                  text: '«¡Paren de reenviarlo! Ese video es falso hecho con IA. Lo voy a escanear ya.»',
                   isToxic: false,
                   points: 25,
-                  why: 'Establece un límite público claro, advierte sobre la ilicitud del acto y propone una verificación técnica sustentada.',
-                  impact: 'Corta la cadena de retransmisión: cuando un miembro del grupo interviene con firmeza, la viralización se desacelera de inmediato.'
+                  why: 'Frenaste la cadena viral con firmeza y verdad.',
+                  impact: 'Cuando alguien pone un límite público, los demás dejan de reenviar.'
                 })}
-                className="w-full text-left p-3.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-start gap-3 group shadow-sm"
+                className="w-full text-left p-2.5 bg-[#161632] hover:bg-[#202046] border border-[#5E4FA2]/50 hover:border-[#8F8CA8] rounded-xs text-xs sm:text-sm text-[#EDEBFA] transition-all cursor-pointer flex items-center gap-2.5 group shadow-sm"
               >
-                <span className="w-6 h-6 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
+                <span className="w-5 h-5 rounded-xs bg-[#25254D] group-hover:bg-[#34346B] text-[#EDEBFA] font-mono-tech font-bold text-xs flex items-center justify-center shrink-0 border border-[#5E4FA2]/40">
                   C
                 </span>
-                <span className="leading-relaxed">
-                  «Detengan la difusión de inmediato. Difundir montajes personales es una forma grave de violencia digital. Este video es una falsificación creada con IA; someteré el archivo al escáner pericial ahora mismo para probar las anomalías.»
-                </span>
+                <span className="font-medium text-[#4FD1C5]">«¡Paren de reenviarlo! Ese video es falso hecho con IA. Lo voy a escanear ya.»</span>
               </button>
             </div>
           </div>
@@ -220,32 +215,35 @@ export const Level3Forensic: React.FC<Level3ForensicProps> = ({
 
       {/* Step 2: Feedback on decision */}
       {step === 'choice_made' && selectedChoice && (
-        <div className="space-y-4">
-          <div className={`p-4 rounded-xs border-2 ${
+        <div className="space-y-3">
+          <div className={`p-3.5 rounded-xs border-2 ${
             selectedChoice.isToxic 
               ? 'bg-[#290C16] border-[#D7263D] text-[#EDEBFA]' 
               : 'bg-[#0E2628] border-[#4FD1C5] text-[#EDEBFA]'
           }`}>
             <div className="flex items-center gap-2 font-mono-tech font-bold text-xs mb-1">
               {selectedChoice.points > 0 ? (
-                <span className="text-[#4FD1C5] flex items-center gap-1">
+                <span className="text-[#4FD1C5] flex items-center gap-1.5 text-xs sm:text-sm">
                   <ShieldCheck className="w-4 h-4" />
-                  +25 PUNTOS DE EMPATÍA // INTERVENCIÓN COMO TESTIGO ACTIVO
+                  +25 PUNTOS // ¡CORTASTE LA VIRALIZACIÓN DEL CHAT!
                 </span>
               ) : (
-                <span className="text-[#D7263D] flex items-center gap-1">
+                <span className="text-[#D7263D] flex items-center gap-1.5 text-xs sm:text-sm">
                   <AlertTriangle className="w-4 h-4" />
-                  -40 PUNTOS // COMPLICIDAD CON LA DIFAMACIÓN DIGITAL
+                  {selectedChoice.points} PUNTOS // ALIMENTASTE EL CHISME
                 </span>
               )}
             </div>
             
-            <p className="text-xs sm:text-sm mt-2">
-              {selectedChoice.why}
+            <p className="text-xs sm:text-sm mt-1">
+              👉 {selectedChoice.why} <strong>{selectedChoice.impact}</strong>
             </p>
-            <p className="text-[11px] text-[#A6A2C5] mt-1 italic">
-              Impacto en la vida real: {selectedChoice.impact}
-            </p>
+
+            {selectedChoice.points > 0 && (
+              <div className="mt-2 pt-1.5 border-t border-[#4FD1C5]/30 text-xs font-mono-tech text-[#4FD1C5]">
+                ⭐ ¡Nadie reenvió el video! Ahora abre el escáner forense para encontrar las 3 fallas.
+              </div>
+            )}
           </div>
 
           {!selectedChoice.isToxic && (
@@ -257,7 +255,7 @@ export const Level3Forensic: React.FC<Level3ForensicProps> = ({
               className="w-full sm:w-auto px-5 py-2.5 bg-[#4FD1C5] hover:bg-[#6ee4d9] text-[#0B0B1A] font-bold font-mono-tech text-xs rounded-xs flex items-center justify-center gap-2 cursor-pointer transition-all self-end"
             >
               <Search className="w-4 h-4" />
-              <span>Abrir Analizador Forense y Detectar las Fallas de la IA (Minijuego)</span>
+              <span>Abrir Analizador Forense y Encontrar las 3 Fallas de la IA (Minijuego)</span>
             </button>
           )}
         </div>

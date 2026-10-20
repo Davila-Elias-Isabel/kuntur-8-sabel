@@ -24,11 +24,11 @@ export const Level2ZeroG: React.FC<Level2ZeroGProps> = ({
   const clueItem: ClueItem = {
     id: 'clue_drone',
     name: 'Tarjeta de Memoria del Dron Espía',
-    colloquialName: 'Fotografías Originales Sin Alterar',
+    colloquialName: 'Fotografías Originales Sin Editar',
     category: 'fotos_base',
     icon: 'Camera',
-    whatItIs: 'El módulo de almacenamiento del microdron. Guarda las fotos reales de Vale tomadas a escondidas en el taller, las cuales fueron empleadas para recortar su rostro y montar el video falso.',
-    howItHelpsInCouncil: 'Demuestra ante la Comandante Rosa que existió espionaje previo y premeditación deliberada para atacarla.',
+    whatItIs: 'Guarda las fotos reales de Vale en el taller tomadas a escondidas para fabricar el video falso.',
+    howItHelpsInCouncil: 'Demuestra que Diego espió a Vale para crear el montaje.',
     unlocked: true
   };
 
@@ -62,30 +62,28 @@ export const Level2ZeroG: React.FC<Level2ZeroGProps> = ({
       </div>
 
       {!completed ? (
-        <div className="space-y-4">
-          <div className="flex items-start gap-4 bg-[#181838] p-4 rounded-xs border border-[#5E4FA2]/40">
-            <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="firm" size={72} />
-            <div className="space-y-1">
-              <div className="text-xs font-mono-tech font-bold text-[#E86AA8]">
-                {playerName.toUpperCase()} // EQUIPÁNDOSE LA MOCHILA PROPULSORA RCS
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 bg-[#181838] p-3 rounded-xs border border-[#5E4FA2]/40">
+            <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="firm" size={60} />
+            <div className="space-y-0.5">
+              <div className="text-[11px] font-mono-tech font-bold text-[#E86AA8]">
+                {playerName.toUpperCase()} // MOCHILA PROPULSORA
               </div>
-              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed">
-                «El microdron intenta escapar hacia la compuerta de despresurización del hangar. En gravedad cero no hay rozamiento del aire: cada impulso me desplaza continuamente por inercia. Debo calcular bien la trayectoria, esquivar los contenedores magnéticos y alcanzar al dron a menos de 36 metros antes de que se pierda en el vacío.»
+              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-snug">
+                «¡Ese microdron espía tiene las fotos de Vale! ¡Atrápalo antes de que escape por la compuerta!»
               </p>
             </div>
           </div>
 
-          {/* Technical and Narrative Context Box */}
-          <div className="bg-[#0C0C22] p-3.5 rounded-xs border-l-4 border-[#E86AA8] text-xs text-[#EDEBFA] space-y-1">
-            <div className="font-bold text-[#E86AA8] flex items-center gap-1.5">
-              <Info className="w-4 h-4 text-[#E86AA8]" />
-              ¿Por qué es fundamental interceptar este microdron en la trama?:
+          {/* Quick Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono-tech">
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#E86AA8] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">🎮</span>
+              <span><strong>Moverse:</strong> WASD / Flechas | <strong className="text-[#F2B544]">[Espacio]</strong> frena</span>
             </div>
-            <p>
-              El agresor utilizó este dron con cámara oculta para vigilar a Vale. En los <strong>metadatos</strong> de su memoria están las capturas reales con fecha de creación previa al montaje. Recuperar esta tarjeta nos da la <strong>Prueba #2 (Fotos originales)</strong> para comprobar que el video viral fue manipulado artificialmente.
-            </p>
-            <div className="text-[#A6A2C5] text-[11px] pt-1">
-              🎮 <strong>Mecánica:</strong> Usa las flechas de dirección o <strong>W, A, S, D</strong> para activar los propulsores RCS. Presiona <strong>[Espacio]</strong> para activar el retrofreno estabilizador.
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#4FD1C5] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">⭐</span>
+              <span><strong>Premio:</strong> Aseguras la <strong>Prueba #2 (Fotos del dron)</strong></span>
             </div>
           </div>
 
@@ -94,10 +92,10 @@ export const Level2ZeroG: React.FC<Level2ZeroGProps> = ({
               sound.playBlip();
               setIsPlaying(true);
             }}
-            className="w-full py-3 bg-[#E86AA8] hover:bg-[#ff7ebc] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
+            className="w-full py-2.5 bg-[#E86AA8] hover:bg-[#ff7ebc] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
           >
             <Rocket className="w-4 h-4" />
-            <span>ACTIVAR PROPULSORES // INICIAR PERSECUCIÓN EN GRAVEDAD CERO</span>
+            <span>ACTIVAR PROPULSORES // ¡ATRAPAR EL DRON!</span>
           </button>
         </div>
       ) : (

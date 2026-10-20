@@ -25,39 +25,39 @@ interface StatementRound {
 const DEBATE_ROUNDS: StatementRound[] = [
   {
     id: 1,
-    statement: '«El informe es concluyente, Comandante: Vale abandonó su puesto de servicio en el taller criogénico y no se encontraba realizando labores técnicas a esa hora.»',
-    subtext: 'Acusación 1 de 4: Cuestionamiento de la coartada y presencia de Vale.',
+    statement: '«¡Comandante Rosa, el caso es claro: Vale abandonó su turno en el taller y no estaba trabajando a esa hora!»',
+    subtext: 'Acusación 1 de 4: ¿Cómo demuestras que Vale sí estaba en su puesto a las 14:00?',
     correctClueId: 'clue_oscilloscope',
-    rebuttalText: '¡FALSO! Aquí está la bitácora criptográfica del osciloscopio. Sincronizó las ondas a 4.0 Hz y registró su firma digital inalterable a las 14:00 horas exactas. Es técnicamente imposible que estuviera en otro lugar.',
-    consequenceText: 'Diego titubea visiblemente y consulta su datapad sin argumentos. La Comandante Rosa asiente: «La evidencia técnica es categórica. Vale se encontraba en su puesto cumpliendo sus funciones reglamentarias.»',
-    evidenceExplanation: 'El osciloscopio almacena un registro matemático que certifica la calibración de frecuencias con marca de tiempo del sistema central.'
+    rebuttalText: '¡FALSO! El osciloscopio registró la hora exacta (14:00) en que Vale calibró el motor. ¡Estaba trabajando en su puesto!',
+    consequenceText: 'Diego titubea y se queda mudo. La Comandante Rosa asiente: «El osciloscopio sella la hora oficial. Vale estuvo cumpliendo su deber a las 14:00 hrs exactas.»',
+    evidenceExplanation: 'El osciloscopio guarda una marca de tiempo digital automática que nadie puede alterar ni borrar.'
   },
   {
     id: 2,
-    statement: '«Aun si estuvo allí, el video difundido por El Eco es nítido. Se distingue claramente su rostro en situaciones indebidas. ¡Nadie puede inventar una grabación de esa naturaleza!»',
-    subtext: 'Acusación 2 de 4: Afirmación de que el video es una grabación auténtica.',
+    statement: '«¡Pero el video que mandaron al chat se ve súper real! Se distingue claramente la cara de Vale cometiendo faltas. ¡Nadie puede inventar una grabación así!»',
+    subtext: 'Acusación 2 de 4: ¿Cómo demuestras que el video es un montaje trucho hecho con IA?',
     correctClueId: 'clue_forensic',
-    rebuttalText: '¡FALSO! El peritaje forense identificó tres fallas graves de renderizado: parpadeo asincrónico en los ojos, iluminación invertida a 38° y la marca de agua del modelo de difusión sintética. ¡Se trata de un holofake fabricado con Inteligencia Artificial!',
-    consequenceText: 'Murmullos de asombro en la sala de mando. La Comandante Rosa golpea la mesa con el mazo: «El material audiovisual es un montaje artificial fabricado con fines lesivos. Queda formalmente desestimado como prueba de cargo.»',
-    evidenceExplanation: 'Los modelos generativos de video aún presentan imperfecciones en la coherencia de sombras y frecuencias de ruido de 14.2 kHz detectables por escaneo forense.'
+    rebuttalText: '¡FALSO! El análisis forense descubrió que las sombras de la cara están al revés y los ojos parpadean mal. ¡Es un montaje creado con Inteligencia Artificial!',
+    consequenceText: 'Murmullos de asombro en el tribunal. La Comandante Rosa golpea su mazo: «El video es un montaje artificial (Deepfake) para difamarla. ¡Queda totalmente anulado!»',
+    evidenceExplanation: 'Los videos inventados con IA tienen fallas en la iluminación del rostro y firmas digitales que el escáner forense detecta al instante.'
   },
   {
     id: 3,
-    statement: '«Ese material lo captó un dron cualquiera que sobrevolaba el hangar por mantenimiento rutinario; nadie realizó un seguimiento premeditado hacia ella.»',
-    subtext: 'Acusación 3 de 4: Negación de premeditación y hostigamiento planificado.',
+    statement: '«¡Ese video lo grabó un dron cualquiera de limpieza por casualidad; nadie la persiguió ni la espió a propósito!»',
+    subtext: 'Acusación 3 de 4: ¿Cómo demuestras que alguien la espió en secreto para robar sus fotos?',
     correctClueId: 'clue_drone',
-    rebuttalText: '¡FALSO! Interceptamos el microdron espía en el hangar de gravedad cero. Su memoria contiene fotografías fijas de Vale tomadas a escondidas con ángulo constante, utilizadas deliberadamente como plantilla para alimentar el modelo de IA.',
-    consequenceText: 'Diego palidece al verse confrontado con el dispositivo. La Comandante Rosa interviene con firmeza: «Esto confirma una conducta de acecho sistemático y violación deliberada de la intimidad de una oficial.»',
-    evidenceExplanation: 'Los metadatos almacenados en la tarjeta del dron demuestran fechas y ángulos de captura previos a la publicación del video difamatorio.'
+    rebuttalText: '¡FALSO! Atrapamos el microdron en el hangar y su tarjeta de memoria tenía fotos de Vale tomadas a escondidas para recortar su cara.',
+    consequenceText: 'Diego palidece de golpe. La Comandante Rosa interviene con voz firme: «Esto prueba que hubo espionaje premeditado y acoso para robar su imagen.»',
+    evidenceExplanation: 'La tarjeta MicroSD del dron guardaba las fotos originales con fecha anterior a la creación del video falso.'
   },
   {
     id: 4,
-    statement: '«¡Yo no tengo relación alguna con esto! La cuenta "El Eco" es un canal anónimo externo; no existe forma legítima de vincularme con esa publicación.»',
-    subtext: 'Acusación 4 de 4: Intento de escudarse en el anonimato de la red.',
+    statement: '«¡Yo no tengo nada que ver con esto! La cuenta "El Eco" es anónima, nadie puede probar quién envió el mensaje al grupo.»',
+    subtext: 'Acusación 4 de 4: ¿Cómo demuestras que el mensaje anónimo salió de la computadora de Diego?',
     correctClueId: 'clue_antenna',
-    rebuttalText: '¡FALSO! Al desactivar las tres antenas repetidoras en la nave interceptora, el cortafuegos rastreó el paquete de datos original: la transmisión de "El Eco" provino directamente de la dirección IP privada del terminal del Casillero 2, asignado a ti, Diego.',
-    consequenceText: 'Diego agacha la mirada y su voz se quiebra: «Yo... solo deseaba el nombramiento de líder... nunca preví la magnitud del daño que causaría este montaje...»',
-    evidenceExplanation: 'Toda transmisión digital conserva una firma de red y paquete de enrutamiento que delata el hardware físico desde el que se originó el envío.'
+    rebuttalText: '¡FALSO! Al desactivar las antenas espaciales rastreamos la dirección IP (la matrícula digital de internet) y salió directo de tu computadora, Diego.',
+    consequenceText: 'Diego baja la cabeza y confiesa con la voz rota: «Yo... solo quería que me nombraran líder a mí... no pensé que causaría tanto daño...»',
+    evidenceExplanation: 'En internet el anonimato total no existe: todo mensaje enviado deja una dirección IP que identifica el dispositivo emisor.'
   }
 ];
 
@@ -111,18 +111,18 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
             id: 'l5-fail',
             levelNumber: 5,
             levelTitle: 'Nivel 5: Sala del Consejo // Duelo de Pruebas',
-            situation: 'Presentar pruebas no pertinentes ante la Comandante Rosa.',
-            chosenComment: 'Prueba pericial equivocada presentada en dos oportunidades.',
+            situation: 'Presentar pruebas no correspondientes ante el Consejo.',
+            chosenComment: 'Prueba incorrecta presentada en dos oportunidades.',
             isToxic: true,
             pointsDelta: -30,
-            whyThisMatters: 'En una audiencia formal, sostener una defensa sin la prueba técnica adecuada debilita la posición de la víctima.',
-            realWorldImpact: 'Documentar de manera rigurosa la evidencia pericial es indispensable para evitar la impunidad en casos de violencia digital.'
+            whyThisMatters: 'Si presentas pruebas que no corresponden, la acusación falsa de Diego queda sin desmentir.',
+            realWorldImpact: 'Presentar la evidencia adecuada es clave para frenar el acoso digital.'
           };
           onDefeat(failureEntry);
         } else {
           setFeedback({
             isSuccess: false,
-            text: '«Esa prueba no contradice la afirmación específica que Diego acaba de plantear. Analiza el contenido exacto de su acusación y escoge la evidencia que responda de forma directa a ese punto.»'
+            text: '«¡Esa prueba no responde a esta mentira! Lee bien qué inventó Diego y escoge la prueba que lo desmiente directamente.»'
           });
         }
       }
@@ -245,7 +245,7 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
         <div className="space-y-3">
           <div className="text-xs font-mono-tech font-bold text-[#EDEBFA] flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#4FD1C5]" />
-            <span>SELECCIONA LA PRUEBA PERICIAL EXACTA REUNIDA EN LAS MISIONES ANTERIORES:</span>
+            <span>ELIGE LA PRUEBA QUE DESMIENTE A DIEGO:</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -258,7 +258,7 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
                     sound.playBlip();
                     setSelectedClueId(clue.id);
                   }}
-                  className={`p-3 rounded-xs border-2 text-left transition-all cursor-pointer ${
+                  className={`p-2.5 rounded-xs border-2 text-left transition-all cursor-pointer ${
                     isSelected 
                       ? 'bg-[#1C1838] border-[#4FD1C5] shadow-[0_0_15px_rgba(79,209,197,0.3)]' 
                       : 'bg-[#0E0E22] border-[#5E4FA2]/50 hover:border-[#4FD1C5]/70'
@@ -284,14 +284,14 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
           <button
             onClick={handleSlamObjection}
             disabled={!selectedClueId}
-            className={`w-full py-3.5 font-black font-mono-tech text-base tracking-widest uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-xl ${
+            className={`w-full py-3 font-black font-mono-tech text-sm sm:text-base tracking-widest uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-xl ${
               selectedClueId 
                 ? 'bg-[#D7263D] hover:bg-[#ff3b55] text-white cursor-pointer shadow-[0_0_20px_rgba(215,38,61,0.5)]' 
                 : 'bg-[#1C1C36] text-[#555B77] border border-[#2B2B48] cursor-not-allowed'
             }`}
           >
             <Gavel className="w-5 h-5" />
-            <span>¡EXCLAMAR «¡FALSO!» Y PRESENTAR PRUEBA PERICIAL!</span>
+            <span>¡EXCLAMAR «¡FALSO!» Y PRESENTAR PRUEBA!</span>
           </button>
         </div>
       )}

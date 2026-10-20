@@ -51,15 +51,15 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
 
         {/* Narrative explanation */}
         <div className="w-full bg-[#24101A] border-l-4 border-[#D7263D] p-3.5 my-4 rounded-xs text-xs text-[#EDEBFA] leading-relaxed text-left space-y-2">
-          <p className="font-semibold text-[#F2B544] flex items-center gap-1.5">
+          <p className="font-semibold text-[#F2B544] flex items-center gap-1.5 text-xs sm:text-sm">
             <HeartCrack className="w-4 h-4 text-[#D7263D]" />
-            ¿Por qué se perdieron los puntos y concluyó la partida?:
+            ¿Qué pasó y por qué terminó la partida?:
           </p>
           <p>
-            En la base KUNTUR —de la misma forma que en centros educativos, universidades y espacios de trabajo— el acoso digital se sostiene cuando <strong>los espectadores eligen reírse, solicitar el reenvío de imágenes íntimas o emitir comentarios machistas</strong> como <em>«por algo será»</em> o <em>«las mujeres no están capacitadas para este puesto»</em>.
+            En la base KUNTUR —igual que en el colegio o en los grupos de WhatsApp— el ciberacoso crece cuando <strong>nos reímos de las burlas, pedimos que reenvíen videos falsos o decimos <em>«ella se lo buscó»</em></strong>.
           </p>
           <p className="text-[#A6A2C5]">
-            Al escoger esas respuestas, aislaste a Vale, destruiste el entorno seguro que requería para denunciar y legitimaste el hostigamiento del agresor. La complicidad activa o pasiva con la violencia digital tiene consecuencias éticas e institucionales severas.
+            Al elegir esa respuesta, le diste poder al agresor y dejaste a Vale sola frente a los ataques. ¡Pero esto es un simulador para aprender! Vuelve a intentarlo y descubre la diferencia cuando te animas a poner un alto.
           </p>
         </div>
 

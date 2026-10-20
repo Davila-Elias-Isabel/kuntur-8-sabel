@@ -28,32 +28,32 @@ export const EndingModal: React.FC<EndingModalProps> = ({
         badgeColor: 'border-[#D7263D] text-[#D7263D]',
         title: 'FINAL: APAGÓN',
         titleColor: 'text-[#D7263D]',
-        subtitle: 'El silencio de la dotación forzó a Vale a solicitar su traslado',
+        subtitle: 'Vale tuvo que renunciar porque nadie la apoyó frente a las burlas',
         icon: <AlertOctagon className="w-8 h-8 text-[#D7263D]" />,
         narrative: 
-          'El video manipulado se normalizó en los canales de la tripulación sin oposición ética ni técnica. Quienes lo recibieron optaron por el morbo o por reenviarlo, consolidando la mentira algorítmica. Desacreditada y sin un entorno seguro, Vale solicitó su baja del mando técnico y traslado a un puesto remoto. La base KUNTUR perdió a su ingeniera más lúcida, demostrando que guardar silencio ante el acoso digital no es ser neutral: acelera el daño sobre la víctima.'
+          'El chisme creció en el chat grupal porque muchos se rieron o lo reenviaron. Al sentirse sola y sin respaldo de sus compañeros, Vale pidió su traslado lejos de la base espacial. KUNTUR perdió a su mejor ingeniera. 💡 Recuerda: quedarte callado o reírte no es inofensivo; ayuda a que el acoso crezca.'
       };
     } else if (puntos <= 75) {
       return {
-        badge: 'ESTADO INCIERTO // RESOLUCIÓN ADMINISTRATIVA',
+        badge: 'ESTADO INCIERTO // RESOLUCIÓN PARCIAL',
         badgeColor: 'border-[#F2B544] text-[#F2B544]',
         title: 'FINAL: INTERFERENCIA',
         titleColor: 'text-[#F2B544]',
-        subtitle: 'Resolución burocrática sin recomposición comunitaria',
+        subtitle: 'El video se borró, pero quedó la desconfianza en el equipo',
         icon: <HelpCircle className="w-8 h-8 text-[#F2B544]" />,
         narrative: 
-          'El archivo sintético fue eliminado de los canales oficiales tras una sanción genérica. Sin embargo, no hubo un debate formativo ni una restitución clara del honor de Vale. Ella conserva su rango, pero ahora trabaja en un clima de desconfianza. El daño no creció, pero queda en evidencia que una medida disciplinaria fría sin empatía comunitaria no subsana el estigma ni el impacto emocional del hostigamiento.'
+          'El video falso fue eliminado de los canales, pero no todos aprendieron la lección. Vale conserva su puesto, pero aún siente tristeza porque el grupo no habló con empatía. 💡 Recuerda: para cuidar a tu equipo, no basta con borrar el archivo; hay que escuchar y respaldar a quien fue lastimado.'
       };
     } else {
       return {
-        badge: 'ENLACE ÓPTIMO // RED DE TESTIGOS ACTIVOS',
+        badge: 'MISIÓN CUMPLIDA // TESTIGO ACTIVO EJEMPLAR',
         badgeColor: 'border-[#4FD1C5] text-[#4FD1C5]',
         title: 'FINAL: CONSTELACIÓN ÉTICA',
         titleColor: 'text-[#4FD1C5]',
-        subtitle: 'Intervención integral: desarmaste el acoso y defendiste la verdad con pruebas',
+        subtitle: '¡Frenaste el ciberacoso y demostraste la verdad con pruebas!',
         icon: <ShieldCheck className="w-8 h-8 text-[#4FD1C5]" />,
         narrative: 
-          `Al verificar técnicamente las anomalías del render, poner un límite asertivo a los comentarios descalificadores y articular las cuatro evidencias sin hablar por Vale pero acompañándola en todo momento, desactivaste la agresión de raíz. La Comandante Rosa ratificó a Vale como líder técnica con plenos honores y te reconoció como un Testigo Activo ejemplar. Diego enfrentará un proceso formativo y la tripulación comprendió que frenar la violencia digital es un deber colectivo.`
+          '¡Misión cumplida! Pusiste un alto a los comentarios tóxicos, reuniste las 4 pruebas de la verdad y apoyaste a Vale ante el Consejo. La Comandante Rosa ratificó a Vale como líder técnica y Diego enfrentará un proceso formativo. ¡Demostraste que ser un buen compañero cambia todo!'
       };
     }
   })();

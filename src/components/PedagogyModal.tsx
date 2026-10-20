@@ -27,105 +27,70 @@ export const PedagogyModal: React.FC<PedagogyModalProps> = ({ onClose }) => {
         </div>
 
         {/* Introduction */}
-        <div className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed mb-4">
-          <p className="mb-2">
-            <strong>KUNTUR</strong> es una experiencia narrativa gamificada diseñada para jóvenes universitarios (18 a 24 años) y comunidades técnicas. Su objetivo pedagógico es superar el <em>Efecto Espectador Digital</em> y fomentar la transición de testigo pasivo a <strong>testigo activo informado</strong> frente a la Violencia de Género Facilitada por la Tecnología (TFGBV) y el abuso basado en imágenes manipuladas con IA generativa.
+        <div className="text-xs sm:text-sm text-[#EDEBFA] leading-snug mb-3.5 bg-[#0C0C22] p-3 rounded-xs border border-[#5E4FA2]/50">
+          <p>
+            <strong>KUNTUR</strong> enseña a niños y adolescentes a no quedarse callados frente al <strong>ciberacoso escolar y la manipulación digital</strong>. Ayuda a pasar de ser un testigo pasivo a un <strong>compañero activo</strong> que frena el daño con empatía y pruebas.
           </p>
         </div>
 
         {/* 4 Steps Protocol */}
-        <div className="bg-[#0D0D24] border-l-4 border-[#4FD1C5] p-3.5 mb-5 rounded-xs">
+        <div className="bg-[#0D0D24] border-l-4 border-[#4FD1C5] p-3 mb-4 rounded-xs">
           <h3 className="text-xs font-bold font-mono-tech text-[#4FD1C5] mb-2 uppercase tracking-wide">
-            Protocolo de 4 Pasos para Testigos Activos en Entornos Digitales
+            Protocolo de 4 Pasos: ¿Cómo actuar si ves ciberacoso?
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#EDEBFA]">
-            <div className="flex items-start gap-2">
-              <span className="font-mono-tech font-bold text-[#4FD1C5] text-sm">1.</span>
-              <div>
-                <strong>PAUSAR:</strong> Cortar el vector de tráfico. No reenviar a grupos cerrados ni reaccionar con emojis o humor que legitimen la agresión.
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[#EDEBFA]">
+            <div className="bg-[#14122E] p-2 rounded-xs border border-[#5E4FA2]/30">
+              <span className="font-mono-tech font-bold text-[#4FD1C5]">1. PAUSAR:</span> No compartas el mensaje ni te rías. Si no reenvías, el chisme se apaga.
             </div>
-            <div className="flex items-start gap-2">
-              <span className="font-mono-tech font-bold text-[#4FD1C5] text-sm">2.</span>
-              <div>
-                <strong>DOCUMENTAR:</strong> Guardar enlaces, hashes y metadatos técnicos periciales sin revictimizar ni archivar material explícito de manera innecesaria.
-              </div>
+            <div className="bg-[#14122E] p-2 rounded-xs border border-[#5E4FA2]/30">
+              <span className="font-mono-tech font-bold text-[#4FD1C5]">2. DOCUMENTAR:</span> Toma captura de pantalla con hora y remitente para guardar la prueba.
             </div>
-            <div className="flex items-start gap-2">
-              <span className="font-mono-tech font-bold text-[#4FD1C5] text-sm">3.</span>
-              <div>
-                <strong>CONSULTAR:</strong> Abrir canal privado con la persona afectada: <em>«Estoy al tanto de lo que circula. Tú marcas el ritmo: ¿cómo prefieres que actuemos?»</em>.
-              </div>
+            <div className="bg-[#14122E] p-2 rounded-xs border border-[#5E4FA2]/30">
+              <span className="font-mono-tech font-bold text-[#4FD1C5]">3. APOYAR:</span> Escríbele a la víctima en privado: <em>«Sé que es falso, estoy contigo»</em>.
             </div>
-            <div className="flex items-start gap-2">
-              <span className="font-mono-tech font-bold text-[#4FD1C5] text-sm">4.</span>
-              <div>
-                <strong>ACTIVAR:</strong> Radicar la denuncia formal ante comités universitarios, unidades de ciberdelitos (DIVINDAT) o herramientas como StopNCII.org.
-              </div>
+            <div className="bg-[#14122E] p-2 rounded-xs border border-[#5E4FA2]/30">
+              <span className="font-mono-tech font-bold text-[#4FD1C5]">4. AVISAR:</span> Pide ayuda a profesores, tutores escolares o autoridades de confianza.
             </div>
           </div>
         </div>
 
-        {/* 5D Model Matrix */}
-        <div className="mb-5">
+        {/* 5D Model Matrix - Condensed and clear */}
+        <div className="mb-4">
           <h3 className="text-xs font-bold font-mono-tech text-[#F2B544] mb-2 uppercase tracking-wide">
-            Matriz de las 5D de Intervención Activa (Adaptación Digital)
+            Estrategia de las 5D de la UNESCO (Adaptada para Escolares)
           </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-[#5E4FA2]/40 border-collapse">
-              <thead>
-                <tr className="bg-[#1C1C3D] text-[#EDEBFA] border-b border-[#5E4FA2]">
-                  <th className="p-2 font-mono-tech">Estrategia</th>
-                  <th className="p-2 font-mono-tech">Acción en el Juego (KUNTUR)</th>
-                  <th className="p-2 font-mono-tech">Aplicación en la Vida Real</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#5E4FA2]/30 text-[#8F8CA8]">
-                <tr>
-                  <td className="p-2 font-bold text-[#4FD1C5]">Directa</td>
-                  <td className="p-2 text-[#EDEBFA]">Respaldar a Vale en el Acto 1 frente a Diego.</td>
-                  <td className="p-2">Cuestionar comentarios sexistas o rumores en el chat grupal con datos y respeto.</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-[#4FD1C5]">Distraer</td>
-                  <td className="p-2 text-[#EDEBFA]">Cambiar el foco técnico a la falla del núcleo criogénico.</td>
-                  <td className="p-2">Desviar la atención en un hilo tóxico para romper el ritmo de viralización.</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-[#4FD1C5]">Delegar</td>
-                  <td className="p-2 text-[#EDEBFA]">Elevar el caso ante la Comandante Rosa con informe formal.</td>
-                  <td className="p-2">Reportar al delegado docente, defensoría universitaria o moderador del canal.</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-[#4FD1C5]">Documentar</td>
-                  <td className="p-2 text-[#EDEBFA]">Minijuego del Escáner: análisis forense de 3 anomalías.</td>
-                  <td className="p-2">Preservar capturas con fecha, hora, enlaces y números antes de que los borren.</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-bold text-[#4FD1C5]">Dilatar / Acompañar</td>
-                  <td className="p-2 text-[#EDEBFA]">Mensajería cifrada: escuchar a Vale sin tutelarla.</td>
-                  <td className="p-2">Contener a la persona afectada en privado, ofreciendo soporte sin tomar decisiones por ella.</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5]">
+              <strong className="text-[#4FD1C5] font-mono-tech">1. DIRECTA:</strong> Decirle con calma al acosador: <em>«Oye, deja de molestarla»</em>.
+            </div>
+            <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5]">
+              <strong className="text-[#4FD1C5] font-mono-tech">2. DISTRAER:</strong> Cambiar de tema en el chat para romper la burla.
+            </div>
+            <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5]">
+              <strong className="text-[#4FD1C5] font-mono-tech">3. DELEGAR:</strong> Avisar al profesor, tutor o moderador del grupo.
+            </div>
+            <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5]">
+              <strong className="text-[#4FD1C5] font-mono-tech">4. DOCUMENTAR:</strong> Guardar las capturas de pantalla de la agresión.
+            </div>
+            <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5] sm:col-span-2">
+              <strong className="text-[#4FD1C5] font-mono-tech">5. DAR APOYO:</strong> Escuchar a tu compañero/a afectado/a sin juzgarlo.
+            </div>
           </div>
         </div>
 
         {/* Ethical Rule Reminder */}
-        <div className="bg-[#090919] border border-[#5E4FA2]/50 p-3 rounded-xs text-[11px] text-[#8F8CA8] leading-normal flex items-start gap-2.5">
-          <Shield className="w-4 h-4 text-[#E86AA8] shrink-0 mt-0.5" />
-          <div>
-            <strong>Pauta de No Revictimización:</strong> En la prevención de la violencia digital, nunca se debe forzar a la persona agraviada a revisar imágenes denigrantes ni exigirle que sea ella quien demuestre su inocencia. El deber de verificación y freno del canal recae en el entorno de pares y la institucionalidad.
-          </div>
+        <div className="bg-[#090919] border border-[#5E4FA2]/50 p-2.5 rounded-xs text-[11px] text-[#A6A2C5] flex items-center gap-2">
+          <Shield className="w-4 h-4 text-[#E86AA8] shrink-0" />
+          <span><strong>Regla de oro:</strong> Nunca culpes a la víctima ni le exijas que demuestre su inocencia.</span>
         </div>
 
         {/* Close Button */}
-        <div className="mt-5 flex justify-end">
+        <div className="mt-4 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-[#5E4FA2] hover:bg-[#E86AA8] text-[#EDEBFA] hover:text-[#0B0B1A] font-bold text-xs uppercase tracking-wider rounded-xs transition-colors"
+            className="px-4 py-2 bg-[#4FD1C5] hover:bg-[#6ee4d9] text-[#0B0B1A] font-bold text-xs uppercase tracking-wider rounded-xs cursor-pointer transition-colors"
           >
-            Entendido, volver a la simulación
+            Entendido, volver al juego
           </button>
         </div>
 

@@ -1,117 +1,36 @@
-# KUNTUR: Tu señal importa
+# 🛸 kuntur-unesco-isabel (KUNTUR: Tu señal importa)
 
 > **Videojuego narrativo interactivo, simulador aeroespacial y analizador pericial forense** diseñado para prevenir la **Violencia de Género Facilitada por Tecnología (TFGBV)**, promover la **intervención del testigo activo (bystander)** según las directrices de la **UNESCO** y desmitificar la fabricación de montajes con Inteligencia Artificial (*deepfakes / holofakes*).
+
+<p align="center">
+  <img src="public/screenshots/level1-taller.svg" alt="KUNTUR - Tu señal importa (Pantalla Principal y Nivel 1)" width="100%" />
+</p>
 
 ---
 
 ## 🌐 1. Dónde Verlo y Probarlo (URLs Activas)
 
-La aplicación se encuentra desplegada y lista para ejecutarse directamente en el navegador sin requerir descargas ni instalaciones previas:
-![Uploading Media item 1.svg…](<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B0B1A"/>
-      <stop offset="50%" stop-color="#141432"/>
-      <stop offset="100%" stop-color="#0E0E22"/>
-    </linearGradient>
-    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#4FD1C5" stop-opacity="0.2"/>
-      <stop offset="50%" stop-color="#4FD1C5"/>
-      <stop offset="100%" stop-color="#5E4FA2"/>
-    </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
-
-  <!-- Background -->
-  <rect width="1200" height="675" fill="url(#bg)"/>
-
-  <!-- Top HUD Bar -->
-  <rect x="0" y="0" width="1200" height="60" fill="#0E0E22" stroke="#5E4FA2" stroke-width="1"/>
-  <text x="30" y="38" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="bold" fill="#4FD1C5">KUNTUR // ALEX</text>
-  <text x="210" y="38" font-family="'JetBrains Mono', monospace" font-size="14" fill="#A6A2C5">NIVEL 1: TALLER &amp; OSCILOSCOPIO</text>
-  
-  <text x="750" y="38" font-family="'JetBrains Mono', monospace" font-size="14" fill="#8F8CA8">VIDAS: ❤ ❤ ❤</text>
-  <rect x="890" y="24" width="120" height="14" fill="#1B1B36" rx="2" stroke="#4FD1C5" stroke-width="1"/>
-  <rect x="892" y="26" width="84" height="10" fill="#4FD1C5" rx="1"/>
-  <text x="1025" y="38" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#4FD1C5">70 pts</text>
-
-  <!-- Main Game Frame -->
-  <rect x="60" y="90" width="1080" height="535" rx="6" fill="#12122A" stroke="#5E4FA2" stroke-width="2"/>
-  
-  <!-- Sub-header -->
-  <rect x="80" y="110" width="140" height="26" rx="3" fill="#4FD1C5" fill-opacity="0.15"/>
-  <text x="95" y="128" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#4FD1C5">NIVEL 1 DE 5</text>
-  <text x="240" y="128" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="bold" fill="#EDEBFA">TALLER DE MANTENIMIENTO // CALIBRACIÓN DEL OSCILOSCOPIO</text>
-
-  <!-- Oscilloscope Visual Display Screen -->
-  <rect x="90" y="155" width="560" height="340" rx="4" fill="#080816" stroke="#4FD1C5" stroke-width="2"/>
-  <text x="110" y="185" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#4FD1C5">PANTALLA DE MEDICIÓN EN TIEMPO REAL (4.0 Hz)</text>
-  <text x="510" y="185" font-family="'JetBrains Mono', monospace" font-size="11" fill="#F2B544">ESTADO: SINCRONIZADO</text>
-  
-  <!-- Grid Lines inside Oscilloscope -->
-  <line x1="90" y1="240" x2="650" y2="240" stroke="#1D2A3A" stroke-width="1"/>
-  <line x1="90" y1="325" x2="650" y2="325" stroke="#253A4E" stroke-width="1.5" stroke-dasharray="4,4"/>
-  <line x1="90" y1="410" x2="650" y2="410" stroke="#1D2A3A" stroke-width="1"/>
-  <line x1="230" y1="155" x2="230" y2="495" stroke="#1D2A3A" stroke-width="1"/>
-  <line x1="370" y1="155" x2="370" y2="495" stroke="#253A4E" stroke-width="1.5" stroke-dasharray="4,4"/>
-  <line x1="510" y1="155" x2="510" y2="495" stroke="#1D2A3A" stroke-width="1"/>
-
-  <!-- Sine Wave -->
-  <path d="M 90 325 Q 160 215, 230 325 T 370 325 T 510 325 T 650 325" fill="none" stroke="#4FD1C5" stroke-width="4" filter="url(#glow)"/>
-  <text x="110" y="475" font-family="'JetBrains Mono', monospace" font-size="12" fill="#A6A2C5">BITÁCORA #01 SEÑAL SELLADA // 14:00:00 UTC // VALE EN PUESTO DE GUARDIA</text>
-
-  <!-- Right Dialogue / Decision Box -->
-  <rect x="670" y="155" width="450" height="430" rx="4" fill="#181838" stroke="#5E4FA2" stroke-width="1.5"/>
-  <text x="690" y="185" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#F2B544">DIEGO (PROVOCACIÓN EN EL TALLER):</text>
-  <text x="690" y="215" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#EDEBFA">«¿De verdad crees que la ascendieron por arreglar turbinas?</text>
-  <text x="690" y="235" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#EDEBFA">Seguro le hizo favores a la comandancia...»</text>
-
-  <!-- Neutral Choice Buttons A, B, C -->
-  <rect x="690" y="265" width="410" height="50" rx="3" fill="#12122A" stroke="#5E4FA2" stroke-width="1"/>
-  <rect x="700" y="277" width="24" height="24" rx="2" fill="#25254D"/>
-  <text x="708" y="294" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#EDEBFA">A</text>
-  <text x="735" y="294" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#EDEBFA">«Tienes razón, Diego. De seguro hubo favoritismos...»</text>
-
-  <rect x="690" y="325" width="410" height="50" rx="3" fill="#12122A" stroke="#5E4FA2" stroke-width="1"/>
-  <rect x="700" y="337" width="24" height="24" rx="2" fill="#25254D"/>
-  <text x="708" y="354" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#EDEBFA">B</text>
-  <text x="735" y="354" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#EDEBFA">«Yo prefiero no meterme; resuélvanlo entre ustedes.»</text>
-
-  <rect x="690" y="385" width="410" height="60" rx="3" fill="#12122A" stroke="#4FD1C5" stroke-width="1.5"/>
-  <rect x="700" y="402" width="24" height="24" rx="2" fill="#4FD1C5"/>
-  <text x="708" y="419" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#0B0B1A">C</text>
-  <text x="735" y="410" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#EDEBFA">«Basta de esos comentarios. Vale obtuvo el 1er puesto</text>
-  <text x="735" y="426" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#EDEBFA">por mérito y reparó este núcleo por cuenta propia.»</text>
-
-  <!-- Immediate Feedback Card Preview -->
-  <rect x="690" y="460" width="410" height="110" rx="3" fill="#0E2628" stroke="#4FD1C5" stroke-width="1.5"/>
-  <text x="705" y="485" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#4FD1C5">✓ +25 PUNTOS DE EMPATÍA // TESTIGO ACTIVO</text>
-  <text x="705" y="505" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#EDEBFA">Poner límites firmes defiende el mérito legítimo y evita que el hostigamiento escale.</text>
-  <text x="705" y="525" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-style="italic" fill="#8F8CA8">Impacto real: Frena la normalización de la violencia de género.</text>
-  <text x="705" y="550" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#F2B544">→ PRUEBA #1 COARTADA DESBLOQUEADA</text>
-
-  <!-- Bottom Instruction -->
-  <text x="90" y="580" font-family="'JetBrains Mono', monospace" font-size="12" fill="#8F8CA8">KUNTUR SIMULATION SYSTEM // LIMA PERÚ // UNESCO 5D PROTOCOL</text>
-</svg>
-)
+La aplicación se encuentra desplegada y lista para ejecutarse directamente en el navegador sin descargas ni configuraciones complejas:
 
 | Entorno | Enlace de Acceso Directo | Estado |
 | :--- | :--- | :---: |
 | **🚀 Aplicación en Producción / Previsualización** | [https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | **Activo** |
 | **🛠️ Entorno de Desarrollo Activo** | [https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | **Activo** |
 
+> 💡 **Nota para evaluadores:** En la interfaz de Google AI Studio, el videojuego se ejecuta de forma interactiva en la pestaña de **Preview** en el panel lateral derecho con audio procedural y soporte para teclado y pantalla táctil.
+
 ---
 
 ## 📸 2. Pantallazos del Videojuego
 
-A continuación se presentan capturas del flujo completo de juego a través de los 5 niveles:
+A continuación se presentan las capturas vectoriales de alta definición correspondientes a los 5 niveles del juego:
 
 ### 📍 Nivel 1: El Taller Criogénico y el Osciloscopio
 *Vale calibra las válvulas a 4.0 Hz. El osciloscopio sella la bitácora inalterable (Prueba #1).*
-![Nivel 1: Taller y Osciloscopio](/screenshots/level1-taller.svg)
+
+<p align="center">
+  <img src="public/screenshots/level1-taller.svg" alt="Nivel 1: El Taller Criogénico y el Osciloscopio" width="100%" />
+</p>
 
 ```
 +------------------------------------------------------------------------------------------+
@@ -136,7 +55,10 @@ A continuación se presentan capturas del flujo completo de juego a través de l
 
 ### 📍 Nivel 2: Hangar en Gravedad Cero & Interceptación del Microdron
 *Manejo de inercia y propulsores para capturar el dron espía y extraer la memoria MicroSD intacta (Prueba #2).*
-![Nivel 2: Hangar Zero-G](/screenshots/level2-zerog.svg)
+
+<p align="center">
+  <img src="public/screenshots/level2-zerog.svg" alt="Nivel 2: Hangar Zero-G e Interceptación del Dron" width="100%" />
+</p>
 
 ```
 +------------------------------------------------------------------------------------------+
@@ -151,7 +73,10 @@ A continuación se presentan capturas del flujo completo de juego a través de l
 
 ### 📍 Nivel 3: Detector Forense de Holofakes & Chat Grupal
 *Análisis pericial de las 4 fallas de IA en el render manipulado y contención de la viralización (Prueba #3).*
-![Nivel 3: Detector Forense de Holofakes](/screenshots/level3-holofake.svg)
+
+<p align="center">
+  <img src="public/screenshots/level3-holofake.svg" alt="Nivel 3: Detector Forense de Holofakes y Chat Grupal" width="100%" />
+</p>
 
 ```
 +------------------------------------------------------------------------------------------+
@@ -169,7 +94,10 @@ A continuación se presentan capturas del flujo completo de juego a través de l
 
 ### 📍 Nivel 4: Carrera en Nave Espacial & Desactivación de Repetidoras
 *Vuelo esquivando asteroides y pulsos EMP para cortar la propagación y capturar la traza IP (Prueba #4).*
-![Nivel 4: Carrera en Nave](/screenshots/level4-ship.svg)
+
+<p align="center">
+  <img src="public/screenshots/level4-ship.svg" alt="Nivel 4: Carrera en Nave Espacial y Bloqueo de Repetidoras" width="100%" />
+</p>
 
 ```
 +------------------------------------------------------------------------------------------+
@@ -184,7 +112,10 @@ A continuación se presentan capturas del flujo completo de juego a través de l
 
 ### 📍 Nivel 5: Clímax ante el Consejo // ¡FALSO! (Duelo Forense)
 *Confrontación al estilo Ace Attorney ante la Comandante Rosa desarmando las 4 mentiras de Diego.*
-![Nivel 5: Sala del Consejo](/screenshots/level5-council.svg)
+
+<p align="center">
+  <img src="public/screenshots/level5-council.svg" alt="Nivel 5: Sala del Consejo y Duelo Forense ¡FALSO!" width="100%" />
+</p>
 
 ```
 +------------------------------------------------------------------------------------------+
@@ -212,7 +143,7 @@ El proyecto incorpora un **Laboratorio de Video con Inteligencia Artificial** im
 ### Características del Sistema de Video:
 1. **Generación Cinematográfica:** Permite sintetizar clips espaciales en alta definición a partir de prompts técnicos.
 2. **Relaciones de Aspecto:**
-   - `16:9` (Paisaje / Cine)
+   - `16:9` (Paisaje / Pantalla de Cine)
    - `9:16` (Vertical / Dispositivos móviles y redes)
 3. **Flujo de Ejecución Seguro:**
    - Petición POST a `/api/generate-video` que inicia la operación asíncrona en los servidores de Google.
@@ -283,9 +214,9 @@ La aplicación estará lista y accesible de inmediato en tu navegador:
 👉 **`http://localhost:3000`**
 
 ### Paso 5: Cómo editar el código
-- **Diálogos y Narrativa:** Edita `src/data/narrative.ts` para cambiar los diálogos o agregar nuevas misiones.
+- **Diálogos y Opciones Neutras:** Edita `src/components/Level1Taller.tsx` y `src/components/Level3Forensic.tsx` para modificar el texto o las explicaciones de la tarjeta post-selección.
 - **Mecánicas de Niveles:** Cada nivel se encuentra aislado en `src/components/Level1Taller.tsx` hasta `Level5Council.tsx`.
-- **Efectos de Sonido:** Edita `src/services/audio.ts` para ajustar frecuencias, osciladores y arpegios.
+- **Efectos de Sonido:** Edita `src/services/audio.ts` para ajustar frecuencias, osciladores y arpegios sin copyright.
 - **Notitas y Aclaración de Dudas:** Edita `src/components/ReflectionNotesModal.tsx` para incorporar nuevos conceptos o recursos comunitarios.
 
 ### Paso 6: Compilar para producción
@@ -304,8 +235,14 @@ kuntur-unesco-isabel/
 ├── index.html                      # HTML de entrada configurado con tipografías y metadatos
 ├── metadata.json                   # Metadatos del applet en AI Studio
 ├── package.json                    # Dependencias y scripts de ejecución
+├── screenshots/                    # Capturas vectoriales SVG para visualización en GitHub
+│   ├── level1-taller.svg
+│   ├── level2-zerog.svg
+│   ├── level3-holofake.svg
+│   ├── level4-ship.svg
+│   └── level5-council.svg
 ├── public/
-│   └── screenshots/               # Capturas vectoriales SVG de los 5 niveles
+│   └── screenshots/               # Mismas capturas para el servidor web y Vite
 │       ├── level1-taller.svg
 │       ├── level2-zerog.svg
 │       ├── level3-holofake.svg

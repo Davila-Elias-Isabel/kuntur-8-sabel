@@ -24,11 +24,11 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
   const clueItem: ClueItem = {
     id: 'clue_antenna',
     name: 'Rastreo de Antenas // Firma de IP de Diego',
-    colloquialName: 'Huella de Red del Responsable',
+    colloquialName: 'Huella Digital del Responsable',
     category: 'ip_culpable',
     icon: 'Radio',
-    whatItIs: 'Al neutralizar las 3 antenas repetidoras, el cortafuegos de telecomunicaciones interceptó el paquete de transmisión original: provino de la dirección IP privada asignada al terminal del Casillero 2, correspondiente a Diego.',
-    howItHelpsInCouncil: 'Impide que Diego alegue que la cuenta «El Eco» era de un remitente externo desconocido.',
+    whatItIs: 'Al cortar las antenas, el sistema atrapó la dirección IP exacta: el video salió directo del dispositivo de Diego.',
+    howItHelpsInCouncil: 'Prueba que Diego fue quien subió y difundió el video difamatorio.',
     unlocked: true
   };
 
@@ -62,30 +62,28 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
       </div>
 
       {!completed ? (
-        <div className="space-y-4">
-          <div className="flex items-start gap-4 bg-[#181838] p-4 rounded-xs border border-[#5E4FA2]/40">
-            <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="firm" size={72} />
-            <div className="space-y-1">
-              <div className="text-xs font-mono-tech font-bold text-[#E86AA8]">
-                {playerName.toUpperCase()} // AL MANDO DE LA NAVE INTERCEPTORA KUNTUR
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 bg-[#181838] p-3 rounded-xs border border-[#5E4FA2]/40">
+            <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="firm" size={60} />
+            <div className="space-y-0.5">
+              <div className="text-[11px] font-mono-tech font-bold text-[#E86AA8]">
+                {playerName.toUpperCase()} // NAVE KUNTUR
               </div>
-              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed">
-                «El remitente clandestino vinculó su canal a <strong>3 antenas repetidoras</strong> situadas en el cinturón de escombros de la estación. Si la difusión satelital alcanza el 100%, el archivo será descargado en todos los terminales de la Tierra y la flota. Debo maniobrar la nave esquivando los asteroides y disparar pulsos electromagnéticos a las tres torres para interrumpir la retransmisión e interceptar la IP de origen.»
+              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-snug">
+                «¡El atacante conectó <strong>3 antenas espaciales</strong> para viralizar el video! ¡Pilota la nave y destrúyelas antes de que termine la subida!»
               </p>
             </div>
           </div>
 
-          {/* Technical Explanation on IP and Repeater Towers */}
-          <div className="bg-[#0C0C22] p-3.5 rounded-xs border-l-4 border-[#E86AA8] text-xs text-[#EDEBFA] space-y-1">
-            <div className="font-bold text-[#E86AA8] flex items-center gap-1.5">
-              <Info className="w-4 h-4 text-[#E86AA8]" />
-              ¿Por qué es crucial cortar las antenas y cómo opera la Firma de IP?:
+          {/* Quick Badges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono-tech">
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#E86AA8] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">🎮</span>
+              <span><strong>Controles:</strong> [W, S / Flechas] Navegar | <strong className="text-[#F2B544]">[Espacio]</strong> Disparar</span>
             </div>
-            <p>
-              Una <strong>antena repetidora</strong> replica y amplifica señales débiles para acelerar su alcance masivo. Al derribar los 3 enlaces con pulsos EMP, se captura la <strong>Firma de IP</strong> (la dirección de red del emisor). Esta información constituye la <strong>Prueba #4 (Identidad del emisor)</strong>, eliminando el velo del anonimato digital.
-            </p>
-            <div className="text-[#A6A2C5] text-[11px] pt-1">
-              🎮 <strong>Mecánica:</strong> Usa <strong>[W, S]</strong> o las flechas <strong>Arriba / Abajo</strong> para maniobrar la nave verticalmente. Presiona <strong>[Espacio]</strong> para disparar ráfagas de pulso a los asteroides y a las 3 torres repetidoras.
+            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#4FD1C5] text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">⭐</span>
+              <span><strong>Premio:</strong> Rastreas la <strong>Prueba #4 (IP de Diego)</strong></span>
             </div>
           </div>
 
@@ -94,10 +92,10 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
               sound.playBlip();
               setIsPlaying(true);
             }}
-            className="w-full py-3 bg-[#E86AA8] hover:bg-[#ff7ebc] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
+            className="w-full py-2.5 bg-[#E86AA8] hover:bg-[#ff7ebc] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
           >
             <Rocket className="w-4 h-4" />
-            <span>DESPEGAR NAVE INTERCEPTORA // INICIAR MISIÓN DE VUELO</span>
+            <span>DESPEGAR NAVE // ¡CORTAR LA TRANSMISIÓN!</span>
           </button>
         </div>
       ) : (
@@ -127,8 +125,8 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
               <div className="text-xs font-mono-tech font-bold text-[#4FD1C5]">
                 COMANDANTE ROSA // ORDEN DE AUDIENCIA URGENTE
               </div>
-              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed">
-                «Cadetes: El cadete Diego ha solicitado formalmente mi comparecencia en la Sala de Mando para exigir la remoción inmediata de la ingeniera Vale. Ale, Vale: preséntense en este instante ante el tribunal del Consejo. Si cuentan con pruebas periciales que aclaren lo sucedido, este es el momento procesal para presentarlas.»
+              <p className="text-xs sm:text-sm text-[#EDEBFA] leading-snug">
+                «¡Cadetes! Diego convocó al Consejo de emergencia para exigir la expulsión de Vale. ¡Vengan ya a la Sala de Mando! Si tienen las pruebas para demostrar la verdad, ¡este es el momento de presentarlas!»
               </p>
             </div>
           </div>

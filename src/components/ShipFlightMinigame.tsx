@@ -308,13 +308,13 @@ export const ShipFlightMinigame: React.FC<ShipFlightMinigameProps> = ({
                 CARRERA EN NAVE // CORTAR TRANSMISIÓN DEL ECO
               </h2>
               <div className="text-[11px] text-[#8F8CA8]">
-                Pilota el interceptor espacial de KUNTUR. Dispara el Rayo Inhibidor para destruir las 3 antenas repetidoras.
+                🛸 Pilota tu nave, esquiva los asteroides y destruye las 3 antenas espaciales.
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-[#8F8CA8] hover:text-[#EDEBFA] hover:bg-[#201D3D] rounded-xs"
+            className="p-1 text-[#8F8CA8] hover:text-[#EDEBFA] hover:bg-[#201D3D] rounded-xs cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -331,12 +331,12 @@ export const ShipFlightMinigame: React.FC<ShipFlightMinigameProps> = ({
           {/* Relays Destroyed */}
           <div className="flex items-center justify-center gap-2 text-[#E86AA8] font-bold">
             <Zap className="w-4 h-4" />
-            <span>ANTENAS DESTRUIDAS: {relaysDestroyed}/3</span>
+            <span>ANTENAS: {relaysDestroyed}/3</span>
           </div>
 
           {/* Broadcast Progress */}
           <div className="flex items-center justify-end gap-2 text-[#D7263D]">
-            <span>DIFUSIÓN PIRATA: {Math.round(broadcastProgress)}%</span>
+            <span>SUBIDA DEL VIDEO: {Math.round(broadcastProgress)}%</span>
           </div>
         </div>
 
@@ -354,16 +354,16 @@ export const ShipFlightMinigame: React.FC<ShipFlightMinigameProps> = ({
             <div className="absolute inset-0 bg-[#0B0B1A]/90 flex flex-col items-center justify-center p-6 text-center z-10">
               <CheckCircle2 className="w-12 h-12 text-[#4FD1C5] mb-2 animate-bounce" />
               <h3 className="text-lg sm:text-xl font-bold font-mono-tech text-[#4FD1C5] mb-1">
-                ¡TRANSMISIÓN DE «EL ECO» INTERRUMPIDA CON ÉXITO!
+                ¡TRANSMISIÓN CORTADA A TIEMPO!
               </h3>
-              <p className="text-xs text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
-                Has destruido las antenas repetidoras clandestinas con el Rayo Inhibidor. La señal fue cortada antes de llegar a la flota y has asegurado la llave criptográfica exterior.
+              <p className="text-xs sm:text-sm text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
+                ¡Destruiste las 3 antenas y atrapaste la dirección IP de Diego para el Consejo! 📡
               </p>
               <button
                 onClick={onSuccess}
                 className="px-6 py-2.5 bg-[#4FD1C5] hover:bg-[#6fe4d9] text-[#0B0B1A] font-extrabold uppercase font-mono-tech text-xs tracking-wider rounded-xs cursor-pointer shadow-lg"
               >
-                Recoger Llave y Continuar &gt;
+                Asegurar Prueba y Continuar &gt;
               </button>
             </div>
           )}
@@ -373,16 +373,16 @@ export const ShipFlightMinigame: React.FC<ShipFlightMinigameProps> = ({
             <div className="absolute inset-0 bg-[#0B0B1A]/90 flex flex-col items-center justify-center p-6 text-center z-10">
               <AlertOctagon className="w-12 h-12 text-[#D7263D] mb-2" />
               <h3 className="text-lg sm:text-xl font-bold font-mono-tech text-[#D7263D] mb-1">
-                LA DIFUSIÓN ALCANZÓ EL 100%
+                EL VIDEO SE TRANSMITIÓ AL 100%
               </h3>
-              <p className="text-xs text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
-                El archivo falso se propagó a los canales exteriores. Pero no te desanimes: aún puedes refutar la mentira directamente en la Mesa de Auditoría del Consejo.
+              <p className="text-xs sm:text-sm text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
+                Se acabó el tiempo. ¡Vuelve a intentarlo para cortar las antenas antes de que termine la subida!
               </p>
               <button
                 onClick={onClose}
-                className="px-5 py-2 bg-[#5E4FA2] hover:bg-[#E86AA8] text-[#EDEBFA] font-bold uppercase font-mono-tech text-xs tracking-wider rounded-xs"
+                className="px-5 py-2 bg-[#4FD1C5] hover:bg-[#6fe4d9] text-[#0B0B1A] font-bold uppercase font-mono-tech text-xs tracking-wider rounded-xs cursor-pointer"
               >
-                Reintentar Vuelo o Salir
+                Reintentar
               </button>
             </div>
           )}

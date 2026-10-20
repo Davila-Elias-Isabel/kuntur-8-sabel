@@ -2,5 +2,7 @@
   "name": "KUNTUR - Tu señal importa",
   "description": "Videojuego narrativo interactivo y analizador forense sobre la prevención de la violencia digital facilitada por tecnología (TFGBV) y la intervención del testigo activo.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

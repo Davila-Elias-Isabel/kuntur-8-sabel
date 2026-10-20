@@ -48,67 +48,67 @@ export const LevelTransitionModal: React.FC<LevelTransitionModalProps> = ({
     }
   }, [nextLevelNumber]);
 
-  // Content customized per transition in clear, balanced Spanish with technical explanations
+  // Content customized per transition in clear, energetic Spanish for young players
   const transitionData = (() => {
     if (completedLevelNumber === 1) {
       return {
-        completedTitle: 'NIVEL 1 COMPLETADO // COARTADA TÉCNICA ASEGURADA',
-        nextTitle: 'NIVEL 2: HANGAR EN GRAVEDAD CERO',
+        completedTitle: '¡NIVEL 1 SUPERADO! // HORA DEL OSCILOSCOPIO ASEGURADA',
+        nextTitle: 'NIVEL 2: PERSECUCIÓN EN GRAVEDAD CERO',
         icon: <Rocket className="w-6 h-6 text-[#E86AA8]" />,
         speaker: 'vale' as const,
         speakerName: 'VALE // JEFA DE INGENIERÍA',
         speakerMood: 'critical' as const,
         dialogue: 
-          `«Excelente trabajo, ${playerName}. La calibración del osciloscopio quedó registrada en la bitácora criptográfica con fecha y hora exactas. Pero mira hacia el conducto de ventilación... ¡un microdron espía estaba grabando nuestras labores a escondidas y acaba de escapar hacia el hangar de gravedad cero! ¡Debemos ponernos la mochila propulsora y recuperarlo antes de que borren su memoria interna!»`,
+          `«¡Excelente trabajo, ${playerName}! Dejamos grabada la hora exacta en el osciloscopio. Pero mira hacia el conducto... ¡un microdron con cámara nos estuvo grabando a escondidas y huye hacia el hangar! ¡Ponte la mochila propulsora y atrápalo antes de que escape al espacio!»`,
         techExplanation:
-          'El osciloscopio dejó sellada la Prueba #1 (Coartada temporal). Ahora debes aplicar la física de inercia en gravedad cero mediante el sistema RCS (Reaction Control System) para interceptar el microdron.',
+          'Aseguraste la Prueba #1 (La hora oficial). Ahora debes usar los propulsores para perseguir al dron en gravedad cero.',
         nextMissionContext:
-          'En gravedad cero te desplazas continuamente por inercia sin fricción. Maniobra la mochila propulsora y acércate a menos de 36 metros para capturar el dron espía.'
+          'En gravedad cero flotas sin parar. Muévete con WASD o Flechas, frena con [Espacio] y acércate a menos de 36 metros para atraparlo.'
       };
     } else if (completedLevelNumber === 2) {
       return {
-        completedTitle: 'NIVEL 2 COMPLETADO // DRON ESPÍA INTERCEPTADO',
-        nextTitle: 'NIVEL 3: RED DE CADETES & LABORATORIO FORENSE',
+        completedTitle: '¡NIVEL 2 SUPERADO! // DRON ESPÍA ATRAPADO',
+        nextTitle: 'NIVEL 3: CHAT DE CADETES & DETECTOR DE IA',
         icon: <Search className="w-6 h-6 text-[#4FD1C5]" />,
         speaker: 'eco' as const,
         speakerName: 'ALERTA DE NOTIFICACIÓN // CANAL «EL ECO»',
         speakerMood: 'critical' as const,
         dialogue: 
-          `¡BZZZT! Vibra tu terminal de enlace: «Atención tripulación: revisen las imágenes de Vale en el sector técnico; aquí la evidencia de favoritismos». Varios cadetes comienzan a solicitar el reenvío del archivo por mensajería privada. ¡La campaña de difamación se ha puesto en marcha!`,
+          `¡BZZZT! Vibra tu reloj: «¡Miren el video prohibido de Vale en el hangar!». En el chat grupal 24 compañeros están a punto de compartirlo por puro chisme. ¡Alguien usó IA para fabricar un video falso y destruir a tu amiga!`,
         techExplanation:
-          'La tarjeta del dron contiene la Prueba #2 (Metadatos y fotografías base). En este nivel debes frenar la cadena de reenvío en el chat y utilizar el escáner forense para identificar las pifias de renderizado de la Inteligencia Artificial.',
+          'Guardaste la Prueba #2 (Las fotos reales del dron). En este nivel debes frenar la difusión en el chat y usar el escáner forense para encontrar las fallas de la IA.',
         nextMissionContext:
-          'Ingresa al canal público, rechaza la difusión con argumentos claros y detecta las tres anomalías algorítmicas en la silueta sintética para emitir el peritaje pericial.'
+          'Entra al chat grupal, frena la viralización con una respuesta firme y luego detecta las 3 fallas de luz y parpadeo en el escáner.'
       };
     } else if (completedLevelNumber === 3) {
       return {
-        completedTitle: 'NIVEL 3 COMPLETADO // EL HOLOFAKE DESMENTIDO',
-        nextTitle: 'NIVEL 4: VUELO ESPACIAL EN NAVE INTERCEPTORA',
+        completedTitle: '¡NIVEL 3 SUPERADO! // MONTAJE DE IA AL DESCUBIERTO',
+        nextTitle: 'NIVEL 4: CARRERA EN NAVE ESPACIAL',
         icon: <Zap className="w-6 h-6 text-[#F2B544]" />,
         speaker: 'vale' as const,
-        speakerName: 'VALE // POR EL CANAL DE TELECOMUNICACIONES',
+        speakerName: 'VALE // POR RADIO DE COMUNICACIÓN',
         speakerMood: 'firm' as const,
         dialogue: 
-          `«¡${playerName}, lograste frenar el reenvío en el grupo con el peritaje técnico! Sin embargo, El Eco está desesperado y activó un protocolo de retransmisión masiva mediante 3 antenas repetidoras en el cinturón de escombros para enviar el video a la Tierra y al Consejo en 60 segundos. ¡Sube a la nave interceptora y destruye los repetidores con pulsos EMP antes de que la difusión se complete!»`,
+          `«¡${playerName}, lograste frenar el chisme en el grupo! Pero el agresor está desesperado y conectó 3 antenas espaciales para mandar el video a todos los celulares del planeta en 60 segundos. ¡Sube a la nave KUNTUR y destruye las antenas con pulsos láser antes de que termine la subida!»`,
         techExplanation:
-          'Las antenas repetidoras amplifican y viralizan señales digitales a gran distancia. Al inutilizarlas con pulsos electromagnéticos, tu cortafuegos interceptará la Firma de IP privada del remitente.',
+          'Al derribar las 3 antenas repetidoras, el sistema rastreará la dirección IP (la matrícula digital) que demostrará quién envió el mensaje.',
         nextMissionContext:
-          'Pilota la nave esquivando asteroides y disparando ráfagas a las 3 torres repetidoras para obtener la Prueba #4 (Identidad y dirección IP del agresor).'
+          'Pilota la nave con W/S (o Flechas), esquiva los asteroides y dispara con [Espacio] a las 3 antenas para capturar la Prueba #4 (IP de Diego).'
       };
     } else {
       return {
-        completedTitle: 'NIVEL 4 COMPLETADO // TRANSMISIÓN CORTADA & IP RASTREADA',
-        nextTitle: 'NIVEL 5: SALA DEL CONSEJO // EL DUELO DE PRUEBAS',
+        completedTitle: '¡NIVEL 4 SUPERADO! // SEÑAL CORTADA & IP ATRAPADA',
+        nextTitle: 'NIVEL 5: SALA DEL CONSEJO // ¡EL JUICIO FINAL!',
         icon: <Gavel className="w-6 h-6 text-[#D7263D]" />,
         speaker: 'rosa' as const,
-        speakerName: 'COMANDANTE ROSA // ORDEN DE COMPARECENCIA ANTE EL TRIBUNAL',
+        speakerName: 'COMANDANTE ROSA // CONVOCATORIA URGENTE',
         speakerMood: 'firm' as const,
         dialogue: 
-          `«Cadetes: El cadete Diego ha solicitado formalmente mi presencia en la Sala de Mando para exigir la remoción inmediata de Vale por presuntas irregularidades. Ale, Vale: preséntense de inmediato. Contamos con las cuatro evidencias periciales: es el momento de desmontar cada falsedad ante toda la dotación.»`,
+          `«¡Atención tripulación! El cadete Diego ha convocado al Consejo exigiendo quitarle el puesto a Vale con mentiras. ${playerName}, Vale: preséntense de inmediato en el tribunal. Tenemos las 4 pruebas periciales: ¡es momento de hacer justicia y desarmar cada engaño!»`,
         techExplanation:
-          'Dispones de la cadena completa de custodia probatoria: 1) Coartada del osciloscopio, 2) Metadatos del dron, 3) Peritaje de Inteligencia Artificial, y 4) Firma de IP de Diego.',
+          'Tienes las 4 pruebas en tu datapad: 1) Hora del osciloscopio, 2) Fotos del dron, 3) Fallas de IA, y 4) Dirección IP de Diego.',
         nextMissionContext:
-          'Diego presentará 4 argumentos falsos. En cada uno, exclama ¡FALSO! y selecciona la prueba pericial exacta que refuta su acusación para ganar el debate procesal.'
+          'Diego lanzará 4 acusaciones falsas. En cada una, grita ¡FALSO! y elige la prueba exacta que desmonta su mentira.'
       };
     }
   })();

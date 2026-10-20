@@ -334,13 +334,13 @@ export const ZeroGChaseMinigame: React.FC<ZeroGChaseMinigameProps> = ({
                 PERSECUCIÓN EN GRAVEDAD CERO // HANGAR ORBITAL 4
               </h2>
               <div className="text-[11px] text-[#8F8CA8]">
-                Pilota con propulsores RCS. Inercia pura en gravedad cero. Atrapa al dron espía antes de que escape.
+                🚀 Vuela en gravedad cero. ¡Acércate al dron y atrápalo antes de que escape!
               </div>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-[#8F8CA8] hover:text-[#EDEBFA] hover:bg-[#201D3D] rounded-xs"
+            className="p-1 text-[#8F8CA8] hover:text-[#EDEBFA] hover:bg-[#201D3D] rounded-xs cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -350,7 +350,7 @@ export const ZeroGChaseMinigame: React.FC<ZeroGChaseMinigameProps> = ({
         <div className="flex items-center justify-between bg-[#0C0C22] p-2.5 px-3 border border-[#5E4FA2]/40 rounded-xs text-xs font-mono-tech">
           <div className="flex items-center gap-2 text-[#4FD1C5]">
             <Fuel className="w-4 h-4" />
-            <span>COMBUSTIBLE RCS: {Math.round(fuel)}%</span>
+            <span>COMBUSTIBLE: {Math.round(fuel)}%</span>
           </div>
 
           <div className="flex items-center gap-2 text-[#F2B544]">
@@ -378,16 +378,16 @@ export const ZeroGChaseMinigame: React.FC<ZeroGChaseMinigameProps> = ({
             <div className="absolute inset-0 bg-[#0B0B1A]/90 flex flex-col items-center justify-center p-6 text-center z-10">
               <ShieldCheck className="w-12 h-12 text-[#4FD1C5] mb-2 animate-bounce" />
               <h3 className="text-lg sm:text-xl font-bold font-mono-tech text-[#4FD1C5] mb-1">
-                ¡DRON INTERCEPTADO Y NEUTRALIZADO!
+                ¡DRON ATRAPADO! // PRUEBA #2 OBTENIDA
               </h3>
-              <p className="text-xs text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
-                Has alcanzado al dron espía en pleno vuelo de gravedad cero y extraído su disco duro. La prueba física de la manipulación ha sido asegurada en tu Datapad.
+              <p className="text-xs sm:text-sm text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
+                ¡Recuperaste la tarjeta de memoria con las fotos originales que Diego robó en el taller! 💾
               </p>
               <button
                 onClick={onSuccess}
                 className="px-6 py-2.5 bg-[#4FD1C5] hover:bg-[#6fe4d9] text-[#0B0B1A] font-extrabold uppercase font-mono-tech text-xs tracking-wider rounded-xs cursor-pointer shadow-lg"
               >
-                Asegurar Disco y Continuar &gt;
+                Guardar Prueba y Continuar &gt;
               </button>
             </div>
           )}
@@ -397,16 +397,16 @@ export const ZeroGChaseMinigame: React.FC<ZeroGChaseMinigameProps> = ({
             <div className="absolute inset-0 bg-[#0B0B1A]/90 flex flex-col items-center justify-center p-6 text-center z-10">
               <AlertTriangle className="w-12 h-12 text-[#D7263D] mb-2" />
               <h3 className="text-lg sm:text-xl font-bold font-mono-tech text-[#D7263D] mb-1">
-                EL DRON ESCAPÓ POR LA ESCLUSA
+                EL DRON ESCAPÓ POR LA COMPUERTA
               </h3>
-              <p className="text-xs text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
-                Se agotó el tiempo de persecución en gravedad cero. No te rindas: aún puedes rastrear la señal y cortar la antena repetidora desde la nave interceptora.
+              <p className="text-xs sm:text-sm text-[#EDEBFA] max-w-md mb-4 leading-relaxed">
+                Se acabó el tiempo. ¡Vuelve a intentarlo para no perder esta prueba fundamental!
               </p>
               <button
                 onClick={onClose}
-                className="px-5 py-2 bg-[#5E4FA2] hover:bg-[#E86AA8] text-[#EDEBFA] font-bold uppercase font-mono-tech text-xs tracking-wider rounded-xs"
+                className="px-5 py-2 bg-[#4FD1C5] hover:bg-[#6fe4d9] text-[#0B0B1A] font-bold uppercase font-mono-tech text-xs tracking-wider rounded-xs cursor-pointer"
               >
-                Reintentar o Salir
+                Reintentar
               </button>
             </div>
           )}

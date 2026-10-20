@@ -16,7 +16,7 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
 }) => {
   const [hotspots, setHotspots] = useState<HotspotItem[]>(initialHotspots);
   const [activeLog, setActiveLog] = useState<string>(
-    'Haz clic sobre los puntos de muestreo en la proyección para examinar inconsistencias algorítmicas y metadatos...'
+    '🔍 Toca los 5 círculos brillantes en la pantalla para encontrar las 3 fallas que demuestran que este video fue inventado con Inteligencia Artificial.'
   );
   const [logStatus, setLogStatus] = useState<'neutral' | 'real' | 'fake'>('neutral');
 
@@ -166,19 +166,19 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
             <div className="text-[11px] text-[#8F8CA8]">
               {isComplete ? (
                 <span className="text-[#4FD1C5] font-semibold">
-                  ✓ Umbral pericial alcanzado. Se generó la firma de hash para elevar la denuncia.
+                  ✓ ¡Encontraste las 3 fallas de la IA! El informe está listo para presentar ante el Consejo.
                 </span>
               ) : (
-                <span>Identifica las 3 anomalías algorítmicas entre los 5 vectores.</span>
+                <span>Toca los círculos para descubrir las 3 fallas que delatan a la IA ({realEvidenceFound}/3 encontradas).</span>
               )}
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 onClick={onCancelScan}
-                className="px-3 py-1.5 rounded-xs border border-[#5E4FA2] text-[#EDEBFA] hover:text-[#E86AA8] hover:border-[#E86AA8] text-xs font-medium transition-colors"
+                className="px-3 py-1.5 rounded-xs border border-[#5E4FA2] text-[#EDEBFA] hover:text-[#E86AA8] hover:border-[#E86AA8] text-xs font-medium transition-colors cursor-pointer"
               >
-                Volver a la consola
+                Volver
               </button>
 
               <button
@@ -191,7 +191,7 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
-                Generar reporte de denuncia formal
+                Guardar Prueba #3 y Continuar
               </button>
             </div>
           </div>
