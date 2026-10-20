@@ -1,4 +1,4 @@
-kuntur-unesco-isabel (KUNTUR: Tu señal importa)
+🛸 kuntur-unesco-isabel (KUNTUR: Tu señal importa)
 Videojuego narrativo interactivo, simulador aeroespacial y analizador pericial forense diseñado para prevenir la Violencia de Género Facilitada por Tecnología (TFGBV), promover la intervención del testigo activo (bystander) según las directrices de la UNESCO y desmitificar la fabricación de montajes con Inteligencia Artificial (deepfakes / holofakes).
 🌐 1. Dónde Verlo y Probarlo (URLs Activas)
 La aplicación se encuentra desplegada y lista para ejecutarse directamente en el navegador sin requerir descargas ni instalaciones previas:
