@@ -198,6 +198,81 @@ app.post('/api/video-download', async (req, res) => {
   }
 });
 
+// Gemini Nano Banana 2.1 Image Generation and Editing Endpoint
+app.post('/api/generate-image', async (req, res) => {
+  try {
+    const { prompt, imageBase64, mimeType = 'image/png', aspectRatio = '1:1', imageSize = '1K' } = req.body;
+    if (!prompt || typeof prompt !== 'string') {
+      return res.status(400).json({ error: 'El parámetro "prompt" es requerido.' });
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'GEMINI_API_KEY no encontrada en las variables de entorno.' });
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+
+    // Prepare contents: optional source image + text prompt for editing or generation
+    const parts: any[] = [];
+    if (imageBase64) {
+      parts.push({
+        inlineData: {
+          data: imageBase64.replace(/^data:image\/\w+;base64,/, ''),
+          mimeType,
+        },
+      });
+    }
+    parts.push({ text: prompt });
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-nano-banana-2.1',
+      contents: { parts },
+      config: {
+        imageConfig: {
+          aspectRatio: aspectRatio as any,
+          imageSize: imageSize as any,
+        },
+      },
+    });
+
+    let generatedImageUrl = '';
+    let textResponse = '';
+
+    const candidatesParts = response.candidates?.[0]?.content?.parts || [];
+    for (const part of candidatesParts) {
+      if (part.inlineData?.data) {
+        const outMime = part.inlineData.mimeType || 'image/png';
+        generatedImageUrl = `data:${outMime};base64,${part.inlineData.data}`;
+      } else if (part.text) {
+        textResponse += part.text;
+      }
+    }
+
+    if (!generatedImageUrl) {
+      return res.status(500).json({ 
+        error: 'El modelo no retornó una imagen válida. Intenta con una descripción diferente.',
+        textResponse 
+      });
+    }
+
+    res.json({
+      imageUrl: generatedImageUrl,
+      textResponse,
+      prompt,
+      model: 'gemini-nano-banana-2.1',
+      aspectRatio,
+      imageSize,
+      generatedAt: new Date().toISOString(),
+    });
+  } catch (err: any) {
+    console.error('Error generating image with gemini-nano-banana-2.1:', err);
+    res.status(500).json({ 
+      error: err.message || 'Error al generar o editar imagen con gemini-nano-banana-2.1.' 
+    });
+  }
+});
+
 async function startServer() {
   const isProd = process.env.NODE_ENV === 'production';
 

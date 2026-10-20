@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map, Video } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map, Video, Image as ImageIcon } from 'lucide-react';
 import { GameMetrics, PlayerGender } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
 
@@ -15,6 +15,7 @@ interface TopHUDProps {
   onOpenLevelMap: () => void;
   onOpenReflectionNotes?: () => void;
   onOpenVideoLab?: () => void;
+  onOpenImageStudio?: () => void;
 }
 
 export const TopHUD: React.FC<TopHUDProps> = ({
@@ -28,7 +29,8 @@ export const TopHUD: React.FC<TopHUDProps> = ({
   onOpenEmergency,
   onOpenLevelMap,
   onOpenReflectionNotes,
-  onOpenVideoLab
+  onOpenVideoLab,
+  onOpenImageStudio
 }) => {
   const puntosPercent = Math.max(0, Math.min(100, metrics.puntos));
   const playerName = gender === 'hombre' ? 'Alex' : 'Alexia';
@@ -135,11 +137,23 @@ export const TopHUD: React.FC<TopHUDProps> = ({
         {onOpenVideoLab && (
           <button
             onClick={onOpenVideoLab}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-xs border border-[#E86AA8]/60 bg-[#E86AA8]/10 text-[#E86AA8] hover:bg-[#E86AA8] hover:text-[#0B0B1A] font-mono-tech text-[11px] font-bold cursor-pointer transition-colors"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-xs border border-[#4FD1C5]/60 bg-[#4FD1C5]/10 text-[#4FD1C5] hover:bg-[#4FD1C5] hover:text-[#0B0B1A] font-mono-tech text-[11px] font-bold cursor-pointer transition-colors"
             title="Laboratorio de Video Veo 3: Generación de video con IA (16:9 y 9:16)"
           >
             <Video className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Veo 3</span>
+          </button>
+        )}
+
+        {/* Gemini Nano Banana 2.1 Image Studio Button */}
+        {onOpenImageStudio && (
+          <button
+            onClick={onOpenImageStudio}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-xs border border-[#E86AA8]/60 bg-[#E86AA8]/10 text-[#E86AA8] hover:bg-[#E86AA8] hover:text-[#0B0B1A] font-mono-tech text-[11px] font-bold cursor-pointer transition-colors"
+            title="Estudio de Imagen: Crear y editar imágenes con gemini-nano-banana-2.1"
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Imágenes</span>
           </button>
         )}
 

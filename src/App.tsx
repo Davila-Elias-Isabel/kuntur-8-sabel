@@ -15,6 +15,7 @@ import { PedagogyModal } from './components/PedagogyModal';
 import { EmergencyModal } from './components/EmergencyModal';
 import { ReflectionNotesModal } from './components/ReflectionNotesModal';
 import { VideoGeneratorModal } from './components/VideoGeneratorModal';
+import { ImageStudioModal } from './components/ImageStudioModal';
 import { TopHUD } from './components/TopHUD';
 import { sound } from './services/audio';
 
@@ -50,6 +51,7 @@ export default function App() {
   const [showEmergency, setShowEmergency] = useState(false);
   const [showReflectionNotes, setShowReflectionNotes] = useState(false);
   const [showVideoLab, setShowVideoLab] = useState(false);
+  const [showImageStudio, setShowImageStudio] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
   // Helper to adjust metrics safely and trigger audio
@@ -276,6 +278,7 @@ export default function App() {
           onOpenLevelMap={() => setScreen('LEVEL_MAP')}
           onOpenReflectionNotes={() => setShowReflectionNotes(true)}
           onOpenVideoLab={() => setShowVideoLab(true)}
+          onOpenImageStudio={() => setShowImageStudio(true)}
         />
       )}
 
@@ -421,6 +424,10 @@ export default function App() {
 
       {showVideoLab && (
         <VideoGeneratorModal onClose={() => setShowVideoLab(false)} />
+      )}
+
+      {showImageStudio && (
+        <ImageStudioModal onClose={() => setShowImageStudio(false)} />
       )}
 
     </div>
