@@ -1,309 +1,176 @@
-# 🛸 kuntur-isabel (KUNTUR: Tu señal importa)
+# 🛸 KUNTUR: Tu señal importa (kuntur-isabel)
 
-> **Videojuego narrativo interactivo, simulador aeroespacial y analizador pericial forense** diseñado para prevenir la **Violencia de Género Facilitada por Tecnología (TFGBV)**, promover la **intervención del testigo activo (bystander)** según protocolos educativos de convivencia y desmitificar la fabricación de montajes con Inteligencia Artificial (*deepfakes / holofakes*).
+> **Recurso Educativo Abierto (REA), videojuego narrativo interactivo y simulador forense digital** diseñado para prevenir la **Violencia de Género Facilitada por Tecnología (TFGBV)** y el **ciberacoso**, fomentar la **intervención del testigo activo (Upstander)** y desmitificar la creación de montajes con Inteligencia Artificial (*deepfakes / holofakes*).
 
 <p align="center">
-  <img src="public/screenshots/level1-taller.svg" alt="KUNTUR - Tu señal importa (Pantalla Principal y Nivel 1)" width="100%" />
+  <img src="screenshots/level1-taller.svg" alt="KUNTUR - Tu señal importa (Pantalla Principal y Nivel 1)" width="100%" />
 </p>
 
 ---
 
-## 🌐 1. Dónde Verlo y Probarlo (URLs Activas)
+## 🌐 1. Formas de Jugarlo y Compartirlo (Online y Offline en HTML)
 
-La aplicación se encuentra desplegada y lista para ejecutarse directamente en el navegador sin descargas ni configuraciones complejas:
+KUNTUR está construido como una aplicación cliente ligera (*Client-Side SPA*), lo que significa que **no requiere servidores de pago ni bases de datos**. Funciona tanto en la web como en un archivo HTML autónomo para escuelas y capacitaciones sin conexión:
 
-| Entorno | Enlace de Acceso Directo | Estado |
-| :--- | :--- | :---: |
-| **🚀 Aplicación en Producción / Previsualización** | [https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | **Activo** |
-| **🛠️ Entorno de Desarrollo Activo** | [https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | **Activo** |
+| Modalidad | Cómo Usarlo | Requisitos |
+| :--- | :--- | :--- |
+| **🚀 Enlace Web Directo (Online)** | [https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | Navegador web (Chrome, Edge, Safari, Firefox). Cero instalación. |
+| **📁 Archivo Único HTML (`kuntur_juego.html`)** | Descárgalo con el botón **`📥 Descargar archivo HTML (Offline)`** en el juego | **100% Offline.** Solo doble clic en el archivo. No necesita internet. |
+| **🛠️ Entorno de Desarrollo Activo** | [https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | Acceso al entorno en vivo con recarga inmediata. |
 
-> 💡 **Nota para evaluadores:** En la interfaz de Google AI Studio, el videojuego se ejecuta de forma interactiva en la pestaña de **Preview** en el panel lateral derecho con audio procedural y soporte para teclado y pantalla táctil.
-
----
-
-## 📸 2. Pantallazos del Videojuego
-
-A continuación se presentan las capturas vectoriales de alta definición correspondientes a los 5 niveles del juego:
-
-### 📍 Nivel 1: El Taller Criogénico y el Osciloscopio
-*Vale calibra las válvulas a 4.0 Hz. El osciloscopio sella la bitácora inalterable (Prueba #1).*
-
-<p align="center">
-  <img src="public/screenshots/level1-taller.svg" alt="Nivel 1: El Taller Criogénico y el Osciloscopio" width="100%" />
-</p>
-
-```
-+------------------------------------------------------------------------------------------+
-| HUD: [ALEX / LIMA]   VIDAS: [❤ ❤ ❤]   EMPATIA: [=======---] 70 pts   [Misiones] [Notitas] |
-+------------------------------------------------------------------------------------------+
-|  VALE // JEFA TECNICA: «Hola Ale. Calibremos el osciloscopio para sellar la bitácora...» |
-|                                                                                          |
-|  DIEGO // CADETE: «¿Seguro la ascendieron por méritos o por favores a la comandancia?»   |
-|                                                                                          |
-|  OPCIONES NEUTRAS (SIN SPOILERS NI COLORES PREVIOS):                                     |
-|  [ A ] «Tienes razón, Diego. Es raro ver a una mujer en la jefatura técnica...»          |
-|  [ B ] «Yo prefiero no meterme; resuelvan sus problemas entre ustedes.»                  |
-|  [ C ] «Basta de esos comentarios. Vale obtuvo el 1er puesto por mérito propio.»         |
-|                                                                                          |
-|  TARJETA EXPLICATIVA INMEDIATA (REVELADA POST-SELECCIÓN):                                |
-|  [✓] +25 PUNTOS DE EMPATÍA // ACTUASTE COMO TESTIGO ACTIVO                              |
-|  Impacto real: Frena la normalización de la violencia de género en el entorno laboral.   |
-+------------------------------------------------------------------------------------------+
-```
+> 💡 **Portabilidad para capacitaciones docentes:** El archivo `kuntur_juego.html` pesa apenas ~520 KB. Puedes enviarlo por correo o WhatsApp, o copiarlo en una memoria USB (pendrive) para salas de cómputo escolares sin acceso a internet.
 
 ---
 
-### 📍 Nivel 2: Hangar en Gravedad Cero & Interceptación del Microdron
-*Manejo de inercia y propulsores para capturar el dron espía y extraer la memoria MicroSD intacta (Prueba #2).*
+## 🎮 2. Dinámica de los 5 Niveles y Metáforas Pedagógicas
 
-<p align="center">
-  <img src="public/screenshots/level2-zerog.svg" alt="Nivel 2: Hangar Zero-G e Interceptación del Dron" width="100%" />
-</p>
+Cada nivel aborda una faceta del ciberacoso y proporciona una prueba pericial verificable para resolver el conflicto:
 
 ```
-+------------------------------------------------------------------------------------------+
-| SIMULADOR ZERO-G: [PROPULSIÓN CON INERCIA]            | PANEL PERICIAL #2                |
-| Cadete Alex maniobra en el hangar despresurizado.     | TARJETA MICROSD (RAW 1080P)      |
-| Objetivo: Dron clandestino con cámara espía.          | Hash MD5 sellado inalterable.    |
-| Distancia al objetivo: 14.2 m -> ¡INTERCEPTADO!       | Prueba de espionaje premeditado. |
-+------------------------------------------------------------------------------------------+
+[ Nivel 1: Taller ]       [ Nivel 2: Hangar ]       [ Nivel 3: Forense ]       [ Nivel 4: Carrera ]       [ Nivel 5: Consejo ]
+Osciloscopio a 4.0 Hz -> Dron en Gravedad Cero -> Detector de Holofakes -> Carrera de Antenas EMP -> Duelo de Pruebas
+(Coartada 14:00 hrs)      (Memoria MicroSD)         (4 Fallas de Render)      (Traza IP de Diego)       (Desmontar mentiras)
 ```
 
----
+### 📍 Nivel 1: Taller Criogénico & El Osciloscopio
+* **¿Por qué hay un osciloscopio?**  
+  En un caso de ciberacoso difamatorio, la primera defensa es la **evidencia técnica inalterable**. Mientras Diego esparce el rumor de que Vale abandonó su puesto, Vale calibra las válvulas a **4.0 Hz**. El osciloscopio actúa como el **registro de bitácora sellado con fecha y hora (14:00:00 hrs)**, demostrando que Vale estaba en su puesto trabajando con rigor profesional.
+* **Dinámica formativa:** Toma de decisiones éticas frente a comentarios machistas.
+* **Opciones neutras:** Las alternativas `[OPCIÓN A]` y `[OPCIÓN B]` tienen el mismo diseño y color previo para estimular el juicio crítico sin sesgos visuales anticipados.
+* **Prueba obtenida:** *Prueba #1: Bitácora del Osciloscopio (Coartada irrefutable).*
+
+### 📍 Nivel 2: Hangar en Gravedad Cero & Microdron Espía
+* **Dinámica:** Manejo de propulsores e inercia para interceptar un microdron espía antes de que escape por la compuerta.
+* **Contribución al aprendizaje:** Enseña la importancia de **preservar la evidencia original intacta (cadena de custodia digital)** antes de que el agresor la altere o borre.
+* **Prueba obtenida:** *Prueba #2: Tarjeta MicroSD del Dron (Grabación RAW sin editar).*
 
 ### 📍 Nivel 3: Detector Forense de Holofakes & Chat Grupal
-*Análisis pericial de las 4 fallas de IA en el render manipulado y contención de la viralización (Prueba #3).*
+* **Dinámica:** Escaneo interactivo de una imagen manipulada con IA para detectar 4 anomalías comunes: sombras incoherentes, parpadeo facial artificial, marcas de agua del modelo generativo y pistas de voz clonada.
+* **Contribución al aprendizaje:** Desmitifica la Inteligencia Artificial generativa. Enseña a las y los adolescentes a no creer ciegamente en imágenes o audios virales y a frenar la cadena de reenvío en grupos de mensajería.
+* **Prueba obtenida:** *Prueba #3: Informe Forense de IA (Dictamen pericial de montaje).*
 
-<p align="center">
-  <img src="public/screenshots/level3-holofake.svg" alt="Nivel 3: Detector Forense de Holofakes y Chat Grupal" width="100%" />
-</p>
+### 📍 Nivel 4: Carrera en Nave & Bloqueo de Antenas Repetidoras
+* **Dinámica:** Vuelo espacial esquivando asteroides y disparando pulsos electromagnéticos (EMP) para apagar las 3 antenas que transmiten la señal maliciosa.
+* **Contribución al aprendizaje:** Demuestra el concepto de **difusión y viralización digital acelerada**, y la urgencia de contener la propagación para evitar la revictimización comunitaria.
+* **Prueba obtenida:** *Prueba #4: Traza de IP y Paquetes de Red (Firma digital vinculada a la terminal de Diego).*
 
-```
-+------------------------------------------------------------------------------------------+
-| CHAT: #Tropa_Cadetes_KUNTUR                               | ESCÁNER FORENSE DE HOLOFAKES |
-| [El Eco - Anónimo]: «Miren el video de Vale: descarguen!» | [O] Falla 1: Sombra invertida|
-| Kevin: «Reenvíenlo al grupo privado para revisarlo...»    | [O] Falla 2: Parpadeo falso  |
-|                                                           | [O] Falla 3: Marca agua IA   |
-| TU ELECCIÓN NEUTRA (A, B, C):                             | [O] Falla 4: Audio clonado   |
-| [ C ] «Detengan la difusión. Este video es un montaje     |                              |
-|        creado con IA; pasaré el escáner pericial ahora.»  | PRUEBA #3 REGISTRADA         |
-+------------------------------------------------------------------------------------------+
-```
+### 📍 Nivel 5: Sala del Consejo // Duelo de Pruebas ante la Comandante Rosa
+* **Dinámica:** Enfrentamiento directo y claro en 2 rondas secuenciales. Diego presenta acusaciones públicas ante la Comandante y el jugador debe seleccionar la prueba técnica adecuada del Datapad.
+* **Opciones limpias y justas:** Ambas tarjetas de opción son visualmente neutras (`OPCIÓN A` vs `OPCIÓN B`), sin advertencias de color rojo/verde previas que arruinen el razonamiento del estudiante.
+* **Puntuación clara:** +10 puntos éticos por respuesta correcta (actualizando en vivo la barra de empatía del HUD) y 0 puntos con orientación reflexiva si se yerra.
+* **Resolución:** Vale es ratificada por sus méritos, Diego debe responder ante la normativa comunitaria y el equipo comprende el poder de un testigo activo.
 
 ---
 
-### 📍 Nivel 4: Carrera en Nave Espacial & Desactivación de Repetidoras
-*Vuelo esquivando asteroides y pulsos EMP para cortar la propagación y capturar la traza IP (Prueba #4).*
+## 🏅 3. Características de Accesibilidad y Gamificación
 
-<p align="center">
-  <img src="public/screenshots/level4-ship.svg" alt="Nivel 4: Carrera en Nave Espacial y Bloqueo de Repetidoras" width="100%" />
-</p>
+1. **🛰️ Voz Galáctica KUNTUR (Lectura Accesible):**
+   * Síntesis de voz nativa en español utilizando la **Web Speech API** del navegador.
+   * Botón `Escuchar` en cada diálogo, tarjeta didáctica y explicación pericial.
+   * Modo de lectura continua automática configurable desde la barra superior.
 
-```
-+------------------------------------------------------------------------------------------+
-| NAVE KUNTUR-1: [VELOCIDAD HIPERESPACIAL]              | TRAZA DE PAQUETES IP             |
-| 3 Antenas Repetidoras emitiendo el paquete malicioso. | Origen: 192.168.4.12             |
-| Disparo de pulso electromagnético (EMP)...            | Terminal: TERM_CADETE_DIEGO      |
-| ¡Difusión satelital bloqueada al 100%!                | Prueba irrefutable de autoría.   |
-+------------------------------------------------------------------------------------------+
-```
+2. **🎖️ Medallero del Testigo Activo (5 Medallas Coleccionables):**
+   * **Nivel 1:** *Medalla de la Firmeza Oportuna* (Poner límite al machismo cotidiano).
+   * **Nivel 2:** *Medalla de Custodia Pericial* (Preservar pruebas sin alterarlas).
+   * **Nivel 3:** *Medalla de Lucidez Crítica* (Frenar la cadena de chismes y analizar la IA).
+   * **Nivel 4:** *Medalla de Contención Rápida* (Cortar la viralización dañina).
+   * **Nivel 5:** *Medalla de Justicia Comunitaria* (Desmontar difamaciones con rigor y respeto).
 
----
+3. **💡 Notitas Pedagógicas & Glosario Didáctico:**
+   * Conceptos explicados en lenguaje accesible para chicos y chicas de 10 a 16 años (Deepfakes, Huella digital, Metadatos, Suplantación de identidad).
+   * Consecuencias éticas de reírse, callar o reenviar contenidos lesivos.
 
-### 📍 Nivel 5: Clímax ante el Consejo // ¡FALSO! (Duelo Forense)
-*Confrontación al estilo Ace Attorney ante la Comandante Rosa desarmando las 4 mentiras de Diego.*
-
-<p align="center">
-  <img src="public/screenshots/level5-council.svg" alt="Nivel 5: Sala del Consejo y Duelo Forense ¡FALSO!" width="100%" />
-</p>
-
-```
-+------------------------------------------------------------------------------------------+
-|               ¡¡¡  F A L S O  !!!   (OBJECIÓN PERICIAL PRESENTADA)                       |
-+------------------------------------------------------------------------------------------+
-| COMANDANTE ROSA: «Diego acusa a Vale de abandonar su guardia. Presenta la prueba.»       |
-|                                                                                          |
-| DIEGO: «¡El video demuestra que ella no estaba en su puesto!»                            |
-|                                                                                          |
-| [ PRUEBA #1: OSCILOSCOPIO ]  -> Coartada técnica sellada a las 14:00:00 hrs.             |
-| [ PRUEBA #2: MICRODRON SD ]  -> Grabación no autorizada y espionaje en el hangar.        |
-| [ PRUEBA #3: ESCÁNER IA   ]  -> Informe forense con 4 inconsistencias de renderizado.    |
-| [ PRUEBA #4: TRAZA DE IP  ]  -> Paquete de red originado desde la terminal de Diego.     |
-|                                                                                          |
-| VEREDICTO: ¡Acusación desestimada! Diego confiesa su motivación y Vale es ratificada.    |
-+------------------------------------------------------------------------------------------+
-```
+4. **🛡️ Canales de Apoyo Real (Protocolos y Líneas de Ayuda):**
+   * **Línea 100 (Perú - MIMP):** Orientación gratuita y confidencial 24/7 en violencia de género y acoso.
+   * **Chat 100:** Orientación psicológica y legal digital.
+   * **SíseVe (Minedu Perú):** Reporte de violencia escolar y ciberacoso.
+   * **StopNCII.org:** Herramienta tecnológica de protección contra la difusión no consentida de imágenes íntimas.
 
 ---
 
-## 🎬 3. Video y Laboratorio Audiovisual con Veo 3
+## 🏛️ 4. Adaptación a Marcos de la UNESCO (Capacitaciones y Talleres)
 
-El proyecto incorpora un **Laboratorio de Video con Inteligencia Artificial** impulsado por el modelo **Veo 3** (`veo-3.1-fast-generate-preview`) a través del SDK oficial `@google/genai`:
+KUNTUR está alineado con los pilares del **Marco de Alfabetización Mediática e Informacional (AMI / MIL) de la UNESCO**:
 
-### Características del Sistema de Video:
-1. **Generación Cinematográfica:** Permite sintetizar clips espaciales en alta definición a partir de prompts técnicos.
-2. **Relaciones de Aspecto:**
-   - `16:9` (Paisaje / Pantalla de Cine)
-   - `9:16` (Vertical / Dispositivos móviles y redes)
-3. **Flujo de Ejecución Seguro:**
-   - Petición POST a `/api/generate-video` que inicia la operación asíncrona en los servidores de Google.
-   - Sondeo periódico en `/api/video-status` sin bloquear el navegador.
-   - Transmisión en streaming directo de video MP4 mediante `/api/video-download` con cabeceras `video/mp4`.
-4. **Reproductor y Descarga:** Interfaz dedicada con visualización en bucle y botón para guardar el archivo `.mp4` generado localmente.
+* **Acceso y Evaluación Crítica:** Los estudiantes aprenden a dudar metódicamente de los contenidos hiperrealistas creados por IA antes de reaccionar emocionalmente.
+* **Ciudadanía Digital Ética:** Fomenta la transición del "espectador pasivo" al **"testigo activo" (*Upstander*)**, clave para erradicar el acoso escolar y laboral.
+* **Igualdad de Género en STEM:** Visibiliza a mujeres ingenieras en roles de liderazgo técnico y combate los estereotipos machistas que atribuyen los ascensos femeninos a favoritismos.
+* **Enfoque de las 5D de Intervención:** Distraer, Delegar, Documentar, Dirigirse al agresor con asertividad y Dar contención a la víctima.
 
 ---
 
-## 🛠️ 4. Tecnologías Utilizadas
+## 🛠️ 5. Tecnologías y Arquitectura
 
-### 🎨 Frontend
-- **React 18 & 19**: Arquitectura declarativa con hooks personalizados y gestión de estados inmutables.
-- **TypeScript**: Tipado seguro integral para misiones, inventario forense (`ClueItem`), métricas de empatía y registro de decisiones formativas.
-- **Tailwind CSS v4**: Sistema de diseño retrofuturista con variables personalizadas y paleta de alto contraste:
-  - Espacio Profundo: `#0B0B1A` / `#12122A`
-  - Cian Cuántico: `#4FD1C5`
-  - Oro Estelar: `#F2B544`
-  - Alerta Carmesí: `#D7263D`
-- **Web Audio API Procedural Synthesizer**: Motor sonoro en `src/services/audio.ts` 100% libre de copyright y sin dependencias externas pesadas (escalas pentatónicas cósmicas, arpegios retro, bips de radar y fanfarria judicial).
-- **Lucide React**: Biblioteca de iconos vectoriales para instrumentación de cabina y navegación.
-
-### ⚙️ Backend & Servidor
-- **Node.js & Express (`server.ts`)**: Servidor full-stack en el puerto `3000` con proxy seguro para la API de Gemini (evitando exponer credenciales en el cliente).
-- **Vite en Modo Middleware**: Servidor de desarrollo integrado con recarga ultrarrápida.
-
-### 🧠 Modelos de Inteligencia Artificial (`@google/genai`)
-- **Veo 3 (`veo-3.1-fast-generate-preview`)**: Generación de video espacial sintético en 16:9 y 9:16.
-- **Gemini Nano Banana 2.1 (`gemini-nano-banana-2.1`)**: Generación y refinamiento de imágenes en 1K, 2K y 4K para peritaje visual.
-- **Lyria (`lyria-3-clip-preview`)**: Generación procedural de fragmentos musicales ambientales.
-- **Gemini 3.8 Flash**: Procesamiento analítico y validación contextual.
+* **Frontend:** React 19, TypeScript, Tailwind CSS v4.
+* **Audio:** Sintetizador procedural con **Web Audio API** (sin librerías pesadas ni pistas de audio con derechos de autor).
+* **Voz:** **Web Speech API** nativa de los navegadores.
+* **Generador de Archivo Único:** Script propio en `scripts/make-single-html.js` que incrusta estilos y código compilado en un solo documento HTML (`dist/kuntur.html` y `public/kuntur.html`).
+* **Servidor (Opcional):** Express + Vite en Node.js (`server.ts`) para desarrollo local y previsualización en la nube.
 
 ---
 
-## 🚀 5. Cómo Correrlo y Editarlo en Tu Máquina Local
+## 💻 6. Cómo Ejecutarlo y Editarlo Localmente
 
 ### Prerrequisitos
-- **Node.js** (versión 18 o superior)
-- **npm** (versión 9+) o **bun**
+* **Node.js** (versión 18 o superior)
+* **npm**
 
-### Paso 1: Clonar o descargar el repositorio
+### Pasos:
 ```bash
+# 1. Clonar el repositorio
 git clone https://github.com/tu-usuario/kuntur-isabel.git
 cd kuntur-isabel
-```
 
-### Paso 2: Instalar las dependencias
-```bash
+# 2. Instalar dependencias
 npm install
-```
 
-### Paso 3: Configurar las variables de entorno
-Crea un archivo `.env` en la raíz del proyecto a partir del archivo `.env.example`:
-```bash
-cp .env.example .env
-```
-Edita `.env` e introduce tu clave de API:
-```env
-PORT=3000
-GEMINI_API_KEY=tu_clave_api_aqui
-```
-
-### Paso 4: Iniciar el servidor en modo desarrollo
-```bash
+# 3. Iniciar entorno de desarrollo
 npm run dev
 ```
-La aplicación estará lista y accesible de inmediato en tu navegador:
-👉 **`http://localhost:3000`**
+Abre en tu navegador: `http://localhost:3000`
 
-### Paso 5: Cómo editar el código
-- **Diálogos y Opciones Neutras:** Edita `src/components/Level1Taller.tsx` y `src/components/Level3Forensic.tsx` para modificar el texto o las explicaciones de la tarjeta post-selección.
-- **Mecánicas de Niveles:** Cada nivel se encuentra aislado en `src/components/Level1Taller.tsx` hasta `Level5Council.tsx`.
-- **Efectos de Sonido:** Edita `src/services/audio.ts` para ajustar frecuencias, osciladores y arpegios sin copyright.
-- **Notitas y Aclaración de Dudas:** Edita `src/components/ReflectionNotesModal.tsx` para incorporar nuevos conceptos o recursos comunitarios.
-
-### Paso 6: Compilar para producción
+### Generar el archivo HTML autónomo para USBs o talleres:
 ```bash
 npm run build
-npm start
 ```
+Este comando compila el proyecto y genera automáticamente el archivo **`dist/kuntur.html`**. Puedes copiar ese archivo directamente a un pendrive o compartirlo sin carpetas accesorias.
 
 ---
 
-## 📂 6. Estructura del Proyecto
+## 📄 7. Estructura de Archivos Clave
 
 ```
 kuntur-isabel/
-├── server.ts                       # Servidor Express con proxy para Veo 3, Nano Banana y Lyria
-├── index.html                      # HTML de entrada configurado con tipografías y metadatos
-├── metadata.json                   # Metadatos del applet en AI Studio
-├── package.json                    # Dependencias y scripts de ejecución
-├── screenshots/                    # Capturas vectoriales SVG para visualización en GitHub
-│   ├── level1-taller.svg
-│   ├── level2-zerog.svg
-│   ├── level3-holofake.svg
-│   ├── level4-ship.svg
-│   └── level5-council.svg
+├── scripts/
+│   └── make-single-html.js         # Empaquetador a un solo archivo HTML autónomo
 ├── public/
-│   └── screenshots/               # Mismas capturas para el servidor web y Vite
-│       ├── level1-taller.svg
-│       ├── level2-zerog.svg
-│       ├── level3-holofake.svg
-│       ├── level4-ship.svg
-│       └── level5-council.svg
-└── src/
-    ├── App.tsx                     # Orquestador del juego, vidas, empatía e inventario
-    ├── main.tsx                    # Punto de entrada React
-    ├── types/
-    │   └── game.ts                 # Tipos TypeScript: ClueItem, DecisionLogEntry, GameMetrics
-    ├── services/
-    │   └── audio.ts                # Sintetizador procedural Web Audio API sin copyright
-    ├── data/
-    │   ├── glossary.ts             # Glosario con analogías didácticas (deepfakes, IP, metadatos)
-    │   └── narrative.ts            # Anomalías forenses y datos de las 5 misiones
-    └── components/
-        ├── TopHUD.tsx              # HUD superior: vidas, empatía, Veo 3, Notitas, Glosario
-        ├── GenderSelectionModal.tsx# Elección de protagonista (Alex / Alexia)
-        ├── LevelMap.tsx            # Selector visual de niveles y estado de pruebas
-        ├── Level1Taller.tsx        # Nivel 1: Taller criogénico y opciones neutras A, B, C
-        ├── OscilloscopeMinigame.tsx# Minijuego de sintonización de ondas senoidales a 4.0 Hz
-        ├── Level2ZeroG.tsx         # Nivel 2: Hangar en Gravedad Cero y jetpack
-        ├── ZeroGChaseMinigame.tsx  # Minijuego de física inercial: captura del microdron
-        ├── Level3Forensic.tsx      # Nivel 3: Chat grupal y opciones neutras A, B, C
-        ├── HoloScannerModal.tsx    # Minijuego de escaneo pericial de las 4 anomalías de IA
-        ├── Level4Ship.tsx          # Nivel 4: Carrera en nave espacial y bloqueo de repetidoras
-        ├── ShipFlightMinigame.tsx  # Minijuego de vuelo espacial y pulsos EMP
-        ├── Level5Council.tsx       # Nivel 5: Clímax judicial al estilo Ace Attorney
-        ├── LevelTransitionModal.tsx# Transiciones cinematográficas entre niveles
-        ├── GameOverModal.tsx       # Pantalla de derrota con desglose pedagógico
-        ├── EndingModal.tsx         # Pantalla de victoria con Constelación Ética final
-        ├── VideoGeneratorModal.tsx # Laboratorio de video con Veo 3 (16:9 y 9:16)
-        ├── ImageStudioModal.tsx    # Estudio de imágenes con Gemini Nano Banana 2.1
-        ├── ReflectionNotesModal.tsx# Notitas pedagógicas: qué provocamos al apoyar o rechazar
-        ├── PedagogyModal.tsx       # Guía didáctica de las 5D de intervención
-        ├── EmergencyModal.tsx      # Canales de ayuda reales (Línea 100 Perú, StopNCII.org)
-        └── GlossaryModal.tsx       # Glosario interactivo adaptado para adolescentes
+│   ├── kuntur.html                 # Copia autónoma estática del juego
+│   └── screenshots/               # Capturas vectoriales de los niveles
+├── src/
+│   ├── App.tsx                     # Gestor de pantallas, vidas, empatía y medallas
+│   ├── types/
+│   │   └── game.ts                 # Tipos TypeScript de pruebas, decisiones y medallas
+│   ├── services/
+│   │   ├── audio.ts                # Sintetizador Web Audio API libre de copyright
+│   │   ├── speech.ts               # Servicio de voz narradora galáctica (Web Speech)
+│   │   ├── medals.ts               # Lógica de asignación de medallas del testigo activo
+│   │   └── downloadHtml.ts         # Descargador del HTML autónomo vía Blob
+│   └── components/
+│       ├── TopHUD.tsx              # Barra superior con vidas, empatía, voz y descarga
+│       ├── GenderSelectionModal.tsx# Pantalla inicial de selección de cadete (Alex / Alexia)
+│       ├── LevelMap.tsx            # Mapa de misiones y datapad de pruebas
+│       ├── Level1Taller.tsx        # Nivel 1: Taller & Osciloscopio (opciones neutras)
+│       ├── Level2ZeroG.tsx         # Nivel 2: Hangar en Gravedad Cero y dron espía
+│       ├── Level3Forensic.tsx      # Nivel 3: Detección pericial de IA y chat grupal
+│       ├── Level4Ship.tsx          # Nivel 4: Carrera de naves y corte de repetidoras
+│       ├── Level5Council.tsx       # Nivel 5: Duelo de pruebas ante el Consejo
+│       ├── ActiveWitnessMedalsModal.tsx # Medallero con felicitaciones galácticas
+│       ├── ReflectionNotesModal.tsx# Notitas didácticas y reflexiones formativas
+│       ├── PedagogyModal.tsx       # Protocolo educativo y estrategia 5D
+│       └── EmergencyModal.tsx      # Directorio de auxilio real (Línea 100 Perú)
 ```
 
 ---
 
-## 🎯 7. Coherencia Pedagógica de los 5 Niveles
-
-| Nivel | Escenario | Desafío Pedagógico y Lúdico | Prueba Pericial Conseguida |
-| :---: | :--- | :--- | :--- |
-| **1** | **Taller Criogénico** | Opciones neutras A, B, C. Poner límite a la descalificación machista y calibrar ondas a 4.0 Hz. | **Prueba #1: Bitácora del Osciloscopio** *(Coartada técnica inalterable a las 14:00 hrs)* |
-| **2** | **Hangar en Gravedad Cero** | Maniobrar con inercia para interceptar al microdron espía antes de que escape por la esclusa. | **Prueba #2: Tarjeta MicroSD del Dron** *(Grabación RAW que demuestra espionaje premeditado)* |
-| **3** | **Detector de Holofakes** | Opciones neutras A, B, C. Frenar la viralización en el chat grupal e identificar las 4 fallas de IA. | **Prueba #3: Informe Forense de IA** *(Peritaje de sombras, parpadeo y marca de agua del modelo)* |
-| **4** | **Carrera en Nave Interceptora** | Pilotar entre asteroides y disparar pulsos EMP para cortar la propagación satelital. | **Prueba #4: Traza de IP y Hash** *(Identificación del paquete de red originado en la terminal de Diego)* |
-| **5** | **Sala del Consejo** | Rebatir las 4 falsedades de Diego exclamando *«¡FALSO!»* y presentando la prueba exacta. | **Veredicto:** Vale ratificada con honores y cadetes formados en el rol de testigos activos. |
-
----
-
-## ⚖️ 8. Recursos de Apoyo en la Vida Real (Perú e Internacional)
-
-- 📞 **Línea 100 (Perú - MIMP):** Servicio telefónico gratuito y confidencial disponible las 24 horas para orientación frente a violencia de género y acoso digital.
-- 💬 **Chat 100:** Atención psicológica y legal en línea del Ministerio de la Mujer y Poblaciones Vulnerables.
-- 🏫 **SíseVe (Minedu):** Plataforma contra la violencia y el ciberacoso escolar en instituciones educativas peruanas.
-- 🛡️ **StopNCII.org:** Herramienta tecnológica de protección de la intimidad que crea hashes digitales en tu dispositivo para bloquear la difusión no consentida de imágenes íntimas.
-- 📘 **Estrategia de las 5D de Intervención:** *Distraer, Delegar, Documentar, Dirigirse al acosador y Dar apoyo.*
-
----
-
-*Proyecto: **kuntur-isabel** — Desarrollado con rigor pedagógico y ético. Tu señal importa.* 🚀
+*KUNTUR: Tu señal importa.* 🚀  
+*Un recurso educativo abierto, libre y gratuito para construir espacios digitales seguros y libres de violencia.*
