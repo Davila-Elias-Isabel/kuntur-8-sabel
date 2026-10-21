@@ -1,11 +1,11 @@
 {
-  "name": "kuntur-unesco-isabel",
+  "name": "kuntur-isabel",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build",
+    "build": "vite build && node scripts/make-single-html.js",
     "start": "node server.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

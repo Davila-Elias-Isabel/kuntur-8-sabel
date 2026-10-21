@@ -1,7 +1,8 @@
-import React from 'react';
-import { PlayerGender, GameMetrics, ClueItem } from '../types/game';
+import React, { useEffect } from 'react';
+import { PlayerGender, GameMetrics, ClueItem, ActiveWitnessMedal } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
 import { sound } from '../services/audio';
+import { speech } from '../services/speech';
 import { 
   CheckCircle2, 
   Lock, 
@@ -15,6 +16,7 @@ import {
   Search, 
   Zap, 
   Gavel,
+  Award,
   Heart
 } from 'lucide-react';
 
@@ -23,10 +25,12 @@ interface LevelMapProps {
   currentLevelNumber: number; // 1 to 5
   metrics: GameMetrics;
   clues: ClueItem[];
+  medals?: ActiveWitnessMedal[];
   onSelectLevel: (lvl: number) => void;
   onOpenGlossary: () => void;
   onOpenPedagogy: () => void;
   onOpenEmergency: () => void;
+  onOpenMedals?: () => void;
 }
 
 export const LevelMap: React.FC<LevelMapProps> = ({
@@ -34,12 +38,20 @@ export const LevelMap: React.FC<LevelMapProps> = ({
   currentLevelNumber,
   metrics,
   clues,
+  medals = [],
   onSelectLevel,
   onOpenGlossary,
   onOpenPedagogy,
-  onOpenEmergency
+  onOpenEmergency,
+  onOpenMedals
 }) => {
   const playerName = gender === 'hombre' ? 'Alex' : 'Alexia';
+
+  useEffect(() => {
+    return () => {
+      speech.stop();
+    };
+  }, []);
 
   const levelsData = [
     {
@@ -158,6 +170,19 @@ export const LevelMap: React.FC<LevelMapProps> = ({
             <BookOpen className="w-3.5 h-3.5" />
             <span>Matriz 5D (Testigo Activo)</span>
           </button>
+
+          {onOpenMedals && (
+            <button
+              onClick={() => {
+                sound.playBlip();
+                onOpenMedals();
+              }}
+              className="px-2.5 py-1 bg-[#F2B544]/15 hover:bg-[#F2B544]/25 text-[#F2B544] border border-[#F2B544]/50 rounded-xs flex items-center gap-1.5 transition-colors cursor-pointer font-bold"
+            >
+              <Award className="w-3.5 h-3.5" />
+              <span>Medallero ({medals.length}/5)</span>
+            </button>
+          )}
         </div>
 
         <button
@@ -221,6 +246,15 @@ export const LevelMap: React.FC<LevelMapProps> = ({
                         MISIÓN EN CURSO
                       </span>
                     )}
+                    {(() => {
+                      const earnedMedal = medals.find(m => m.levelNumber === lvl.num);
+                      if (!earnedMedal) return null;
+                      return (
+                        <span className="text-[10px] font-mono-tech text-[#F2B544] bg-[#F2B544]/15 border border-[#F2B544]/40 px-1.5 py-0.5 rounded flex items-center gap-1 font-bold">
+                          🏅 {earnedMedal.title} ({earnedMedal.rank.toUpperCase()})
+                        </span>
+                      );
+                    })()}
                   </div>
                   <p className="text-xs text-[#A6A2C5] max-w-lg">
                     {lvl.desc}
@@ -244,6 +278,7 @@ export const LevelMap: React.FC<LevelMapProps> = ({
                   <button
                     onClick={() => {
                       sound.playBlip();
+                      speech.stop();
                       onSelectLevel(lvl.num);
                     }}
                     className={`px-4 py-2 font-mono-tech font-bold text-xs rounded-xs flex items-center gap-1.5 transition-all cursor-pointer ${

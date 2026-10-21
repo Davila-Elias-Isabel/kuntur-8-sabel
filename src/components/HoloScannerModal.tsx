@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShieldCheck, AlertCircle, X, Search, FileText } from 'lucide-react';
 import { HotspotItem } from '../types/game';
 import { sound } from '../services/audio';
+import { SpeakerButton } from './SpeakerButton';
+import { speech } from '../services/speech';
 
 interface HoloScannerModalProps {
   hotspots: HotspotItem[];
@@ -22,6 +24,12 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
 
   const realEvidenceFound = hotspots.filter(h => h.isRealAnomaly && h.examined).length;
   const isComplete = realEvidenceFound >= 3;
+
+  useEffect(() => {
+    return () => {
+      speech.stop();
+    };
+  }, []);
 
   const handleInspectHotspot = (item: HotspotItem) => {
     if (item.examined) {
@@ -75,6 +83,21 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
               <X className="w-4 h-4" />
             </button>
           </div>
+        </div>
+
+        {/* Galactic Guide for 10-year-olds */}
+        <div className="bg-[#0A0A1F] border-b border-[#5E4FA2]/50 px-4 py-2 flex items-center justify-between flex-wrap gap-2 text-xs font-mono-tech">
+          <div className="flex items-center gap-2 text-[#EDEBFA]">
+            <span className="text-base">🛰️</span>
+            <span><strong>QUÉ TIENES QUE HACER:</strong> Toca los círculos brillantes para encontrar las 3 fallas que demuestran que el video fue inventado con IA.</span>
+          </div>
+          <SpeakerButton 
+            onCustomSpeak={() => {
+              speech.speak("Atención cadete forense. Toca los círculos brillantes del holograma para encontrar las tres fallas que demuestran que el video fue inventado con Inteligencia Artificial.");
+            }}
+            label="🛰️ Guía Galáctica"
+            className="bg-[#4FD1C5]/20 text-[#4FD1C5] border-[#4FD1C5]"
+          />
         </div>
 
         {/* Viewport with Abstract Ethical Hologram */}
@@ -151,12 +174,18 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
                 : 'border-[#5E4FA2] bg-[#15152E] text-[#8F8CA8]'
             }`}
           >
-            <div className="flex items-center gap-1.5 font-bold mb-1">
-              {logStatus === 'real' && <ShieldCheck className="w-4 h-4 text-[#4FD1C5]" />}
-              {logStatus === 'fake' && <AlertCircle className="w-4 h-4 text-[#F2B544]" />}
-              {logStatus === 'real' && <span className="text-[#4FD1C5]">[EVIDENCIA FORENSE CONFIRMADA]</span>}
-              {logStatus === 'fake' && <span className="text-[#F2B544]">[PARÁMETRO BENIGNO / DISTRACTOR]</span>}
-              {logStatus === 'neutral' && <span className="text-[#8F8CA8]">[DIAGNÓSTICO EN ESPERA]</span>}
+            <div className="flex items-center justify-between font-bold mb-1">
+              <div className="flex items-center gap-1.5">
+                {logStatus === 'real' && <ShieldCheck className="w-4 h-4 text-[#4FD1C5]" />}
+                {logStatus === 'fake' && <AlertCircle className="w-4 h-4 text-[#F2B544]" />}
+                {logStatus === 'real' && <span className="text-[#4FD1C5]">[EVIDENCIA FORENSE CONFIRMADA]</span>}
+                {logStatus === 'fake' && <span className="text-[#F2B544]">[PARÁMETRO BENIGNO / DISTRACTOR]</span>}
+                {logStatus === 'neutral' && <span className="text-[#8F8CA8]">[DIAGNÓSTICO EN ESPERA]</span>}
+              </div>
+              <SpeakerButton 
+                textToSpeak={activeLog}
+                label="Escuchar Diagnóstico"
+              />
             </div>
             {activeLog}
           </div>
@@ -175,14 +204,20 @@ export const HoloScannerModal: React.FC<HoloScannerModalProps> = ({
 
             <div className="flex items-center gap-2">
               <button
-                onClick={onCancelScan}
+                onClick={() => {
+                  speech.stop();
+                  onCancelScan();
+                }}
                 className="px-3 py-1.5 rounded-xs border border-[#5E4FA2] text-[#EDEBFA] hover:text-[#E86AA8] hover:border-[#E86AA8] text-xs font-medium transition-colors cursor-pointer"
               >
                 Volver
               </button>
 
               <button
-                onClick={onCompleteScan}
+                onClick={() => {
+                  speech.stop();
+                  onCompleteScan();
+                }}
                 disabled={!isComplete}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xs font-bold text-xs uppercase tracking-wider transition-all ${
                   isComplete

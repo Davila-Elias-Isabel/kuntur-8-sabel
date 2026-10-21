@@ -15,7 +15,7 @@ export const PedagogyModal: React.FC<PedagogyModalProps> = ({ onClose }) => {
           <div className="flex items-center gap-2">
             <BookOpen className="w-5 h-5 text-[#E86AA8]" />
             <h2 className="text-sm sm:text-base font-bold text-[#E86AA8] tracking-wider font-mono-tech">
-              GUÍA METODOLÓGICA Y PROTOCOLO EDUCATIVO // UNESCO 2024
+              GUÍA METODOLÓGICA Y PROTOCOLO EDUCATIVO
             </h2>
           </div>
           <button
@@ -57,7 +57,7 @@ export const PedagogyModal: React.FC<PedagogyModalProps> = ({ onClose }) => {
         {/* 5D Model Matrix - Condensed and clear */}
         <div className="mb-4">
           <h3 className="text-xs font-bold font-mono-tech text-[#F2B544] mb-2 uppercase tracking-wide">
-            Estrategia de las 5D de la UNESCO (Adaptada para Escolares)
+            Estrategia de las 5D del Testigo Activo (Adaptada para Escolares)
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             <div className="bg-[#181838] p-2.5 rounded-xs border-l-3 border-[#4FD1C5]">

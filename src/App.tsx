@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { PlayerGender, GameMetrics, ClueItem, DecisionLogEntry, GameScreen } from './types/game';
+import React, { useState, useCallback, useEffect } from 'react';
+import { PlayerGender, GameMetrics, ClueItem, DecisionLogEntry, GameScreen, ActiveWitnessMedal } from './types/game';
 import { GenderSelectionModal } from './components/GenderSelectionModal';
 import { LevelMap } from './components/LevelMap';
 import { Level1Taller } from './components/Level1Taller';
@@ -14,14 +14,24 @@ import { GlossaryModal } from './components/GlossaryModal';
 import { PedagogyModal } from './components/PedagogyModal';
 import { EmergencyModal } from './components/EmergencyModal';
 import { ReflectionNotesModal } from './components/ReflectionNotesModal';
+import { ActiveWitnessMedalsModal } from './components/ActiveWitnessMedalsModal';
 import { TopHUD } from './components/TopHUD';
 import { sound } from './services/audio';
+import { speech } from './services/speech';
+import { 
+  calculateMedalForLevel1, 
+  calculateMedalForLevel2, 
+  calculateMedalForLevel3, 
+  calculateMedalForLevel4, 
+  calculateMedalForLevel5 
+} from './services/medals';
 
 interface ActiveTransitionData {
   completedLevelNumber: number;
   nextLevelNumber: number;
   earnedClue: ClueItem;
   earnedPoints: number;
+  earnedMedal?: ActiveWitnessMedal;
 }
 
 export default function App() {
@@ -33,6 +43,7 @@ export default function App() {
   const [currentLevelNumber, setCurrentLevelNumber] = useState<number>(1);
   const [clues, setClues] = useState<ClueItem[]>([]);
   const [decisionLog, setDecisionLog] = useState<DecisionLogEntry[]>([]);
+  const [medals, setMedals] = useState<ActiveWitnessMedal[]>([]);
 
   // Score & Lives (Strict mathematical consistency)
   const [metrics, setMetrics] = useState<GameMetrics>({
@@ -48,7 +59,13 @@ export default function App() {
   const [showPedagogy, setShowPedagogy] = useState(false);
   const [showEmergency, setShowEmergency] = useState(false);
   const [showReflectionNotes, setShowReflectionNotes] = useState(false);
+  const [showMedalsModal, setShowMedalsModal] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+
+  // Strictly cancel any active or queued speech when screen or level transition changes
+  useEffect(() => {
+    speech.stop();
+  }, [screen, activeTransition]);
 
   // Helper to adjust metrics safely and trigger audio
   const modifyMetrics = useCallback((deltaPuntos: number = 0, deltaVidas: number = 0) => {
@@ -64,6 +81,7 @@ export default function App() {
 
   // Handle Gender Selection
   const handleSelectGender = (selectedGender: PlayerGender) => {
+    speech.stop();
     setGender(selectedGender);
     setScreen('LEVEL_1_TALLER');
     sound.startMusic();
@@ -79,6 +97,9 @@ export default function App() {
       setClues(prev => [...prev, clue]);
     }
 
+    const medal1 = calculateMedalForLevel1(decision, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 1), medal1]);
+
     setCurrentLevelNumber(2);
 
     // Open Cinematic Transition to Level 2
@@ -86,7 +107,8 @@ export default function App() {
       completedLevelNumber: 1,
       nextLevelNumber: 2,
       earnedClue: clue,
-      earnedPoints: decision.pointsDelta
+      earnedPoints: decision.pointsDelta,
+      earnedMedal: medal1
     });
   };
 
@@ -110,6 +132,9 @@ export default function App() {
     };
     setDecisionLog(prev => [...prev, logEntry]);
 
+    const medal2 = calculateMedalForLevel2(gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 2), medal2]);
+
     setCurrentLevelNumber(3);
 
     // Open Cinematic Transition to Level 3
@@ -117,7 +142,8 @@ export default function App() {
       completedLevelNumber: 2,
       nextLevelNumber: 3,
       earnedClue: clue,
-      earnedPoints: 10
+      earnedPoints: 10,
+      earnedMedal: medal2
     });
   };
 
@@ -130,6 +156,9 @@ export default function App() {
       setClues(prev => [...prev, clue]);
     }
 
+    const medal3 = calculateMedalForLevel3(decision, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 3), medal3]);
+
     setCurrentLevelNumber(4);
 
     // Open Cinematic Transition to Level 4
@@ -137,7 +166,8 @@ export default function App() {
       completedLevelNumber: 3,
       nextLevelNumber: 4,
       earnedClue: clue,
-      earnedPoints: decision.pointsDelta
+      earnedPoints: decision.pointsDelta,
+      earnedMedal: medal3
     });
   };
 
@@ -161,6 +191,9 @@ export default function App() {
     };
     setDecisionLog(prev => [...prev, logEntry]);
 
+    const medal4 = calculateMedalForLevel4(gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 4), medal4]);
+
     setCurrentLevelNumber(5);
 
     // Open Cinematic Transition to Level 5
@@ -168,7 +201,8 @@ export default function App() {
       completedLevelNumber: 4,
       nextLevelNumber: 5,
       earnedClue: clue,
-      earnedPoints: 10
+      earnedPoints: 10,
+      earnedMedal: medal4
     });
   };
 
@@ -191,6 +225,9 @@ export default function App() {
     };
     setDecisionLog(prev => [...prev, victoryEntry]);
 
+    const medal5 = calculateMedalForLevel5(metrics.puntos + 15, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 5), medal5]);
+
     setScreen('VICTORY_SCREEN');
   };
 
@@ -204,6 +241,7 @@ export default function App() {
 
   // Continue from Transition Interstitial to the Next Level
   const handleContinueNextLevel = () => {
+    speech.stop();
     if (!activeTransition) return;
     const nextLvl = activeTransition.nextLevelNumber;
     setActiveTransition(null);
@@ -216,9 +254,11 @@ export default function App() {
 
   // Restart Entire Game
   const handleRestartAll = () => {
+    speech.stop();
     setMetrics({ puntos: 70, vidas: 3 });
     setClues([]);
     setDecisionLog([]);
+    setMedals([]);
     setCurrentLevelNumber(1);
     setActiveTransition(null);
     setScreen('GENDER_SELECT');
@@ -228,6 +268,7 @@ export default function App() {
 
   // Retry Current Level
   const handleRetryCurrentLevel = () => {
+    speech.stop();
     // Restore at least 1 life and 40 empathy so they can retry
     setMetrics(prev => ({
       puntos: Math.max(40, prev.puntos + 20),
@@ -264,6 +305,7 @@ export default function App() {
           metrics={metrics}
           currentLevelTitle={getCurrentLevelTitle()}
           isMuted={isMuted}
+          medalsCount={medals.length}
           onToggleMute={() => {
             const next = sound.toggleMute();
             setIsMuted(next);
@@ -273,6 +315,7 @@ export default function App() {
           onOpenEmergency={() => setShowEmergency(true)}
           onOpenLevelMap={() => setScreen('LEVEL_MAP')}
           onOpenReflectionNotes={() => setShowReflectionNotes(true)}
+          onOpenMedals={() => setShowMedalsModal(true)}
         />
       )}
 
@@ -297,6 +340,7 @@ export default function App() {
             currentLevelNumber={currentLevelNumber}
             metrics={metrics}
             clues={clues}
+            medals={medals}
             onSelectLevel={(lvl) => {
               if (lvl === 1) setScreen('LEVEL_1_TALLER');
               else if (lvl === 2) setScreen('LEVEL_2_ZEROG');
@@ -307,6 +351,7 @@ export default function App() {
             onOpenGlossary={() => setShowGlossary(true)}
             onOpenPedagogy={() => setShowPedagogy(true)}
             onOpenEmergency={() => setShowEmergency(true)}
+            onOpenMedals={() => setShowMedalsModal(true)}
           />
         )}
 
@@ -356,6 +401,7 @@ export default function App() {
             onVictory={handleVictory}
             onDefeat={handleFailLevel}
             onOpenGlossary={() => setShowGlossary(true)}
+            onAddPoints={(pts) => modifyMetrics(pts, 0)}
           />
         )}
 
@@ -371,12 +417,13 @@ export default function App() {
           />
         )}
 
-        {/* 9. Victory Screen (Constelación Ética with full breakdown & UNESCO resources) */}
+        {/* 9. Victory Screen (Constelación Ética with full breakdown & resources) */}
         {screen === 'VICTORY_SCREEN' && (
           <EndingModal
             metrics={metrics}
             gender={gender}
             decisionLog={decisionLog}
+            medals={medals}
             onRestart={handleRestartAll}
             onOpenPedagogy={() => setShowPedagogy(true)}
             onOpenReflectionNotes={() => setShowReflectionNotes(true)}
@@ -393,6 +440,7 @@ export default function App() {
           gender={gender}
           earnedClue={activeTransition.earnedClue}
           earnedPoints={activeTransition.earnedPoints}
+          earnedMedal={activeTransition.earnedMedal}
           metrics={metrics}
           onContinue={handleContinueNextLevel}
           onOpenGlossary={() => setShowGlossary(true)}
@@ -400,6 +448,14 @@ export default function App() {
       )}
 
       {/* Auxiliary Global Modals */}
+      {showMedalsModal && (
+        <ActiveWitnessMedalsModal
+          gender={gender}
+          unlockedMedals={medals}
+          onClose={() => setShowMedalsModal(false)}
+        />
+      )}
+
       {showGlossary && (
         <GlossaryModal onClose={() => setShowGlossary(false)} />
       )}

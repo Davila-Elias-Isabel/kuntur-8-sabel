@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CharacterPortrait } from './CharacterPortraits';
 import { ShipFlightMinigame } from './ShipFlightMinigame';
 import { PlayerGender, ClueItem } from '../types/game';
 import { sound } from '../services/audio';
 import { ShieldCheck, ArrowRight, Lightbulb, Zap, Rocket, Info } from 'lucide-react';
+import { SpeakerButton } from './SpeakerButton';
+import { speech } from '../services/speech';
 
 interface Level4ShipProps {
   gender: PlayerGender;
@@ -20,6 +22,25 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
   const [completed, setCompleted] = useState(false);
 
   const playerName = gender === 'hombre' ? 'Alex' : 'Alexia';
+
+  // Strictly cancel speech on unmount, and auto-narrate level 4 instructions if enabled
+  useEffect(() => {
+    if (speech.isAutoRead()) {
+      const timer = setTimeout(() => {
+        speech.speak(
+          "Atención piloto espacial. Nivel cuatro: Carrera en Nave Espacial. Tu nave KUNTUR tiene que destruir las tres antenas repetidoras. Muévete arriba y abajo con las flechas del teclado y presiona la barra de espacio para disparar.",
+          { isGalactic: true, prependChime: true, context: 'level_4' }
+        );
+      }, 350);
+      return () => {
+        clearTimeout(timer);
+        speech.stop();
+      };
+    }
+    return () => {
+      speech.stop();
+    };
+  }, []);
 
   const clueItem: ClueItem = {
     id: 'clue_antenna',
@@ -65,9 +86,15 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
         <div className="space-y-3">
           <div className="flex items-center gap-3 bg-[#181838] p-3 rounded-xs border border-[#5E4FA2]/40">
             <CharacterPortrait type={gender === 'hombre' ? 'ale_hombre' : 'ale_mujer'} mood="firm" size={60} />
-            <div className="space-y-0.5">
-              <div className="text-[11px] font-mono-tech font-bold text-[#E86AA8]">
-                {playerName.toUpperCase()} // NAVE KUNTUR
+            <div className="space-y-0.5 flex-1">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-mono-tech font-bold text-[#E86AA8]">
+                  {playerName.toUpperCase()} // NAVE KUNTUR
+                </span>
+                <SpeakerButton 
+                  textToSpeak="El atacante conectó tres antenas espaciales para viralizar el video difamatorio! Pilota la nave y destrúyelas antes de que termine la subida!"
+                  label="Escuchar"
+                />
               </div>
               <p className="text-xs sm:text-sm text-[#EDEBFA] leading-snug">
                 «¡El atacante conectó <strong>3 antenas espaciales</strong> para viralizar el video! ¡Pilota la nave y destrúyelas antes de que termine la subida!»
@@ -75,21 +102,37 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
             </div>
           </div>
 
+          {/* Galactic Mission Guide for 10-year-olds */}
+          <div className="bg-[#0C0C22] p-3 rounded-xs border-l-4 border-[#E86AA8] flex items-center justify-between flex-wrap gap-2 text-xs font-mono-tech">
+            <div className="flex items-center gap-2 text-[#EDEBFA]">
+              <span className="text-base">🛰️</span>
+              <span><strong>QUÉ TIENES QUE HACER:</strong> Pilota tu nave con [W, S o Flechas], esquiva los asteroides y presiona [Espacio] para disparar a las 3 antenas repetidoras.</span>
+            </div>
+            <SpeakerButton 
+              onCustomSpeak={() => {
+                speech.speak("Atención piloto espacial. Tu nave KUNTUR tiene que destruir las tres antenas repetidoras. Muévete arriba y abajo con las flechas del teclado y presiona la barra de espacio para disparar.");
+              }}
+              label="🛰️ Guía Galáctica"
+              className="bg-[#E86AA8]/20 text-[#E86AA8] border-[#E86AA8]"
+            />
+          </div>
+
           {/* Quick Badges */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono-tech">
-            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#E86AA8] text-[#EDEBFA] flex items-center gap-2">
-              <span className="text-base">🎮</span>
-              <span><strong>Controles:</strong> [W, S / Flechas] Navegar | <strong className="text-[#F2B544]">[Espacio]</strong> Disparar</span>
+            <div className="bg-[#12122A] p-2.5 rounded-xs border border-[#E86AA8]/40 text-[#EDEBFA] flex items-center gap-2">
+              <span className="text-base">🕹️</span>
+              <span><strong>Controles:</strong> [Arriba / Abajo] Navegar | <strong className="text-[#F2B544]">[Espacio]</strong> Disparar</span>
             </div>
-            <div className="bg-[#0C0C22] p-2.5 rounded-xs border-l-4 border-[#4FD1C5] text-[#EDEBFA] flex items-center gap-2">
+            <div className="bg-[#12122A] p-2.5 rounded-xs border border-[#4FD1C5]/40 text-[#EDEBFA] flex items-center gap-2">
               <span className="text-base">⭐</span>
-              <span><strong>Premio:</strong> Rastreas la <strong>Prueba #4 (IP de Diego)</strong></span>
+              <span><strong>Tu recompensa:</strong> Rastreas la dirección de la computadora del agresor</span>
             </div>
           </div>
 
           <button
             onClick={() => {
               sound.playBlip();
+              speech.stop();
               setIsPlaying(true);
             }}
             className="w-full py-2.5 bg-[#E86AA8] hover:bg-[#ff7ebc] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
@@ -121,9 +164,16 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
           {/* Council Summon */}
           <div className="flex items-start gap-4 bg-[#201830] p-4 rounded-xs border-2 border-[#4FD1C5]">
             <CharacterPortrait type="rosa" mood="firm" size={64} />
-            <div className="space-y-1">
-              <div className="text-xs font-mono-tech font-bold text-[#4FD1C5]">
-                COMANDANTE ROSA // ORDEN DE AUDIENCIA URGENTE
+            <div className="space-y-1 flex-1">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono-tech font-bold text-[#4FD1C5]">
+                  COMANDANTE ROSA // ORDEN DE AUDIENCIA URGENTE
+                </span>
+                <SpeakerButton 
+                  textToSpeak="Cadetes! Diego convocó al Consejo de emergencia para exigir la expulsión de Vale. Vengan ya a la Sala de Mando! Si tienen las pruebas para demostrar la verdad, este es el momento de presentarlas!"
+                  label="Voz de Rosa"
+                  className="bg-[#4FD1C5]/20 text-[#4FD1C5] border-[#4FD1C5]"
+                />
               </div>
               <p className="text-xs sm:text-sm text-[#EDEBFA] leading-snug">
                 «¡Cadetes! Diego convocó al Consejo de emergencia para exigir la expulsión de Vale. ¡Vengan ya a la Sala de Mando! Si tienen las pruebas para demostrar la verdad, ¡este es el momento de presentarlas!»
@@ -134,6 +184,7 @@ export const Level4Ship: React.FC<Level4ShipProps> = ({
           <button
             onClick={() => {
               sound.playBlip();
+              speech.stop();
               onCompleteLevel(clueItem);
             }}
             className="w-full py-3.5 bg-[#4FD1C5] hover:bg-[#6ee4d9] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"

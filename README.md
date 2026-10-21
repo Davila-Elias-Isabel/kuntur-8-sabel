@@ -1,6 +1,6 @@
-# 🛸 kuntur-unesco-isabel (KUNTUR: Tu señal importa)
+# 🛸 kuntur-isabel (KUNTUR: Tu señal importa)
 
-> **Videojuego narrativo interactivo, simulador aeroespacial y analizador pericial forense** diseñado para prevenir la **Violencia de Género Facilitada por Tecnología (TFGBV)**, promover la **intervención del testigo activo (bystander)** según las directrices de la **UNESCO** y desmitificar la fabricación de montajes con Inteligencia Artificial (*deepfakes / holofakes*).
+> **Videojuego narrativo interactivo, simulador aeroespacial y analizador pericial forense** diseñado para prevenir la **Violencia de Género Facilitada por Tecnología (TFGBV)**, promover la **intervención del testigo activo (bystander)** según protocolos educativos de convivencia y desmitificar la fabricación de montajes con Inteligencia Artificial (*deepfakes / holofakes*).
 
 <p align="center">
   <img src="public/screenshots/level1-taller.svg" alt="KUNTUR - Tu señal importa (Pantalla Principal y Nivel 1)" width="100%" />
@@ -186,8 +186,8 @@ El proyecto incorpora un **Laboratorio de Video con Inteligencia Artificial** im
 
 ### Paso 1: Clonar o descargar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/kuntur-unesco-isabel.git
-cd kuntur-unesco-isabel
+git clone https://github.com/tu-usuario/kuntur-isabel.git
+cd kuntur-isabel
 ```
 
 ### Paso 2: Instalar las dependencias
@@ -230,7 +230,7 @@ npm start
 ## 📂 6. Estructura del Proyecto
 
 ```
-kuntur-unesco-isabel/
+kuntur-isabel/
 ├── server.ts                       # Servidor Express con proxy para Veo 3, Nano Banana y Lyria
 ├── index.html                      # HTML de entrada configurado con tipografías y metadatos
 ├── metadata.json                   # Metadatos del applet en AI Studio
@@ -277,7 +277,7 @@ kuntur-unesco-isabel/
         ├── VideoGeneratorModal.tsx # Laboratorio de video con Veo 3 (16:9 y 9:16)
         ├── ImageStudioModal.tsx    # Estudio de imágenes con Gemini Nano Banana 2.1
         ├── ReflectionNotesModal.tsx# Notitas pedagógicas: qué provocamos al apoyar o rechazar
-        ├── PedagogyModal.tsx       # Guía didáctica de las 5D de la UNESCO
+        ├── PedagogyModal.tsx       # Guía didáctica de las 5D de intervención
         ├── EmergencyModal.tsx      # Canales de ayuda reales (Línea 100 Perú, StopNCII.org)
         └── GlossaryModal.tsx       # Glosario interactivo adaptado para adolescentes
 ```
@@ -302,8 +302,8 @@ kuntur-unesco-isabel/
 - 💬 **Chat 100:** Atención psicológica y legal en línea del Ministerio de la Mujer y Poblaciones Vulnerables.
 - 🏫 **SíseVe (Minedu):** Plataforma contra la violencia y el ciberacoso escolar en instituciones educativas peruanas.
 - 🛡️ **StopNCII.org:** Herramienta tecnológica de protección de la intimidad que crea hashes digitales en tu dispositivo para bloquear la difusión no consentida de imágenes íntimas.
-- 📘 **Estrategia de las 5D de la UNESCO:** *Distraer, Delegar, Documentar, Dirigirse al acosador y Dar apoyo.*
+- 📘 **Estrategia de las 5D de Intervención:** *Distraer, Delegar, Documentar, Dirigirse al acosador y Dar apoyo.*
 
 ---
 
-*Proyecto: **kuntur-unesco-isabel** — Desarrollado con rigor pedagógico y ético. Tu señal importa.* 🚀
+*Proyecto: **kuntur-isabel** — Desarrollado con rigor pedagógico y ético. Tu señal importa.* 🚀

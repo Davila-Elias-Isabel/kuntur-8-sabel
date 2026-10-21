@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ClueItem, PlayerGender, DecisionLogEntry } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
 import { sound } from '../services/audio';
-import { CheckCircle2, AlertOctagon, Sparkles, Lightbulb, Gavel, ArrowRight, Info } from 'lucide-react';
+import { 
+  CheckCircle2, 
+  Sparkles, 
+  Lightbulb, 
+  ArrowRight, 
+  RotateCcw,
+  Award,
+  Zap,
+  HelpCircle,
+  XCircle
+} from 'lucide-react';
+import { SpeakerButton } from './SpeakerButton';
+import { speech } from '../services/speech';
 
 interface Level5CouncilProps {
   gender: PlayerGender;
@@ -10,54 +22,80 @@ interface Level5CouncilProps {
   onVictory: () => void;
   onDefeat: (entry: DecisionLogEntry) => void;
   onOpenGlossary: () => void;
+  onAddPoints?: (pts: number) => void;
 }
 
-interface StatementRound {
-  id: number;
-  statement: string;
-  subtext: string;
-  correctClueId: string;
-  rebuttalText: string;
-  consequenceText: string;
-  evidenceExplanation: string;
+interface DuelOption {
+  id: string;
+  isCorrect: boolean;
+  letter: string;
+  title: string;
+  detail: string;
+  feedback: string;
 }
 
-const DEBATE_ROUNDS: StatementRound[] = [
+interface DuelRound {
+  id: string;
+  roundNumber: number;
+  totalRounds: number;
+  pointsReward: number;
+  diegoQuote: string;
+  missionPrompt: string;
+  options: DuelOption[];
+}
+
+const DUEL_ROUNDS: DuelRound[] = [
   {
-    id: 1,
-    statement: '«¡Comandante Rosa, el caso es claro: Vale abandonó su turno en el taller y no estaba trabajando a esa hora!»',
-    subtext: 'Acusación 1 de 4: ¿Cómo demuestras que Vale sí estaba en su puesto a las 14:00?',
-    correctClueId: 'clue_oscilloscope',
-    rebuttalText: '¡FALSO! El osciloscopio registró la hora exacta (14:00) en que Vale calibró el motor. ¡Estaba trabajando en su puesto!',
-    consequenceText: 'Diego titubea y se queda mudo. La Comandante Rosa asiente: «El osciloscopio sella la hora oficial. Vale estuvo cumpliendo su deber a las 14:00 hrs exactas.»',
-    evidenceExplanation: 'El osciloscopio guarda una marca de tiempo digital automática que nadie puede alterar ni borrar.'
+    id: 'round_deepfake',
+    roundNumber: 1,
+    totalRounds: 2,
+    pointsReward: 10,
+    diegoQuote: '«¡El video del chat muestra a Vale saboteando la nave y se ve 100% real! ¡Nadie puede inventar una grabación así!»',
+    missionPrompt: 'Diego afirma ante el Consejo que el video no puede ser inventado. ¿Cuál de las dos opciones eliges para responder ante el Consejo?',
+    options: [
+      {
+        id: 'opt_forensic',
+        isCorrect: true,
+        letter: 'OPCIÓN A',
+        title: 'Presentar el peritaje técnico sobre las sombras y el parpadeo del video',
+        detail: 'Explicar al Consejo que las anomalías visuales en la iluminación demuestran que fue fabricado con un modelo de Inteligencia Artificial (Deepfake).',
+        feedback: '¡Elección correcta! El peritaje forense demuestra de forma técnica y verificable que el video es una fabricación digital y desmiente la acusación.'
+      },
+      {
+        id: 'opt_insult',
+        isCorrect: false,
+        letter: 'OPCIÓN B',
+        title: 'Responder en el chat escolar que Diego está mintiendo por envidia',
+        detail: 'Exponer a Diego ante los demás cadetes para que todos sepan que es una mala persona, sin presentar peritajes ni informes técnicos.',
+        feedback: 'Esta acción no suma puntos. Los insultos o el enojo impulsivo no demuestran la verdad ante las autoridades y aumentan el conflicto. Se requiere evidencia técnica verificable.'
+      }
+    ]
   },
   {
-    id: 2,
-    statement: '«¡Pero el video que mandaron al chat se ve súper real! Se distingue claramente la cara de Vale cometiendo faltas. ¡Nadie puede inventar una grabación así!»',
-    subtext: 'Acusación 2 de 4: ¿Cómo demuestras que el video es un montaje trucho hecho con IA?',
-    correctClueId: 'clue_forensic',
-    rebuttalText: '¡FALSO! El análisis forense descubrió que las sombras de la cara están al revés y los ojos parpadean mal. ¡Es un montaje creado con Inteligencia Artificial!',
-    consequenceText: 'Murmullos de asombro en el tribunal. La Comandante Rosa golpea su mazo: «El video es un montaje artificial (Deepfake) para difamarla. ¡Queda totalmente anulado!»',
-    evidenceExplanation: 'Los videos inventados con IA tienen fallas en la iluminación del rostro y firmas digitales que el escáner forense detecta al instante.'
-  },
-  {
-    id: 3,
-    statement: '«¡Ese video lo grabó un dron cualquiera de limpieza por casualidad; nadie la persiguió ni la espió a propósito!»',
-    subtext: 'Acusación 3 de 4: ¿Cómo demuestras que alguien la espió en secreto para robar sus fotos?',
-    correctClueId: 'clue_drone',
-    rebuttalText: '¡FALSO! Atrapamos el microdron en el hangar y su tarjeta de memoria tenía fotos de Vale tomadas a escondidas para recortar su cara.',
-    consequenceText: 'Diego palidece de golpe. La Comandante Rosa interviene con voz firme: «Esto prueba que hubo espionaje premeditado y acoso para robar su imagen.»',
-    evidenceExplanation: 'La tarjeta MicroSD del dron guardaba las fotos originales con fecha anterior a la creación del video falso.'
-  },
-  {
-    id: 4,
-    statement: '«¡Yo no tengo nada que ver con esto! La cuenta "El Eco" es anónima, nadie puede probar quién envió el mensaje al grupo.»',
-    subtext: 'Acusación 4 de 4: ¿Cómo demuestras que el mensaje anónimo salió de la computadora de Diego?',
-    correctClueId: 'clue_antenna',
-    rebuttalText: '¡FALSO! Al desactivar las antenas espaciales rastreamos la dirección IP (la matrícula digital de internet) y salió directo de tu computadora, Diego.',
-    consequenceText: 'Diego baja la cabeza y confiesa con la voz rota: «Yo... solo quería que me nombraran líder a mí... no pensé que causaría tanto daño...»',
-    evidenceExplanation: 'En internet el anonimato total no existe: todo mensaje enviado deja una dirección IP que identifica el dispositivo emisor.'
+    id: 'round_oscilloscope',
+    roundNumber: 2,
+    totalRounds: 2,
+    pointsReward: 10,
+    diegoQuote: '«¡Pero Vale no estaba trabajando a las 14:00 horas! ¡Abandonó el taller y descuidó la nave!»',
+    missionPrompt: 'Diego acusa a Vale de no estar en su puesto de trabajo a la hora del incidente. ¿Cuál de las dos opciones eliges para responder ante el Consejo?',
+    options: [
+      {
+        id: 'opt_oscilloscope',
+        isCorrect: true,
+        letter: 'OPCIÓN A',
+        title: 'Presentar la bitácora del osciloscopio con registro de calibración a las 14:00 horas',
+        detail: 'Mostrar el informe técnico de frecuencia a 4.0 Hz registrado oficialmente en el sistema del taller exactamente a esa hora.',
+        feedback: '¡Elección correcta! La bitácora oficial demuestra con fecha y hora exactas que Vale sí estaba trabajando en su puesto cumpliendo sus labores.'
+      },
+      {
+        id: 'opt_silence',
+        isCorrect: false,
+        letter: 'OPCIÓN B',
+        title: 'Borrar los mensajes del chat y esperar a que el rumor se calme por sí solo',
+        detail: 'Evitar el conflicto y confiar en que con el paso de los días la tripulación olvidará el tema sin necesidad de intervenir.',
+        feedback: 'Esta acción no suma puntos. El silencio o la inacción permiten que las falsedades se normalicen y dañen a la persona afectada. Como testigo activo, presentar la verdad es fundamental.'
+      }
+    ]
   }
 ];
 
@@ -66,232 +104,445 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
   clues,
   onVictory,
   onDefeat,
-  onOpenGlossary
+  onOpenGlossary,
+  onAddPoints
 }) => {
-  const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
-  const [selectedClueId, setSelectedClueId] = useState<string | null>(null);
+  const [currentRoundIdx, setCurrentRoundIdx] = useState(0);
+  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+  const [answeredState, setAnsweredState] = useState<'idle' | 'correct' | 'incorrect'>('idle');
+  const [roundScores, setRoundScores] = useState<{ [roundIdx: number]: number }>({});
+  const [attemptsThisRound, setAttemptsThisRound] = useState(0);
+  const [showResolution, setShowResolution] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
-  const [objectionBanner, setObjectionBanner] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<{ isSuccess: boolean; text: string; explanation?: string } | null>(null);
-  const [mistakes, setMistakes] = useState(0);
 
-  const round = DEBATE_ROUNDS[currentRoundIndex];
+  const playerName = gender === 'hombre' ? 'Alex' : 'Alexia';
+  const playerPortraitType = gender === 'hombre' ? 'ale_hombre' : 'ale_mujer';
+  const playerRoleTitle = gender === 'hombre' ? 'el cadete Alex' : 'la cadete Alexia';
 
-  const handleSlamObjection = () => {
-    if (!selectedClueId) {
-      sound.playSignalDown();
-      return;
+  const round = DUEL_ROUNDS[currentRoundIdx];
+
+  // Auto-narrate on round mount
+  useEffect(() => {
+    if (speech.isAutoRead() && !showResolution) {
+      const timer = setTimeout(() => {
+        speech.speak(
+          `Nivel cinco. Sala del Consejo, caso ${round.roundNumber} de ${round.totalRounds}. Diego afirma: ${round.diegoQuote}. Lee ambas opciones iguales y elige la que consideres correcta. Si aciertas, sumas ${round.pointsReward} puntos éticos.`,
+          { isGalactic: true, prependChime: true, context: `level_5_round_${round.roundNumber}` }
+        );
+      }, 350);
+      return () => {
+        clearTimeout(timer);
+        speech.stop();
+      };
     }
+    return () => {
+      speech.stop();
+    };
+  }, [currentRoundIdx, showResolution]);
 
-    sound.playObjection();
-    setIsShaking(true);
-    setObjectionBanner('¡FALSO!');
+  const handleSelectOption = (opt: DuelOption) => {
+    if (answeredState === 'correct') return; // already solved this round
 
-    setTimeout(() => {
-      setIsShaking(false);
-    }, 600);
+    setSelectedOptionId(opt.id);
+    speech.stop();
+    const newAttemptCount = attemptsThisRound + 1;
+    setAttemptsThisRound(newAttemptCount);
 
-    setTimeout(() => {
-      setObjectionBanner(null);
-
-      if (selectedClueId === round.correctClueId) {
-        sound.playScanSuccess();
-        setFeedback({
-          isSuccess: true,
-          text: round.consequenceText,
-          explanation: round.evidenceExplanation
-        });
-      } else {
-        sound.playSignalDown();
-        const nextMistakes = mistakes + 1;
-        setMistakes(nextMistakes);
-
-        if (nextMistakes >= 2) {
-          const failureEntry: DecisionLogEntry = {
-            id: 'l5-fail',
-            levelNumber: 5,
-            levelTitle: 'Nivel 5: Sala del Consejo // Duelo de Pruebas',
-            situation: 'Presentar pruebas no correspondientes ante el Consejo.',
-            chosenComment: 'Prueba incorrecta presentada en dos oportunidades.',
-            isToxic: true,
-            pointsDelta: -30,
-            whyThisMatters: 'Si presentas pruebas que no corresponden, la acusación falsa de Diego queda sin desmentir.',
-            realWorldImpact: 'Presentar la evidencia adecuada es clave para frenar el acoso digital.'
-          };
-          onDefeat(failureEntry);
-        } else {
-          setFeedback({
-            isSuccess: false,
-            text: '«¡Esa prueba no responde a esta mentira! Lee bien qué inventó Diego y escoge la prueba que lo desmiente directamente.»'
-          });
-        }
+    if (opt.isCorrect) {
+      sound.playScanSuccess();
+      setAnsweredState('correct');
+      
+      // Award points if solved on first attempt or partial if retried
+      const earnedPoints = newAttemptCount === 1 ? round.pointsReward : Math.round(round.pointsReward / 2);
+      setRoundScores(prev => ({ ...prev, [currentRoundIdx]: earnedPoints }));
+      if (onAddPoints) {
+        onAddPoints(earnedPoints);
       }
-    }, 900);
+
+      if (speech.isAutoRead()) {
+        speech.speak(`¡Opción correcta! Sumas ${earnedPoints} puntos éticos. ${opt.feedback}`, {
+          isGalactic: true,
+          context: `level_5_feedback_${round.roundNumber}`
+        });
+      }
+    } else {
+      sound.playSignalDown();
+      setIsShaking(true);
+      setAnsweredState('incorrect');
+      setTimeout(() => setIsShaking(false), 500);
+
+      if (speech.isAutoRead()) {
+        speech.speak(`Esta opción no suma puntos. ${opt.feedback}`, {
+          isGalactic: true,
+          context: `level_5_error_${round.roundNumber}`
+        });
+      }
+    }
   };
 
   const handleNextRound = () => {
-    setFeedback(null);
-    setSelectedClueId(null);
+    speech.stop();
+    sound.playBlip();
+    setSelectedOptionId(null);
+    setAnsweredState('idle');
+    setAttemptsThisRound(0);
 
-    if (currentRoundIndex + 1 < DEBATE_ROUNDS.length) {
-      setCurrentRoundIndex(prev => prev + 1);
+    if (currentRoundIdx + 1 < DUEL_ROUNDS.length) {
+      setCurrentRoundIdx(prev => prev + 1);
     } else {
-      onVictory();
+      // Victory resolution
+      sound.playFanfare();
+      setShowResolution(true);
+      if (speech.isAutoRead()) {
+        setTimeout(() => {
+          speech.speak(
+            `¡Misión cumplida! Has resuelto ambos casos ante el Consejo Galáctico demostrando la verdad con pruebas objetivas.`,
+            { isGalactic: true, prependChime: true, context: 'level_5_victory' }
+          );
+        }, 300);
+      }
     }
   };
 
-  return (
-    <div className={`w-full max-w-4xl mx-auto bg-[#12122A] border-2 border-[#5E4FA2] rounded-sm p-4 sm:p-6 shadow-2xl flex flex-col my-auto relative transition-transform ${isShaking ? 'animate-bounce' : ''}`}>
-      
-      {/* Objection Dramatic Banner */}
-      {objectionBanner && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#D7263D]/85 pointer-events-none">
-          <div className="text-4xl sm:text-7xl font-black text-white font-mono-tech tracking-widest border-y-8 border-white py-4 px-8 transform -rotate-6 shadow-2xl animate-pulse">
-            {objectionBanner}
+  const handleRetryRound = () => {
+    speech.stop();
+    sound.playBlip();
+    setSelectedOptionId(null);
+    setAnsweredState('idle');
+  };
+
+  const totalPointsEarned = Object.values(roundScores).reduce((a, b) => a + b, 0);
+
+  // Resolution Screen after completing both rounds
+  if (showResolution) {
+    return (
+      <div className="w-full max-w-4xl mx-auto bg-[#12122A] border-2 border-[#4FD1C5] rounded-sm p-4 sm:p-6 shadow-2xl flex flex-col my-auto relative space-y-4 animate-in fade-in duration-200">
+        
+        {/* Top Header */}
+        <div className="flex items-center justify-between border-b border-[#4FD1C5]/40 pb-3 flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 bg-[#4FD1C5]/20 text-[#4FD1C5] font-mono-tech font-bold text-xs rounded-xs flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5" />
+              VEREDICTO FINAL // ASAMBLEA KUNTUR
+            </span>
+            <h2 className="text-sm sm:text-base font-bold font-mono-tech text-[#EDEBFA]">
+              {playerName.toUpperCase()} DESARMÓ EL RUMOR CON EVIDENCIAS
+            </h2>
           </div>
-        </div>
-      )}
 
-      {/* Top Banner */}
-      <div className="flex items-center justify-between border-b border-[#5E4FA2]/50 pb-3 mb-4 flex-wrap gap-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-0.5 bg-[#D7263D]/20 text-[#D7263D] font-mono-tech font-bold text-xs rounded-xs flex items-center gap-1">
-            <Gavel className="w-3.5 h-3.5" />
-            NIVEL 5 DE 5 // CLÍMAX
-          </span>
-          <h2 className="text-sm sm:text-base font-bold font-mono-tech text-[#EDEBFA]">
-            SALA DEL CONSEJO // EL DUELO DE PRUEBAS PERICIALES
-          </h2>
+          <SpeakerButton 
+            onCustomSpeak={() => {
+              speech.speak(`Resolución de la Asamblea KUNTUR. Gracias a la valentía de ${playerRoleTitle}, la verdad ha salido a la luz y Vale queda confirmada con honores como Jefa de Ingeniería. Sumaste ${totalPointsEarned} puntos éticos en el Consejo.`);
+            }}
+            label="🛰️ Escuchar Veredicto"
+            className="bg-[#4FD1C5]/20 text-[#4FD1C5] border-[#4FD1C5]"
+          />
         </div>
 
-        <button
-          onClick={onOpenGlossary}
-          className="text-xs text-[#F2B544] hover:text-white flex items-center gap-1 font-mono-tech underline cursor-pointer"
-        >
-          <Lightbulb className="w-3.5 h-3.5" />
-          <span>Glosario de Términos</span>
-        </button>
-      </div>
-
-      {/* Round indicator */}
-      <div className="flex items-center justify-between text-xs font-mono-tech text-[#8F8CA8] mb-3 bg-[#0A0A1C] p-2 rounded-xs border border-[#5E4FA2]/30">
-        <span>ACUSACIÓN DE DIEGO: {currentRoundIndex + 1} DE {DEBATE_ROUNDS.length}</span>
-        <span className={mistakes > 0 ? 'text-[#D7263D] font-bold' : 'text-[#4FD1C5]'}>
-          INTENTOS DISPONIBLES: {2 - mistakes} / 2
-        </span>
-      </div>
-
-      {/* Main Dialogue Box: Diego Accusing */}
-      <div className="bg-[#1C1428] border-2 border-[#F2B544]/60 rounded-xs p-4 sm:p-5 mb-4 shadow-lg">
-        <div className="flex items-start gap-4">
-          <CharacterPortrait type="diego" mood="neutral" size={72} />
-          <div className="space-y-1.5 flex-1">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono-tech font-bold text-[#F2B544]">
-                DIEGO // ACUSANDO FORMALMENTE ANTE LA COMANDANTE ROSA
+        {/* Hero Card */}
+        <div className="bg-[#161638] border-2 border-[#4FD1C5] rounded-xs p-4 flex flex-col sm:flex-row items-center sm:items-start gap-4 shadow-lg">
+          <CharacterPortrait type={playerPortraitType} mood="firm" size={72} />
+          <div className="space-y-1.5 text-center sm:text-left flex-1">
+            <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+              <span className="text-xs font-mono-tech font-bold text-[#4FD1C5]">
+                {playerName.toUpperCase()} // CADETE Y TESTIGO ACTIVO EJEMPLAR
               </span>
-              <span className="text-[10px] text-[#A6A2C5] font-mono-tech">
-                {round.subtext}
+              <span className="text-[10px] bg-[#4FD1C5]/20 text-[#4FD1C5] px-2 py-0.5 rounded font-mono-tech font-bold flex items-center gap-1">
+                <Award className="w-3 h-3" />
+                +{totalPointsEarned} PUNTOS ÉTICOS OBTENIDOS
               </span>
             </div>
-            <p className="text-sm sm:text-base text-[#EDEBFA] font-medium leading-relaxed italic">
-              {round.statement}
+            <p className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed">
+              En lugar de caer en discusiones o quedarte en silencio, elegiste las pruebas reales en cada acusación:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs">
+              <div className="p-2 bg-[#0E2024] rounded border border-[#4FD1C5]/40 text-[#4FD1C5]">
+                ✓ <strong>Peritaje Forense:</strong> Probó que el video era un Deepfake creado con IA.
+              </div>
+              <div className="p-2 bg-[#0E2024] rounded border border-[#4FD1C5]/40 text-[#4FD1C5]">
+                ✓ <strong>Bitácora de Osciloscopio:</strong> Probó que Vale estaba trabajando a las 14:00 hrs.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Character Reactions */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          {/* Vale */}
+          <div className="flex items-start gap-3 bg-[#0E2024] p-3 rounded-xs border border-[#4FD1C5]/50">
+            <CharacterPortrait type="vale" mood="firm" size={54} />
+            <div className="space-y-0.5 flex-1">
+              <span className="text-[11px] font-mono-tech font-bold text-[#4FD1C5]">
+                VALE // JEFA DE INGENIERÍA
+              </span>
+              <p className="text-xs text-[#EDEBFA] leading-snug">
+                «¡Gracias, {playerName}! Si te hubieras callado o hubieras reenviado ese video, me habrían expulsado injustamente. Me demostraste qué significa ser un verdadero compañero de equipo.»
+              </p>
+            </div>
+          </div>
+
+          {/* Diego */}
+          <div className="flex items-start gap-3 bg-[#24141E] p-3 rounded-xs border border-[#D7263D]/50">
+            <CharacterPortrait type="diego" mood="neutral" size={54} />
+            <div className="space-y-0.5 flex-1">
+              <span className="text-[11px] font-mono-tech font-bold text-[#D7263D]">
+                DIEGO // CADETE EN PROCESO FORMATIVO
+              </span>
+              <p className="text-xs text-[#EDEBFA] leading-snug">
+                «Pido disculpas públicas a Vale y a toda la tripulación. Actué por envidia y creí que nadie me descubriría. Acepto reparar el daño colaborando con el equipo.»
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Decree */}
+        <div className="flex items-center gap-3 bg-[#1A102E] p-3 rounded-xs border-2 border-[#5E4FA2]">
+          <CharacterPortrait type="rosa" mood="firm" size={56} />
+          <div className="space-y-0.5 flex-1">
+            <span className="text-[11px] font-mono-tech font-bold text-[#F2B544]">
+              COMANDANTE ROSA // DECRETO DEL CONSEJO
+            </span>
+            <p className="text-xs text-[#EDEBFA] leading-snug">
+              «¡Caso cerrado! Vale queda ratificada como Jefa de Ingeniería con honores. Y el cadete {playerName} recibe la condecoración de la Constelación Ética por proteger la verdad en KUNTUR.»
             </p>
           </div>
         </div>
+
+        {/* Victory Action */}
+        <button
+          onClick={() => {
+            sound.playScanSuccess();
+            speech.stop();
+            onVictory();
+          }}
+          className="w-full py-3.5 bg-gradient-to-r from-[#4FD1C5] via-[#48BB78] to-[#4FD1C5] hover:opacity-95 text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_25px_rgba(79,209,197,0.4)] transition-all uppercase tracking-wider"
+        >
+          <span>CONCLUIR MISIÓN // VER CONSTELACIÓN ÉTICA Y MEDALLAS</span>
+          <ArrowRight className="w-5 h-5" />
+        </button>
+
+      </div>
+    );
+  }
+
+  const selectedOption = round.options.find(o => o.id === selectedOptionId);
+
+  return (
+    <div className={`w-full max-w-4xl mx-auto bg-[#12122A] border-2 border-[#5E4FA2] rounded-sm p-4 sm:p-6 shadow-2xl flex flex-col my-auto relative space-y-4 ${isShaking ? 'animate-shake' : ''}`}>
+      
+      {/* Header bar */}
+      <div className="flex items-center justify-between border-b border-[#5E4FA2]/50 pb-3 flex-wrap gap-2">
+        <div className="flex items-center gap-2">
+          <span className="px-2.5 py-0.5 bg-[#4FD1C5]/20 text-[#4FD1C5] font-mono-tech font-bold text-xs rounded-xs">
+            NIVEL 5 DE 5 // ETAPA FINAL
+          </span>
+          <h2 className="text-sm sm:text-base font-bold font-mono-tech text-[#EDEBFA]">
+            SALA DEL CONSEJO // CASO DE CONVIVENCIA
+          </h2>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onOpenGlossary}
+            className="text-xs text-[#F2B544] hover:text-white flex items-center gap-1 font-mono-tech underline cursor-pointer"
+          >
+            <Lightbulb className="w-3.5 h-3.5" />
+            <span>Glosario de Pruebas</span>
+          </button>
+        </div>
       </div>
 
-      {/* Feedback modal / banner after objection */}
-      {feedback && (
-        <div className={`p-4 rounded-xs border-2 mb-4 ${feedback.isSuccess ? 'bg-[#0E2628] border-[#4FD1C5] text-[#EDEBFA]' : 'bg-[#290C16] border-[#D7263D] text-[#EDEBFA]'}`}>
-          <div className="flex items-center gap-2 font-mono-tech font-bold text-xs mb-1">
-            {feedback.isSuccess ? (
-              <span className="text-[#4FD1C5] flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" />
-                ¡CONTRADICCIÓN CONFIRMADA! ACUSACIÓN DESESTIMADA
-              </span>
-            ) : (
-              <span className="text-[#D7263D] flex items-center gap-1">
-                <AlertOctagon className="w-4 h-4" />
-                PRUEBA NO PERTINENTE
-              </span>
-            )}
+      {/* Progress & Scoring Banner */}
+      <div className="flex items-center justify-between bg-[#0C0C22] px-3.5 py-2 rounded-xs border border-[#5E4FA2]/50 text-xs font-mono-tech flex-wrap gap-2">
+        <div className="flex items-center gap-2">
+          <span className="text-[#8F8CA8]">CASO EN AUDIENCIA:</span>
+          <span className="text-[#EDEBFA] font-bold">
+            {round.roundNumber} DE {round.totalRounds}
+          </span>
+          <div className="flex items-center gap-1.5 ml-2">
+            {DUEL_ROUNDS.map((r, idx) => (
+              <div
+                key={r.id}
+                className={`w-6 h-6 rounded-xs flex items-center justify-center font-bold text-xs border ${
+                  idx < currentRoundIdx
+                    ? 'bg-[#4FD1C5] text-[#0B0B1A] border-[#4FD1C5]'
+                    : idx === currentRoundIdx
+                    ? 'bg-[#5E4FA2] text-[#EDEBFA] border-[#4FD1C5]'
+                    : 'bg-[#161638] text-[#8F8CA8] border-[#5E4FA2]/40'
+                }`}
+              >
+                {idx < currentRoundIdx ? '✓' : idx + 1}
+              </div>
+            ))}
           </div>
-          <p className="text-xs sm:text-sm mt-1">
-            {feedback.text}
+        </div>
+
+        {/* Clear Scoring Explanation */}
+        <div className="flex items-center gap-2 text-[#4FD1C5] bg-[#4FD1C5]/10 px-2.5 py-1 rounded border border-[#4FD1C5]/30">
+          <Award className="w-3.5 h-3.5" />
+          <span>RECOMPENSA: <strong>+{round.pointsReward} PUNTOS ÉTICOS</strong> SI ACIERTAS</span>
+        </div>
+      </div>
+
+      {/* Diego's Accusation Card */}
+      <div className="bg-[#1F1226] border-2 border-[#D7263D] rounded-xs p-3.5 sm:p-4 flex flex-col sm:flex-row items-center sm:items-start gap-3.5 shadow-lg relative">
+        <CharacterPortrait type="diego" mood="neutral" size={68} />
+        
+        <div className="space-y-1.5 flex-1 text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-2">
+            <span className="text-xs font-mono-tech font-bold text-[#D7263D] tracking-wider">
+              ACUSACIÓN DE DIEGO ANTE EL CONSEJO
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-[#EDEBFA] font-medium italic leading-snug">
+            {round.diegoQuote}
           </p>
 
-          {feedback.isSuccess && feedback.explanation && (
-            <div className="mt-2 p-2 bg-[#081719] rounded-xs border-l-2 border-[#4FD1C5] text-[11px] text-[#A6A2C5] flex items-start gap-1.5">
-              <Info className="w-3.5 h-3.5 text-[#4FD1C5] shrink-0 mt-0.5" />
-              <span>{feedback.explanation}</span>
-            </div>
-          )}
+          <p className="text-[11px] text-[#F2B544] font-mono-tech pt-1">
+            🎯 {round.missionPrompt}
+          </p>
+        </div>
 
-          {feedback.isSuccess && (
-            <button
-              onClick={handleNextRound}
-              className="mt-3 px-5 py-2 bg-[#4FD1C5] hover:bg-[#6ee4d9] text-[#0B0B1A] font-bold font-mono-tech text-xs rounded-xs flex items-center gap-2 cursor-pointer transition-all"
-            >
-              <span>{currentRoundIndex + 1 < DEBATE_ROUNDS.length ? 'Analizar la siguiente acusación' : 'Escuchar el veredicto final de la Comandante Rosa'}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
+        <SpeakerButton 
+          onCustomSpeak={() => {
+            speech.speak(`Diego acusa: ${round.diegoQuote}. ${round.missionPrompt}`);
+          }}
+          label="🛰️ Escuchar Acusación"
+          className="bg-[#D7263D]/20 text-[#D7263D] border-[#D7263D]"
+        />
+      </div>
+
+      {/* 2 Options with EQUAL STYLING (No prejudging colors or labels before selecting) */}
+      <div className="space-y-2">
+        <div className="text-xs font-mono-tech text-[#8F8CA8] flex items-center justify-between">
+          <span className="flex items-center gap-1.5">
+            <HelpCircle className="w-3.5 h-3.5 text-[#8F8CA8]" />
+            ELIGE LA OPCIÓN QUE CONSIDERES ADECUADA (AMBAS SE PRESENTAN DE FORMA NEUTRAL):
+          </span>
+          <span className="text-[11px] text-[#8F8CA8]">Elige para ver si suma puntos</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          {round.options.map((opt) => {
+            const isSelected = selectedOptionId === opt.id;
+            const isAnswered = answeredState !== 'idle';
+            const isThisCorrect = isAnswered && opt.isCorrect;
+            const isThisWrong = isAnswered && isSelected && !opt.isCorrect;
+
+            // Before answering, BOTH cards use THE EXACT SAME neutral colors and styling
+            let cardClasses = 'bg-[#161638] border-2 border-[#5E4FA2]/60 hover:border-[#4FD1C5] hover:bg-[#1A1A40]';
+            let badgeClasses = 'bg-[#5E4FA2]/30 text-[#EDEBFA] border border-[#5E4FA2]/60';
+            let badgeText = opt.letter;
+
+            // Only AFTER answering do we evaluate the selected option
+            if (isThisCorrect) {
+              cardClasses = 'bg-[#0E2628] border-2 border-[#4FD1C5] ring-2 ring-[#4FD1C5]/50 shadow-[0_0_15px_rgba(79,209,197,0.3)]';
+              badgeClasses = 'bg-[#4FD1C5]/20 text-[#4FD1C5] border border-[#4FD1C5]';
+              badgeText = `${opt.letter} // ¡ACIERTO! (+${roundScores[currentRoundIdx] || round.pointsReward} PTS)`;
+            } else if (isThisWrong) {
+              cardClasses = 'bg-[#2E101A] border-2 border-[#D7263D] ring-2 ring-[#D7263D]/50';
+              badgeClasses = 'bg-[#D7263D]/20 text-[#D7263D] border border-[#D7263D]';
+              badgeText = `${opt.letter} // NO SUMA PUNTOS (0 PTS)`;
+            }
+
+            return (
+              <button
+                key={opt.id}
+                onClick={() => handleSelectOption(opt)}
+                disabled={answeredState === 'correct'}
+                className={`p-4 rounded-xs text-left flex flex-col justify-between transition-all cursor-pointer relative shadow-md ${cardClasses}`}
+              >
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[10px] font-mono-tech font-bold px-2.5 py-0.5 rounded ${badgeClasses}`}>
+                      {badgeText}
+                    </span>
+
+                    {/* Checkmark only appears AFTER answering correctly */}
+                    {isThisCorrect && (
+                      <CheckCircle2 className="w-5 h-5 text-[#4FD1C5] animate-bounce shrink-0" />
+                    )}
+                    {isThisWrong && (
+                      <XCircle className="w-5 h-5 text-[#D7263D] shrink-0" />
+                    )}
+                  </div>
+
+                  <h3 className="text-xs sm:text-sm font-bold text-[#EDEBFA] leading-snug">
+                    {opt.title}
+                  </h3>
+
+                  <p className="text-xs text-[#8F8CA8] leading-relaxed">
+                    {opt.detail}
+                  </p>
+                </div>
+
+                <div className="pt-3 mt-3 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[10px] font-mono-tech text-[#8F8CA8] flex items-center gap-1">
+                    <Zap className="w-3 h-3 text-[#F2B544]" />
+                    {answeredState === 'correct' && opt.isCorrect
+                      ? 'RESPUESTA VALIDADA'
+                      : 'TOCA PARA ELEGIR'}
+                  </span>
+
+                  <SpeakerButton
+                    onCustomSpeak={() => {
+                      speech.speak(`${opt.letter}. ${opt.title}. ${opt.detail}`);
+                    }}
+                    label="Escuchar opción"
+                    className="p-1 h-auto text-[10px]"
+                  />
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Post-selection Evaluation: Clearly shows points won or 0 points */}
+      {answeredState === 'correct' && selectedOption && (
+        <div className="p-3.5 bg-[#0E2628] border-2 border-[#4FD1C5] rounded-xs text-xs font-mono-tech text-[#4FD1C5] flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in">
+          <div className="flex items-center gap-2.5">
+            <CheckCircle2 className="w-6 h-6 shrink-0 text-[#4FD1C5]" />
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <strong className="text-sm block">¡RESPUESTA CORRECTA!</strong>
+                <span className="text-[11px] bg-[#4FD1C5]/20 text-[#4FD1C5] px-2 py-0.5 rounded font-bold">
+                  +{roundScores[currentRoundIdx] || round.pointsReward} PUNTOS ÉTICOS SUMADOS
+                </span>
+              </div>
+              <p className="text-xs text-[#EDEBFA] mt-1 leading-snug">{selectedOption.feedback}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleNextRound}
+            className="w-full sm:w-auto px-5 py-2.5 bg-[#4FD1C5] hover:bg-[#38b2ac] text-[#0B0B1A] font-extrabold font-mono-tech text-xs rounded-xs flex items-center justify-center gap-1.5 cursor-pointer uppercase shadow-lg transition-transform active:scale-95 shrink-0"
+          >
+            <span>{currentRoundIdx + 1 < DUEL_ROUNDS.length ? 'Siguiente Caso (2/2)' : 'Ver Veredicto del Consejo'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       )}
 
-      {/* Evidence Carousel (Clues) */}
-      {!feedback?.isSuccess && (
-        <div className="space-y-3">
-          <div className="text-xs font-mono-tech font-bold text-[#EDEBFA] flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#4FD1C5]" />
-            <span>ELIGE LA PRUEBA QUE DESMIENTE A DIEGO:</span>
+      {answeredState === 'incorrect' && selectedOption && (
+        <div className="p-3.5 bg-[#2E101A] border-2 border-[#D7263D] rounded-xs text-xs font-mono-tech text-[#EDEBFA] flex flex-col sm:flex-row items-center justify-between gap-3 animate-in fade-in">
+          <div className="flex items-center gap-2.5">
+            <XCircle className="w-6 h-6 shrink-0 text-[#D7263D]" />
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <strong className="text-sm text-[#D7263D] block">ESTA OPCIÓN NO SUMA PUNTOS (0 PTS)</strong>
+              </div>
+              <p className="text-xs text-[#EDEBFA] mt-1 leading-snug">{selectedOption.feedback}</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            {clues.map((clue) => {
-              const isSelected = selectedClueId === clue.id;
-              return (
-                <button
-                  key={clue.id}
-                  onClick={() => {
-                    sound.playBlip();
-                    setSelectedClueId(clue.id);
-                  }}
-                  className={`p-2.5 rounded-xs border-2 text-left transition-all cursor-pointer ${
-                    isSelected 
-                      ? 'bg-[#1C1838] border-[#4FD1C5] shadow-[0_0_15px_rgba(79,209,197,0.3)]' 
-                      : 'bg-[#0E0E22] border-[#5E4FA2]/50 hover:border-[#4FD1C5]/70'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-mono-tech font-bold text-xs text-[#4FD1C5]">
-                      {clue.name}
-                    </span>
-                    <span className="text-[10px] bg-[#5E4FA2]/30 px-1.5 py-0.5 rounded text-[#EDEBFA]">
-                      {clue.colloquialName}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-[#A6A2C5] line-clamp-2">
-                    {clue.whatItIs}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Action Slam Button */}
           <button
-            onClick={handleSlamObjection}
-            disabled={!selectedClueId}
-            className={`w-full py-3 font-black font-mono-tech text-sm sm:text-base tracking-widest uppercase rounded-xs transition-all flex items-center justify-center gap-2 shadow-xl ${
-              selectedClueId 
-                ? 'bg-[#D7263D] hover:bg-[#ff3b55] text-white cursor-pointer shadow-[0_0_20px_rgba(215,38,61,0.5)]' 
-                : 'bg-[#1C1C36] text-[#555B77] border border-[#2B2B48] cursor-not-allowed'
-            }`}
+            onClick={handleRetryRound}
+            className="w-full sm:w-auto px-4 py-2 bg-[#D7263D] hover:bg-[#b01f31] text-white font-bold font-mono-tech text-xs rounded-xs flex items-center justify-center gap-1 cursor-pointer shrink-0"
           >
-            <Gavel className="w-5 h-5" />
-            <span>¡EXCLAMAR «¡FALSO!» Y PRESENTAR PRUEBA!</span>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Probar la otra opción</span>
           </button>
         </div>
       )}

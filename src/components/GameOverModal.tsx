@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AlertOctagon, RotateCcw, HeartCrack, BookOpen, Info } from 'lucide-react';
 import { DecisionLogEntry, PlayerGender } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
 import { sound } from '../services/audio';
+import { speech } from '../services/speech';
 
 interface GameOverModalProps {
   gender: PlayerGender;
@@ -22,6 +23,12 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
   onOpenReflectionNotes
 }) => {
   const toxicDecisions = decisionLog.filter(d => d.isToxic);
+
+  useEffect(() => {
+    return () => {
+      speech.stop();
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-[#0B0B1A]/95 z-50 flex items-center justify-center p-3 sm:p-6 backdrop-blur-md overflow-y-auto">
@@ -114,6 +121,7 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
             <button
               onClick={() => {
                 sound.playBlip();
+                speech.stop();
                 onRetryLevel();
               }}
               className="flex-1 sm:flex-initial px-4 py-2 bg-[#D7263D] hover:bg-[#ff3b55] text-white font-bold font-mono-tech text-xs rounded-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
@@ -124,6 +132,7 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
             <button
               onClick={() => {
                 sound.playBlip();
+                speech.stop();
                 onRestartAll();
               }}
               className="px-3 py-2 border border-[#5E4FA2] hover:border-[#EDEBFA] text-[#8F8CA8] hover:text-white font-mono-tech text-xs rounded-xs cursor-pointer"

@@ -1,19 +1,24 @@
 import React from 'react';
-import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map, Award, Download } from 'lucide-react';
 import { GameMetrics, PlayerGender } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
+import { speech } from '../services/speech';
+import { downloadStandaloneHtml } from '../services/downloadHtml';
+import { sound } from '../services/audio';
 
 interface TopHUDProps {
   gender: PlayerGender;
   metrics: GameMetrics;
   currentLevelTitle: string;
   isMuted: boolean;
+  medalsCount?: number;
   onToggleMute: () => void;
   onOpenGlossary: () => void;
   onOpenPedagogy: () => void;
   onOpenEmergency: () => void;
   onOpenLevelMap: () => void;
   onOpenReflectionNotes?: () => void;
+  onOpenMedals?: () => void;
 }
 
 export const TopHUD: React.FC<TopHUDProps> = ({
@@ -21,12 +26,14 @@ export const TopHUD: React.FC<TopHUDProps> = ({
   metrics,
   currentLevelTitle,
   isMuted,
+  medalsCount = 0,
   onToggleMute,
   onOpenGlossary,
   onOpenPedagogy,
   onOpenEmergency,
   onOpenLevelMap,
-  onOpenReflectionNotes
+  onOpenReflectionNotes,
+  onOpenMedals
 }) => {
   const puntosPercent = Math.max(0, Math.min(100, metrics.puntos));
   const playerName = gender === 'hombre' ? 'Alex' : 'Alexia';
@@ -117,6 +124,19 @@ export const TopHUD: React.FC<TopHUDProps> = ({
           <span className="hidden sm:inline">Misiones</span>
         </button>
 
+        {/* Active Witness Medals Button */}
+        {onOpenMedals && (
+          <button
+            onClick={onOpenMedals}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-xs border border-[#F2B544]/60 bg-[#F2B544]/15 text-[#F2B544] hover:bg-[#F2B544] hover:text-[#0B0B1A] font-mono-tech text-[11px] font-bold cursor-pointer transition-colors shadow-sm"
+            title="Ver Medallero de Testigo Activo y felicitaciones de la Voz Galáctica"
+          >
+            <Award className="w-3.5 h-3.5 animate-pulse" />
+            <span className="hidden sm:inline">Medallas ({medalsCount}/5)</span>
+            <span className="sm:hidden font-mono-tech">🏅{medalsCount}</span>
+          </button>
+        )}
+
         {/* Reflection Notes Button */}
         {onOpenReflectionNotes && (
           <button
@@ -143,7 +163,7 @@ export const TopHUD: React.FC<TopHUDProps> = ({
         <button
           onClick={onOpenPedagogy}
           className="p-1.5 rounded-xs border border-[#5E4FA2] bg-[#15152E] text-[#8F8CA8] hover:text-[#EDEBFA] hover:border-[#EDEBFA] transition-colors cursor-pointer"
-          title="Guía didáctica 5D (UNESCO / Perú)"
+          title="Guía didáctica y protocolo de intervención (5D)"
         >
           <BookOpen className="w-3.5 h-3.5" />
         </button>
@@ -157,9 +177,43 @@ export const TopHUD: React.FC<TopHUDProps> = ({
           <ShieldAlert className="w-3.5 h-3.5" />
         </button>
 
+        {/* Download Standalone HTML */}
+        <button
+          onClick={() => {
+            sound.playSignalUp();
+            downloadStandaloneHtml();
+          }}
+          className="p-1.5 rounded-xs border border-[#4FD1C5]/60 bg-[#4FD1C5]/10 text-[#4FD1C5] hover:bg-[#4FD1C5] hover:text-[#0B0B1A] transition-colors cursor-pointer flex items-center justify-center"
+          title="Descargar este juego en un solo archivo .html para jugar sin internet (Offline)"
+        >
+          <Download className="w-3.5 h-3.5" />
+        </button>
+
+        {/* Voice Narrator toggle with Galactic Voice */}
+        <button
+          onClick={() => {
+            const next = speech.toggleAutoRead();
+            if (next) {
+              speech.speak('Voz Galáctica KUNTUR activada. Lista para guiarte en tu misión.');
+            }
+          }}
+          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xs border text-[11px] font-mono-tech cursor-pointer transition-all ${
+            speech.isAutoRead()
+              ? 'border-[#4FD1C5] bg-[#4FD1C5]/20 text-[#4FD1C5] font-bold shadow-[0_0_10px_rgba(79,209,197,0.3)]'
+              : 'border-[#5E4FA2] bg-[#15152E] text-[#8F8CA8] hover:text-white'
+          }`}
+          title={speech.isAutoRead() ? 'Voz Galáctica activa (Clic para apagar)' : 'Activar Voz Galáctica KUNTUR'}
+        >
+          <Volume2 className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">🛰️ Voz Galáctica</span>
+        </button>
+
         {/* Mute toggle */}
         <button
-          onClick={onToggleMute}
+          onClick={() => {
+            onToggleMute();
+            if (!isMuted) speech.stop();
+          }}
           className="p-1.5 rounded-xs border border-[#5E4FA2] bg-[#15152E] text-[#8F8CA8] hover:text-[#4FD1C5] transition-colors cursor-pointer"
           title={isMuted ? 'Activar música y efectos' : 'Silenciar audio'}
         >

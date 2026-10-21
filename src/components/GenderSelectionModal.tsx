@@ -1,8 +1,9 @@
 import React from 'react';
 import { PlayerGender } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
-import { Shield, User, HeartHandshake, Info } from 'lucide-react';
+import { Shield, User, HeartHandshake, Info, Download } from 'lucide-react';
 import { sound } from '../services/audio';
+import { downloadStandaloneHtml } from '../services/downloadHtml';
 
 interface GenderSelectionModalProps {
   onSelect: (gender: PlayerGender) => void;
@@ -99,14 +100,28 @@ export const GenderSelectionModal: React.FC<GenderSelectionModalProps> = ({
           </div>
         </div>
 
-        {/* Secondary Pedagogy Guide link */}
-        <button
-          onClick={onOpenPedagogy}
-          className="text-xs text-[#8F8CA8] hover:text-[#4FD1C5] underline font-mono-tech flex items-center gap-1.5 cursor-pointer"
-        >
-          <Shield className="w-3.5 h-3.5" />
-          <span>Guía didáctica y protocolo para escuelas (UNESCO / Perú)</span>
-        </button>
+        {/* Secondary Links: Pedagogy Guide and Download HTML */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <button
+            onClick={onOpenPedagogy}
+            className="text-xs text-[#8F8CA8] hover:text-[#4FD1C5] underline font-mono-tech flex items-center gap-1.5 cursor-pointer"
+          >
+            <Shield className="w-3.5 h-3.5" />
+            <span>Guía didáctica y protocolo para escuelas (Perú)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playSignalUp();
+              downloadStandaloneHtml();
+            }}
+            className="text-xs text-[#4FD1C5] hover:text-white bg-[#101026] hover:bg-[#1C1838] border border-[#4FD1C5]/60 hover:border-[#4FD1C5] px-2.5 py-1 rounded-xs font-mono-tech font-bold flex items-center gap-1.5 cursor-pointer transition-colors shadow-sm"
+            title="Descarga el juego en un solo archivo .html para jugar sin internet en cualquier computadora"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Descargar archivo HTML (Offline)</span>
+          </button>
+        </div>
 
       </div>
     </div>

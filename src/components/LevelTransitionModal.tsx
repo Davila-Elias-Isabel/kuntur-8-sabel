@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { ClueItem, GameMetrics, PlayerGender } from '../types/game';
+import { ClueItem, GameMetrics, PlayerGender, ActiveWitnessMedal } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
+import { ActiveWitnessMedalCard } from './ActiveWitnessMedalCard';
 import { sound } from '../services/audio';
+import { speech } from '../services/speech';
 import { 
   CheckCircle2, 
   ArrowRight, 
@@ -12,7 +14,8 @@ import {
   Search, 
   Zap, 
   Gavel,
-  Info
+  Info,
+  Award
 } from 'lucide-react';
 
 interface LevelTransitionModalProps {
@@ -21,6 +24,7 @@ interface LevelTransitionModalProps {
   gender: PlayerGender;
   earnedClue: ClueItem;
   earnedPoints: number;
+  earnedMedal?: ActiveWitnessMedal;
   metrics: GameMetrics;
   onContinue: () => void;
   onOpenGlossary: () => void;
@@ -32,6 +36,7 @@ export const LevelTransitionModal: React.FC<LevelTransitionModalProps> = ({
   gender,
   earnedClue,
   earnedPoints,
+  earnedMedal,
   metrics,
   onContinue,
   onOpenGlossary
@@ -46,6 +51,9 @@ export const LevelTransitionModal: React.FC<LevelTransitionModalProps> = ({
         sound.switchProceduralTrack(1);
       }, 700);
     }
+    return () => {
+      speech.stop();
+    };
   }, [nextLevelNumber]);
 
   // Content customized per transition in clear, energetic Spanish for young players
@@ -134,6 +142,13 @@ export const LevelTransitionModal: React.FC<LevelTransitionModalProps> = ({
           </div>
         </div>
 
+        {/* Active Witness Medal Showcase (with Galactic Voice Audio) */}
+        {earnedMedal && (
+          <div className="w-full">
+            <ActiveWitnessMedalCard medal={earnedMedal} autoSpeak={true} />
+          </div>
+        )}
+
         {/* Clue Unlocked Spotlight Card */}
         <div className="bg-[#0D2426] border-2 border-[#4FD1C5] p-3.5 rounded-xs flex items-start gap-3">
           <div className="p-2.5 bg-[#4FD1C5]/20 text-[#4FD1C5] rounded-xs shrink-0">
@@ -206,6 +221,7 @@ export const LevelTransitionModal: React.FC<LevelTransitionModalProps> = ({
           <button
             onClick={() => {
               sound.playBlip();
+              speech.stop();
               onContinue();
             }}
             className="w-full sm:w-auto px-6 py-3 bg-[#4FD1C5] hover:bg-[#6ee4d9] text-[#0B0B1A] font-extrabold font-mono-tech text-xs sm:text-sm rounded-xs flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"

@@ -34,6 +34,21 @@ export interface ClueItem {
   unlocked: boolean;
 }
 
+export interface ActiveWitnessMedal {
+  id: string;
+  levelNumber: number;
+  levelTitle: string;
+  title: string;
+  subtitle: string;
+  rank: 'oro' | 'plata' | 'bronce';
+  rankLabel: string;
+  iconName: string;
+  ethicalCriterion: string;
+  decisionTaken: string;
+  galacticCongratulation: string;
+  isUnlocked: boolean;
+}
+
 export interface GameMetrics {
   puntos: number;
   vidas: number;
