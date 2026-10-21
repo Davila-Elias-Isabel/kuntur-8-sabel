@@ -33,28 +33,61 @@ Osciloscopio a 4.0 Hz -> Dron en Gravedad Cero -> Detector de Holofakes -> Carre
 ```
 
 ### 📍 Nivel 1: Taller Criogénico & El Osciloscopio
+
+<p align="center">
+  <img src="screenshots/level1-taller.svg" alt="Nivel 1: Taller Criogénico y Calibración del Osciloscopio a 4.0 Hz" width="100%" />
+</p>
+
 * **¿Por qué hay un osciloscopio?**  
   En un caso de ciberacoso difamatorio, la primera defensa es la **evidencia técnica inalterable**. Mientras Diego esparce el rumor de que Vale abandonó su puesto, Vale calibra las válvulas a **4.0 Hz**. El osciloscopio actúa como el **registro de bitácora sellado con fecha y hora (14:00:00 hrs)**, demostrando que Vale estaba en su puesto trabajando con rigor profesional.
 * **Dinámica formativa:** Toma de decisiones éticas frente a comentarios machistas.
 * **Opciones neutras:** Las alternativas `[OPCIÓN A]` y `[OPCIÓN B]` tienen el mismo diseño y color previo para estimular el juicio crítico sin sesgos visuales anticipados.
 * **Prueba obtenida:** *Prueba #1: Bitácora del Osciloscopio (Coartada irrefutable).*
 
+---
+
 ### 📍 Nivel 2: Hangar en Gravedad Cero & Microdron Espía
+
+<p align="center">
+  <img src="screenshots/level2-zerog.svg" alt="Nivel 2: Hangar en Gravedad Cero y Captura del Microdron Espía" width="100%" />
+</p>
+
 * **Dinámica:** Manejo de propulsores e inercia para interceptar un microdron espía antes de que escape por la compuerta.
 * **Contribución al aprendizaje:** Enseña la importancia de **preservar la evidencia original intacta (cadena de custodia digital)** antes de que el agresor la altere o borre.
 * **Prueba obtenida:** *Prueba #2: Tarjeta MicroSD del Dron (Grabación RAW sin editar).*
 
+---
+
 ### 📍 Nivel 3: Detector Forense de Holofakes & Chat Grupal
+
+<p align="center">
+  <img src="screenshots/level3-holofake.svg" alt="Nivel 3: Detector Forense de Holofakes y Análisis de IA en Chat" width="100%" />
+</p>
+
 * **Dinámica:** Escaneo interactivo de una imagen manipulada con IA para detectar 4 anomalías comunes: sombras incoherentes, parpadeo facial artificial, marcas de agua del modelo generativo y pistas de voz clonada.
 * **Contribución al aprendizaje:** Desmitifica la Inteligencia Artificial generativa. Enseña a las y los adolescentes a no creer ciegamente en imágenes o audios virales y a frenar la cadena de reenvío en grupos de mensajería.
 * **Prueba obtenida:** *Prueba #3: Informe Forense de IA (Dictamen pericial de montaje).*
 
+---
+
 ### 📍 Nivel 4: Carrera en Nave & Bloqueo de Antenas Repetidoras
+
+<p align="center">
+  <img src="screenshots/level4-ship.svg" alt="Nivel 4: Carrera en Nave Espacial y Bloqueo de Repetidoras Satelitales" width="100%" />
+</p>
+
 * **Dinámica:** Vuelo espacial esquivando asteroides y disparando pulsos electromagnéticos (EMP) para apagar las 3 antenas que transmiten la señal maliciosa.
 * **Contribución al aprendizaje:** Demuestra el concepto de **difusión y viralización digital acelerada**, y la urgencia de contener la propagación para evitar la revictimización comunitaria.
 * **Prueba obtenida:** *Prueba #4: Traza de IP y Paquetes de Red (Firma digital vinculada a la terminal de Diego).*
 
+---
+
 ### 📍 Nivel 5: Sala del Consejo // Duelo de Pruebas ante la Comandante Rosa
+
+<p align="center">
+  <img src="screenshots/level5-council.svg" alt="Nivel 5: Sala del Consejo y Duelo de Pruebas ante la Comandante Rosa" width="100%" />
+</p>
+
 * **Dinámica:** Enfrentamiento directo y claro en 2 rondas secuenciales. Diego presenta acusaciones públicas ante la Comandante y el jugador debe seleccionar la prueba técnica adecuada del Datapad.
 * **Opciones limpias y justas:** Ambas tarjetas de opción son visualmente neutras (`OPCIÓN A` vs `OPCIÓN B`), sin advertencias de color rojo/verde previas que arruinen el razonamiento del estudiante.
 * **Puntuación clara:** +10 puntos éticos por respuesta correcta (actualizando en vivo la barra de empatía del HUD) y 0 puntos con orientación reflexiva si se yerra.
