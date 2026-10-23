@@ -129,7 +129,7 @@ Osciloscopio a 4.0 Hz -> Dron en Gravedad Cero -> Detector de Holofakes -> Carre
 
 ---
 
-## 🏛️ 4. Adaptación a Marcos de la UNESCO (Capacitaciones y Talleres)
+## 🏛️ 4. Adaptación a Marcos de la UNESCO 
 
 KUNTUR está alineado con los pilares del **Marco de Alfabetización Mediática e Informacional (AMI / MIL) de la UNESCO**:
 
