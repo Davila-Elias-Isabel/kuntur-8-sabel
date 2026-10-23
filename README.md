@@ -26,8 +26,6 @@ KUNTUR está construido como una aplicación cliente ligera (*Client-Side SPA*),
 | :--- | :--- | :--- |
 | **🚀 Enlace Web Directo (Online)** | [https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | Navegador web (Chrome, Edge, Safari, Firefox). Cero instalación. |
 | **📁 Archivo Único HTML (`kuntur_juego.html`)** | Descárgalo con el botón **`📥 Descargar archivo HTML (Offline)`** en el juego | **100% Offline.** Solo doble clic en el archivo. No necesita internet. |
-| **🛠️ Entorno de Desarrollo Activo** | [https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-dev-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | Acceso al entorno en vivo con recarga inmediata. |
-
 > 💡 **Portabilidad para capacitaciones docentes:** El archivo `kuntur_juego.html` pesa apenas ~520 KB. Puedes enviarlo por correo o WhatsApp, o copiarlo en una memoria USB (pendrive) para salas de cómputo escolares sin acceso a internet.
 
 ---
