@@ -215,8 +215,8 @@ kuntur-isabel/
 
 ## 🏅 8. Créditos, Alianzas y Licencia de Uso (REA)
 
-* **Dirección, Diseño Pedagógico y Desarrollo:** Rocío Dávila Elías
-* **Contacto institucional y colaboraciones:** rociodavilaelias@gmail.com
+* **Dirección, Diseño Pedagógico y Desarrollo:** R. Isabel Dávila Elías
+* **Contacto institucional y colaboraciones:** davilaeliasisabel@gmail.com
 * **Naturaleza del Proyecto:** Recurso Educativo Abierto (REA) libre y gratuito para uso formativo, comunitario y escolar.
 * **Declaración de Autonomía:** Proyecto desarrollado de manera independiente a título personal para salvaguardar la autoría intelectual, facilitar la colaboración con equipos multidisciplinarios y permitir su libre distribución en instituciones educativas sin restricciones de propiedad institucional.
 
