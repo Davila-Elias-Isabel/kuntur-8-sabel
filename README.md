@@ -12,8 +12,8 @@
 
 > Soy administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital; apasionada por el diseño de videojuegos con propósito social, creé **KUNTUR: Tu señal importa**, un videojuego narrativo y recurso educativo abierto (REA) que capacita a adolescentes y docentes para prevenir el ciberacoso y la violencia digital con sesgo de género, enseñando a desmitificar montajes con Inteligencia Artificial (*deepfakes*), recolectar pruebas periciales reales a través de cinco niveles espaciales y activar el rol del testigo activo (*upstander*). Aunque la propuesta nació inicialmente para un programa de UNESCO, decidí impulsarla a título personal e independiente para salvaguardar la autoría propia, conformar un equipo interdisciplinario y ampliar las oportunidades de financiamiento, escalabilidad y uso libre en escuelas sin restricciones institucionales de propiedad intelectual, logrando una herramienta ligera, gratuita y 100% offline que funciona en un único archivo HTML para llegar a cualquier comunidad sin barreras de conectividad.
 
-* **Dirección, Diseño Pedagógico y Desarrollo:** Rocío Dávila Elías
-* **Contacto institucional y colaboraciones:** rociodavilaelias@gmail.com
+* **Dirección, Diseño Pedagógico y Desarrollo:** R. Isabel Dávila Elías
+* **Contacto institucional y colaboraciones:** davilaeliasisabel@gamil.com
 * **Licencia y Filosofía:** Recurso Educativo Abierto (REA) libre y gratuito para uso formativo, comunitario y escolar.
 
 ---
