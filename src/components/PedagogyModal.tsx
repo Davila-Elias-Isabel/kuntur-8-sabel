@@ -84,6 +84,16 @@ export const PedagogyModal: React.FC<PedagogyModalProps> = ({ onClose }) => {
           <span><strong>Regla de oro:</strong> Nunca culpes a la víctima ni le exijas que demuestre su inocencia.</span>
         </div>
 
+        {/* Author / Credits Box */}
+        <div className="mt-3 bg-[#0C0C22] border border-[#4FD1C5]/40 p-3 rounded-xs text-[11px] text-[#A6A2C5] space-y-1">
+          <div className="font-bold text-[#4FD1C5] font-mono-tech flex items-center gap-1.5 text-xs">
+            <span>👩‍🚀 AUTORÍA Y DIRECCIÓN DEL PROYECTO:</span>
+          </div>
+          <p className="text-[#EDEBFA] leading-relaxed">
+            <strong>Rocío Dávila Elías</strong> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital. Proyecto desarrollado de forma independiente como Recurso Educativo Abierto (REA) para empoderar a comunidades escolares.
+          </p>
+        </div>
+
         {/* Close Button */}
         <div className="mt-4 flex justify-end">
           <button

@@ -281,6 +281,17 @@ export const EndingModal: React.FC<EndingModalProps> = ({
           </div>
         </section>
 
+        {/* Author / Project Credits */}
+        <div className="bg-[#0D0D24] p-3 rounded-xs border border-[#4FD1C5]/30 text-[11px] text-[#A6A2C5] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <span className="font-bold text-[#4FD1C5] font-mono-tech block">DISEÑO Y DIRECCIÓN DEL PROYECTO:</span>
+            <span className="text-[#EDEBFA] font-medium">Rocío Dávila Elías</span> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú.
+          </div>
+          <span className="text-[10px] text-[#8F8CA8] font-mono-tech shrink-0 bg-[#161638] px-2 py-1 rounded">
+            Recurso Educativo Abierto (REA)
+          </span>
+        </div>
+
         {/* Footer Actions */}
         <div className="w-full flex items-center justify-between gap-3 pt-2 border-t border-[#5E4FA2]/40">
           <div className="flex items-center gap-3">
