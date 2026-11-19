@@ -132,7 +132,7 @@ export const TopHUD: React.FC<TopHUDProps> = ({
             title="Ver Medallero de Testigo Activo y felicitaciones de la Voz Galáctica"
           >
             <Award className="w-3.5 h-3.5 animate-pulse" />
-            <span className="hidden sm:inline">Medallas ({medalsCount}/5)</span>
+            <span className="hidden sm:inline">Medallas ({medalsCount}/7)</span>
             <span className="sm:hidden font-mono-tech">🏅{medalsCount}</span>
           </button>
         )}

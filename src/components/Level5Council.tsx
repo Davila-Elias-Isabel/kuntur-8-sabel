@@ -48,7 +48,7 @@ const DUEL_ROUNDS: DuelRound[] = [
   {
     id: 'round_deepfake',
     roundNumber: 1,
-    totalRounds: 2,
+    totalRounds: 3,
     pointsReward: 10,
     diegoQuote: '«¡El video del chat muestra a Vale saboteando la nave y se ve 100% real! ¡Nadie puede inventar una grabación así!»',
     missionPrompt: 'Diego afirma ante el Consejo que el video no puede ser inventado. ¿Cuál de las dos opciones eliges para responder ante el Consejo?',
@@ -74,7 +74,7 @@ const DUEL_ROUNDS: DuelRound[] = [
   {
     id: 'round_oscilloscope',
     roundNumber: 2,
-    totalRounds: 2,
+    totalRounds: 3,
     pointsReward: 10,
     diegoQuote: '«¡Pero Vale no estaba trabajando a las 14:00 horas! ¡Abandonó el taller y descuidó la nave!»',
     missionPrompt: 'Diego acusa a Vale de no estar en su puesto de trabajo a la hora del incidente. ¿Cuál de las dos opciones eliges para responder ante el Consejo?',
@@ -94,6 +94,32 @@ const DUEL_ROUNDS: DuelRound[] = [
         title: 'Borrar los mensajes del chat y esperar a que el rumor se calme por sí solo',
         detail: 'Evitar el conflicto y confiar en que con el paso de los días la tripulación olvidará el tema sin necesidad de intervenir.',
         feedback: 'Esta acción no suma puntos. El silencio o la inacción permiten que las falsedades se normalicen y dañen a la persona afectada. Como testigo activo, presentar la verdad es fundamental.'
+      }
+    ]
+  },
+  {
+    id: 'round_doxxing_bots',
+    roundNumber: 3,
+    totalRounds: 3,
+    pointsReward: 10,
+    diegoQuote: '«¡Pero toda la red de cadetes la repudiaba! ¡Había cientos de mensajes exigiendo su expulsión y filtraron su número!»',
+    missionPrompt: 'Diego afirma que la tripulación entera la rechazaba. ¿Qué evidencia pericial presentas ante el Consejo?',
+    options: [
+      {
+        id: 'opt_bots_doxxing',
+        isCorrect: true,
+        letter: 'OPCIÓN A',
+        title: 'Presentar el registro de la red de bots y el log de doxxing extraído de la terminal',
+        detail: 'Demostrar que los 200 mensajes eran un ataque coordinado (dogpiling) ejecutado por un script automatizado y que la cuenta impostora fue creada para acosarla.',
+        feedback: '¡Elección correcta! La evidencia demuestra que no hubo rechazo genuino de la tripulación, sino un linchamiento digital orquestado mediante bots y doxxing.'
+      },
+      {
+        id: 'opt_argue',
+        isCorrect: false,
+        letter: 'OPCIÓN B',
+        title: 'Ponerse a discutir a los gritos con Diego diciendo que los cadetes no tienen criterio',
+        detail: 'Perder la calma en el estrado y descalificar a la tripulación sin exhibir los informes técnicos de la red.',
+        feedback: 'Esta acción no suma puntos. La ira sin pruebas resta credibilidad en una audiencia formal. La evidencia digital de los scripts automatizados es la que desbarata la farsa.'
       }
     ]
   }
@@ -126,7 +152,7 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
     if (speech.isAutoRead() && !showResolution) {
       const timer = setTimeout(() => {
         speech.speak(
-          `Nivel cinco. Sala del Consejo, caso ${round.roundNumber} de ${round.totalRounds}. Diego afirma: ${round.diegoQuote}. Lee ambas opciones iguales y elige la que consideres correcta. Si aciertas, sumas ${round.pointsReward} puntos éticos.`,
+          `Sala del Consejo, alegato ${round.roundNumber} de ${round.totalRounds}. Diego afirma: ${round.diegoQuote}. Lee ambas opciones y elige la que consideres correcta. Si aciertas, sumas ${round.pointsReward} puntos éticos.`,
           { isGalactic: true, prependChime: true, context: `level_5_round_${round.roundNumber}` }
         );
       }, 350);
@@ -196,7 +222,7 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
       if (speech.isAutoRead()) {
         setTimeout(() => {
           speech.speak(
-            `¡Misión cumplida! Has resuelto ambos casos ante el Consejo Galáctico demostrando la verdad con pruebas objetivas.`,
+            `¡Misión cumplida! Has resuelto los tres casos ante el Consejo Galáctico demostrando la verdad con pruebas periciales objetivas.`,
             { isGalactic: true, prependChime: true, context: 'level_5_victory' }
           );
         }, 300);
@@ -255,12 +281,15 @@ export const Level5Council: React.FC<Level5CouncilProps> = ({
             <p className="text-xs sm:text-sm text-[#EDEBFA] leading-relaxed">
               En lugar de caer en discusiones o quedarte en silencio, elegiste las pruebas reales en cada acusación:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 text-xs">
               <div className="p-2 bg-[#0E2024] rounded border border-[#4FD1C5]/40 text-[#4FD1C5]">
-                ✓ <strong>Peritaje Forense:</strong> Probó que el video era un Deepfake creado con IA.
+                ✓ <strong>Peritaje Forense:</strong> Probó que el video era un Deepfake manipulado.
               </div>
               <div className="p-2 bg-[#0E2024] rounded border border-[#4FD1C5]/40 text-[#4FD1C5]">
-                ✓ <strong>Bitácora de Osciloscopio:</strong> Probó que Vale estaba trabajando a las 14:00 hrs.
+                ✓ <strong>Bitácora de Osciloscopio:</strong> Probó que Vale trabajaba a las 14:00 hrs.
+              </div>
+              <div className="p-2 bg-[#0E2024] rounded border border-[#4FD1C5]/40 text-[#4FD1C5]">
+                ✓ <strong>Matriz de Bots & Doxxing:</strong> Desmanteló el linchamiento y la cuenta impostora.
               </div>
             </div>
           </div>

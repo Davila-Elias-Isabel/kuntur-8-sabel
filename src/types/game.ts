@@ -7,7 +7,10 @@ export type GameScreen =
   | 'LEVEL_2_ZEROG'
   | 'LEVEL_3_FORENSIC'
   | 'LEVEL_4_SHIP'
-  | 'LEVEL_5_COUNCIL'
+  | 'LEVEL_5_DOXXING'
+  | 'LEVEL_6_BOTNET'
+  | 'LEVEL_7_COUNCIL'
+  | 'LEVEL_5_COUNCIL' // Backward compatibility alias
   | 'GAME_OVER'
   | 'VICTORY_SCREEN';
 
@@ -24,10 +27,10 @@ export interface DecisionLogEntry {
 }
 
 export interface ClueItem {
-  id: 'clue_oscilloscope' | 'clue_drone' | 'clue_forensic' | 'clue_antenna';
+  id: 'clue_oscilloscope' | 'clue_drone' | 'clue_forensic' | 'clue_antenna' | 'clue_doxxing' | 'clue_botnet';
   name: string;
   colloquialName: string;
-  category: 'coartada' | 'fotos_base' | 'peritaje_ia' | 'ip_culpable';
+  category: 'coartada' | 'fotos_base' | 'peritaje_ia' | 'ip_culpable' | 'identidad_digital' | 'red_bots';
   icon: string;
   whatItIs: string;
   howItHelpsInCouncil: string;

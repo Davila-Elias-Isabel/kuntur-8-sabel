@@ -144,6 +144,52 @@ export function calculateMedalForLevel4(
 }
 
 export function calculateMedalForLevel5(
+  decision?: DecisionLogEntry,
+  gender: PlayerGender = 'hombre'
+): ActiveWitnessMedal {
+  const cadet = gender === 'hombre' ? 'Alex' : 'Alexia';
+  const isPositive = decision ? (!decision.isToxic && decision.pointsDelta > 0) : true;
+
+  return {
+    id: 'medal_lvl_5',
+    levelNumber: 5,
+    levelTitle: 'Nivel 5: Terminal Arcade 1984 // Doxxing & Suplantación',
+    title: 'Medalla de Protección de Identidad Digital',
+    subtitle: 'Escudo Criptográfico y 2FA',
+    rank: isPositive ? 'oro' : 'plata',
+    rankLabel: isPositive ? 'Oro // Guardián de la Privacidad' : 'Plata // Aprendizaje Crítico',
+    iconName: 'Shield',
+    ethicalCriterion: 'Reconocer que los datos personales y las cuentas no deben replicarse ni divulgarse, aplicando verificación formal.',
+    decisionTaken: decision?.chosenComment || 'Activaste el protocolo 2FA y aislaste el perfil falso sin revictimizar a Vale.',
+    galacticCongratulation: `¡Brillante reflejo ético, cadete ${cadet}! En la consola de 1984 demostraste que la privacidad es un derecho humano innegociable. Al reportar la cuenta clonada y proteger los datos de Vale, neutralizaste el doxxing.`,
+    isUnlocked: true
+  };
+}
+
+export function calculateMedalForLevel6(
+  decision?: DecisionLogEntry,
+  gender: PlayerGender = 'hombre'
+): ActiveWitnessMedal {
+  const cadet = gender === 'hombre' ? 'Alex' : 'Alexia';
+  const isPositive = decision ? (!decision.isToxic && decision.pointsDelta > 0) : true;
+
+  return {
+    id: 'medal_lvl_6',
+    levelNumber: 6,
+    levelTitle: 'Nivel 6: Matriz de Bots 1985 // Dogpiling & Acoso Masivo',
+    title: 'Medalla de Contranarrativa Comunitaria',
+    subtitle: 'Resistencia a Enjambres de Bots',
+    rank: isPositive ? 'oro' : 'plata',
+    rankLabel: isPositive ? 'Oro // Defensor Comunitario' : 'Plata // Resistencia Ética',
+    iconName: 'Users',
+    ethicalCriterion: 'Aplicar la regla de no alimentar al troll, documentar la automatización del odio y brindar solidaridad visible.',
+    decisionTaken: decision?.chosenComment || 'Aislaste la red de bots y activaste contranarrativas humanas de apoyo a la víctima.',
+    galacticCongratulation: `¡Transmisión estelar de victoria, cadete ${cadet}! No caíste en la trampa del algoritmo de odio. Neutralizaste la granja de bots y le recordaste a toda la estación que la solidaridad vence a cualquier linchamiento digital.`,
+    isUnlocked: true
+  };
+}
+
+export function calculateMedalForLevel7(
   puntos: number = 70,
   gender: PlayerGender = 'hombre'
 ): ActiveWitnessMedal {
@@ -152,24 +198,24 @@ export function calculateMedalForLevel5(
 
   if (isHighHonors) {
     return {
-      id: 'medal_lvl_5',
-      levelNumber: 5,
-      levelTitle: 'Nivel 5: Sala del Consejo KUNTUR',
+      id: 'medal_lvl_7',
+      levelNumber: 7,
+      levelTitle: 'Nivel 7: Sala del Consejo KUNTUR',
       title: 'Gran Medalla de Testigo Activo Supremo',
       subtitle: 'Constelación de Honor y Cohesión Ética',
       rank: 'oro',
       rankLabel: 'Honor Máximo // Testigo Ejemplar',
       iconName: 'Award',
-      ethicalCriterion: 'Presentar las 4 evidencias con valentía ante la autoridad, desmontar el ciberacoso y restituir la dignidad de la víctima.',
-      decisionTaken: 'Desmontaste los 4 argumentos falaces de Diego con pruebas periciales irrefutables.',
+      ethicalCriterion: 'Presentar las evidencias periciales completas ante la comandancia, desmontando la violencia digital en todas sus formas.',
+      decisionTaken: 'Desmontaste la difamación, el doxxing y los bots con pruebas periciales irrefutables.',
       galacticCongratulation: `¡Atención tripulación de KUNTUR! Transmisión general de la Voz Galáctica: El o la cadete ${cadet} ha culminado su formación como Testigo Activo Supremo. Supiste actuar, investigar, frenar el daño y alzar la voz con pruebas y empatía. ¡Vale está a salvo y la base KUNTUR tiene un nuevo guardián de la dignidad digital!`,
       isUnlocked: true
     };
   } else {
     return {
-      id: 'medal_lvl_5',
-      levelNumber: 5,
-      levelTitle: 'Nivel 5: Sala del Consejo KUNTUR',
+      id: 'medal_lvl_7',
+      levelNumber: 7,
+      levelTitle: 'Nivel 7: Sala del Consejo KUNTUR',
       title: 'Medalla de Justicia y Resiliencia',
       subtitle: 'Restitución de la Verdad en KUNTUR',
       rank: 'plata',
@@ -184,7 +230,7 @@ export function calculateMedalForLevel5(
 }
 
 /**
- * Returns empty / preview templates of all 5 medals for the gallery modal
+ * Returns empty / preview templates of all 7 medals for the gallery modal
  */
 export function getAllMedalsTemplate(gender: PlayerGender = 'hombre'): ActiveWitnessMedal[] {
   return [
@@ -192,8 +238,10 @@ export function getAllMedalsTemplate(gender: PlayerGender = 'hombre'): ActiveWit
     calculateMedalForLevel2(gender),
     calculateMedalForLevel3(undefined, gender),
     calculateMedalForLevel4(gender),
-    calculateMedalForLevel5(80, gender)
-  ].map((medal, index) => ({
+    calculateMedalForLevel5(undefined, gender),
+    calculateMedalForLevel6(undefined, gender),
+    calculateMedalForLevel7(80, gender)
+  ].map((medal) => ({
     ...medal,
     isUnlocked: false
   }));

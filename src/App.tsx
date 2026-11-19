@@ -6,6 +6,8 @@ import { Level1Taller } from './components/Level1Taller';
 import { Level2ZeroG } from './components/Level2ZeroG';
 import { Level3Forensic } from './components/Level3Forensic';
 import { Level4Ship } from './components/Level4Ship';
+import { Level5RetroDoxxing } from './components/Level5RetroDoxxing';
+import { Level6RetroBotnet } from './components/Level6RetroBotnet';
 import { Level5Council } from './components/Level5Council';
 import { LevelTransitionModal } from './components/LevelTransitionModal';
 import { GameOverModal } from './components/GameOverModal';
@@ -23,7 +25,9 @@ import {
   calculateMedalForLevel2, 
   calculateMedalForLevel3, 
   calculateMedalForLevel4, 
-  calculateMedalForLevel5 
+  calculateMedalForLevel5,
+  calculateMedalForLevel6,
+  calculateMedalForLevel7 
 } from './services/medals';
 
 interface ActiveTransitionData {
@@ -196,7 +200,7 @@ export default function App() {
 
     setCurrentLevelNumber(5);
 
-    // Open Cinematic Transition to Level 5
+    // Open Cinematic Transition to Level 5 (Retro 80s Doxxing)
     setActiveTransition({
       completedLevelNumber: 4,
       nextLevelNumber: 5,
@@ -206,27 +210,69 @@ export default function App() {
     });
   };
 
-  // Level 5 Completion (Victory)
+  // Level 5 Completion (Retro 80s Doxxing & Impersonation)
+  const handleCompleteLevel5 = (decision: DecisionLogEntry, clue: ClueItem) => {
+    setDecisionLog(prev => [...prev, decision]);
+    modifyMetrics(decision.pointsDelta, decision.isToxic ? -1 : 0);
+    setClues(prev => [...prev.filter(c => c.id !== clue.id), clue]);
+
+    const medal5 = calculateMedalForLevel5(decision, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 5), medal5]);
+
+    setCurrentLevelNumber(6);
+
+    // Open Cinematic Transition to Level 6 (Retro 80s Botnet)
+    setActiveTransition({
+      completedLevelNumber: 5,
+      nextLevelNumber: 6,
+      earnedClue: clue,
+      earnedPoints: decision.pointsDelta > 0 ? 15 : 0,
+      earnedMedal: medal5
+    });
+  };
+
+  // Level 6 Completion (Retro 80s Botnet & Dogpiling)
+  const handleCompleteLevel6 = (decision: DecisionLogEntry, clue: ClueItem) => {
+    setDecisionLog(prev => [...prev, decision]);
+    modifyMetrics(decision.pointsDelta, decision.isToxic ? -1 : 0);
+    setClues(prev => [...prev.filter(c => c.id !== clue.id), clue]);
+
+    const medal6 = calculateMedalForLevel6(decision, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 6), medal6]);
+
+    setCurrentLevelNumber(7);
+
+    // Open Cinematic Transition to Level 7 (Council Trial)
+    setActiveTransition({
+      completedLevelNumber: 6,
+      nextLevelNumber: 7,
+      earnedClue: clue,
+      earnedPoints: decision.pointsDelta > 0 ? 15 : 0,
+      earnedMedal: medal6
+    });
+  };
+
+  // Level 7 Completion (Council Final Trial Victory)
   const handleVictory = () => {
     sound.playFanfare();
     sound.switchProceduralTrack(2); // Constelación triumph theme
     modifyMetrics(15, 0);
 
     const victoryEntry: DecisionLogEntry = {
-      id: 'l5-council',
-      levelNumber: 5,
-      levelTitle: 'Nivel 5: Sala del Consejo // Duelo de Pruebas',
-      situation: 'Desmontar las 4 mentiras de Diego ante la Comandante Rosa con pruebas técnicas irrefutables.',
-      chosenComment: '¡FALSO! Pruebas periciales presentadas con firmeza y respeto procesal.',
+      id: 'l7-council',
+      levelNumber: 7,
+      levelTitle: 'Nivel 7: Sala del Consejo // Juicio Final con 6 Pruebas',
+      situation: 'Desmontar el ciberacoso, el doxxing y la granja de bots ante la Comandante Rosa con pruebas periciales irrefutables.',
+      chosenComment: '¡FALSO! Arsenal pericial completo presentado con rigor procesal y ética ciudadana.',
       isToxic: false,
       pointsDelta: 15,
-      whyThisMatters: 'Demostraste que los hechos y las pruebas periciales desarticulan cualquier campaña de odio o difamación.',
-      realWorldImpact: 'La verdad documentada reivindica a las víctimas y sienta precedentes de justicia comunitaria.'
+      whyThisMatters: 'Demostraste que los hechos, la alfabetización mediática (AMI) y las pruebas periciales desarticulan cualquier campaña de odio o difamación.',
+      realWorldImpact: 'La verdad documentada y la solidaridad comunitaria reivindican a las víctimas y sientan precedentes contra la violencia digital.'
     };
     setDecisionLog(prev => [...prev, victoryEntry]);
 
-    const medal5 = calculateMedalForLevel5(metrics.puntos + 15, gender);
-    setMedals(prev => [...prev.filter(m => m.levelNumber !== 5), medal5]);
+    const medal7 = calculateMedalForLevel7(metrics.puntos + 15, gender);
+    setMedals(prev => [...prev.filter(m => m.levelNumber !== 7), medal7]);
 
     setScreen('VICTORY_SCREEN');
   };
@@ -249,7 +295,9 @@ export default function App() {
     if (nextLvl === 2) setScreen('LEVEL_2_ZEROG');
     else if (nextLvl === 3) setScreen('LEVEL_3_FORENSIC');
     else if (nextLvl === 4) setScreen('LEVEL_4_SHIP');
-    else if (nextLvl === 5) setScreen('LEVEL_5_COUNCIL');
+    else if (nextLvl === 5) setScreen('LEVEL_5_DOXXING');
+    else if (nextLvl === 6) setScreen('LEVEL_6_BOTNET');
+    else if (nextLvl === 7) setScreen('LEVEL_7_COUNCIL');
   };
 
   // Restart Entire Game
@@ -279,7 +327,9 @@ export default function App() {
     else if (currentLevelNumber === 2) setScreen('LEVEL_2_ZEROG');
     else if (currentLevelNumber === 3) setScreen('LEVEL_3_FORENSIC');
     else if (currentLevelNumber === 4) setScreen('LEVEL_4_SHIP');
-    else setScreen('LEVEL_5_COUNCIL');
+    else if (currentLevelNumber === 5) setScreen('LEVEL_5_DOXXING');
+    else if (currentLevelNumber === 6) setScreen('LEVEL_6_BOTNET');
+    else setScreen('LEVEL_7_COUNCIL');
   };
 
   // Get current level title for HUD
@@ -288,7 +338,9 @@ export default function App() {
     if (screen === 'LEVEL_2_ZEROG') return 'Nivel 2: Dron en Gravedad Cero';
     if (screen === 'LEVEL_3_FORENSIC') return 'Nivel 3: Detector de Holofakes';
     if (screen === 'LEVEL_4_SHIP') return 'Nivel 4: Carrera de Antenas';
-    if (screen === 'LEVEL_5_COUNCIL') return 'Nivel 5: Duelo ante el Consejo';
+    if (screen === 'LEVEL_5_DOXXING') return 'Nivel 5: Arcade 1984 // Doxxing & Suplantación';
+    if (screen === 'LEVEL_6_BOTNET') return 'Nivel 6: Matriz 1985 // Dogpiling & Red de Bots';
+    if (screen === 'LEVEL_7_COUNCIL' || screen === 'LEVEL_5_COUNCIL') return 'Nivel 7: Sala del Consejo // Juicio Final';
     if (screen === 'LEVEL_MAP') return 'Mapa de Misiones';
     if (screen === 'VICTORY_SCREEN') return '¡Victoria! Constelación Ética';
     if (screen === 'GAME_OVER') return 'Simulación Colapsada';
@@ -346,7 +398,9 @@ export default function App() {
               else if (lvl === 2) setScreen('LEVEL_2_ZEROG');
               else if (lvl === 3) setScreen('LEVEL_3_FORENSIC');
               else if (lvl === 4) setScreen('LEVEL_4_SHIP');
-              else if (lvl === 5) setScreen('LEVEL_5_COUNCIL');
+              else if (lvl === 5) setScreen('LEVEL_5_DOXXING');
+              else if (lvl === 6) setScreen('LEVEL_6_BOTNET');
+              else if (lvl === 7) setScreen('LEVEL_7_COUNCIL');
             }}
             onOpenGlossary={() => setShowGlossary(true)}
             onOpenPedagogy={() => setShowPedagogy(true)}
@@ -393,8 +447,26 @@ export default function App() {
           />
         )}
 
-        {/* 7. Level 5: Courtroom Council Duel against Diego */}
-        {screen === 'LEVEL_5_COUNCIL' && (
+        {/* 7. Level 5: Arcade 1984 - Doxxing & Suplantación de Identidad */}
+        {screen === 'LEVEL_5_DOXXING' && (
+          <Level5RetroDoxxing
+            gender={gender}
+            onCompleteLevel={handleCompleteLevel5}
+            onOpenGlossary={() => setShowGlossary(true)}
+          />
+        )}
+
+        {/* 8. Level 6: Matriz 1985 - Dogpiling & Red de Bots */}
+        {screen === 'LEVEL_6_BOTNET' && (
+          <Level6RetroBotnet
+            gender={gender}
+            onCompleteLevel={handleCompleteLevel6}
+            onOpenGlossary={() => setShowGlossary(true)}
+          />
+        )}
+
+        {/* 9. Level 7: Courtroom Council Duel against Diego (6 Forensic Clues) */}
+        {(screen === 'LEVEL_7_COUNCIL' || screen === 'LEVEL_5_COUNCIL') && (
           <Level5Council
             gender={gender}
             clues={clues}

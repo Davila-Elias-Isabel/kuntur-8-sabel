@@ -90,7 +90,7 @@ export const PedagogyModal: React.FC<PedagogyModalProps> = ({ onClose }) => {
             <span>👩‍🚀 AUTORÍA Y DIRECCIÓN DEL PROYECTO:</span>
           </div>
           <p className="text-[#EDEBFA] leading-relaxed">
-            <strong>Rocío Dávila Elías</strong> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital. Proyecto desarrollado de forma independiente como Recurso Educativo Abierto (REA) para empoderar a comunidades escolares.
+            <strong>R. Isabel Dávila Elías</strong> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital. Proyecto desarrollado de forma independiente como Recurso Educativo Abierto (REA) para empoderar a comunidades escolares.
           </p>
         </div>
 

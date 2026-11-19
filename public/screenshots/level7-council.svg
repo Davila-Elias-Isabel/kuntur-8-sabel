@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0A1E"/>
+      <stop offset="50%" stop-color="#15122C"/>
+      <stop offset="100%" stop-color="#0B0B1A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg7)"/>
+
+  <!-- Top HUD Bar -->
+  <rect x="0" y="0" width="1200" height="60" fill="#0E0E22" stroke="#5E4FA2" stroke-width="1"/>
+  <text x="30" y="38" font-family="'JetBrains Mono', monospace" font-size="18" font-weight="bold" fill="#4FD1C5">KUNTUR // ALEX</text>
+  <text x="210" y="38" font-family="'JetBrains Mono', monospace" font-size="14" fill="#EDEBFA">NIVEL 7: SALA DEL CONSEJO // JUICIO FINAL (6 PRUEBAS)</text>
+  <text x="750" y="38" font-family="'JetBrains Mono', monospace" font-size="14" fill="#8F8CA8">VIDAS: ❤ ❤ ❤</text>
+  <rect x="880" y="24" width="120" height="14" fill="#1B1B36" rx="2" stroke="#4FD1C5" stroke-width="1"/>
+  <rect x="882" y="26" width="112" height="10" fill="#4FD1C5" rx="1"/>
+  <text x="1015" y="38" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#4FD1C5">95 pts</text>
+
+  <!-- Main Council Card -->
+  <rect x="60" y="85" width="1080" height="550" rx="6" fill="#12122A" stroke="#5E4FA2" stroke-width="1.5"/>
+
+  <!-- Sub-Header Badge -->
+  <rect x="85" y="105" width="140" height="26" rx="3" fill="#5E4FA2" fill-opacity="0.25"/>
+  <text x="98" y="123" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#4FD1C5">ALEGATO 3 DE 3</text>
+  <text x="240" y="123" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="bold" fill="#EDEBFA">AUDIENCIA PERICIAL ANTE LA COMANDANTE ROSA</text>
+
+  <!-- Diego's Accusation Banner -->
+  <rect x="85" y="145" width="1030" height="120" rx="4" fill="#1A122B" stroke="#F2B544" stroke-width="1.5"/>
+  <text x="110" y="175" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold" fill="#F2B544">🚨 DIEGO (ALEGATO FINAL EN EL CONSEJO):</text>
+  <text x="110" y="205" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#EDEBFA">«¡Toda la tripulación en redes repudiaba a Vale! ¡Cientos de cadetes exigían su renuncia inmediata!»</text>
+  <text x="110" y="230" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#EDEBFA">«No pueden ignorar el clamor de la red y las filtraciones en los canales públicos de la estación.»</text>
+  <text x="110" y="255" font-family="'JetBrains Mono', monospace" font-size="11" font-style="italic" fill="#A6A2C5">Comandante Rosa: «El Consejo juzga hechos técnicos demostrables. Cadete Alex, ¿cuál es tu prueba pericial?»</text>
+
+  <!-- Prompt Instruction -->
+  <text x="85" y="295" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#4FD1C5">EVALUACIÓN PERICIAL // OPCIONES NEUTRAS PARA JUICIO CRÍTICO:</text>
+
+  <!-- Option A Card -->
+  <rect x="85" y="315" width="1030" height="135" rx="4" fill="#161638" stroke="#5E4FA2" stroke-width="1.5"/>
+  <rect x="105" y="335" width="85" height="24" rx="2" fill="#202048" stroke="#5E4FA2" stroke-width="1"/>
+  <text x="147" y="352" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#A6A2C5" text-anchor="middle">OPCIÓN A</text>
+  <text x="205" y="352" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#EDEBFA">Presentar el Registro de la Red de Bots y el Log de Doxxing</text>
+  <text x="105" y="390" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#A6A2C5">«Demostramos que los 200 mensajes no eran de cadetes reales, sino un script automatizado que simulaba un linchamiento digital</text>
+  <text x="105" y="415" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#A6A2C5">(dogpiling) coordinado con perfiles falsos y doxxing desde una única terminal para silenciar a Vale.»</text>
+  <text x="105" y="440" font-family="'JetBrains Mono', monospace" font-size="11" fill="#4FD1C5">+10 pts éticos al seleccionar</text>
+
+  <!-- Option B Card -->
+  <rect x="85" y="470" width="1030" height="135" rx="4" fill="#161638" stroke="#5E4FA2" stroke-width="1.5"/>
+  <rect x="105" y="490" width="85" height="24" rx="2" fill="#202048" stroke="#5E4FA2" stroke-width="1"/>
+  <text x="147" y="507" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" fill="#A6A2C5" text-anchor="middle">OPCIÓN B</text>
+  <text x="205" y="507" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" fill="#EDEBFA">Ponerse a discutir a los gritos descalificando a la tripulación</text>
+  <text x="105" y="545" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#A6A2C5">«Gritar ante el Consejo que los cadetes no tienen cerebro propio y dejarse llevar por el enfado personal</text>
+  <text x="105" y="570" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" fill="#A6A2C5">sin proyectar en pantalla los registros de red ni las direcciones IP peritadas.»</text>
+  <text x="105" y="595" font-family="'JetBrains Mono', monospace" font-size="11" fill="#8F8CA8">0 pts (La ira sin pruebas técnicas resta credibilidad en un tribunal formal)</text>
+</svg>

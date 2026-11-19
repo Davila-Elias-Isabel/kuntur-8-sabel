@@ -17,12 +17,14 @@ import {
   Zap, 
   Gavel,
   Award,
-  Heart
+  Heart,
+  Terminal,
+  Bot
 } from 'lucide-react';
 
 interface LevelMapProps {
   gender: PlayerGender;
-  currentLevelNumber: number; // 1 to 5
+  currentLevelNumber: number; // 1 to 7
   metrics: GameMetrics;
   clues: ClueItem[];
   medals?: ActiveWitnessMedal[];
@@ -84,10 +86,24 @@ export const LevelMap: React.FC<LevelMapProps> = ({
     },
     {
       num: 5,
+      title: 'Terminal Arcade 1984 // Doxxing & Suplantación de Perfil',
+      desc: 'Entras a la consola retro para interceptar datos personales filtrados y frenar un perfil impostor con 2FA.',
+      icon: <Terminal className="w-5 h-5 text-[#4FD1C5]" />,
+      reward: 'Prueba #5: Token Forense de Suplantación & Log de Doxxing'
+    },
+    {
+      num: 6,
+      title: 'Matriz de Bots 1985 // Dogpiling & Acoso Masivo',
+      desc: 'Desartículas oleadas de cuentas automatizadas (bots) y aplicas la regla de oro: no alimentar al troll.',
+      icon: <Bot className="w-5 h-5 text-[#E86AA8]" />,
+      reward: 'Prueba #6: Registro de la Red de Bots & Script Automatizado'
+    },
+    {
+      num: 7,
       title: 'Sala del Consejo // El Duelo de Pruebas Periciales',
-      desc: 'El debate procesal definitivo: refutas las cuatro mentiras de Diego ante la Comandante Rosa gritando ¡FALSO!.',
+      desc: 'Audiencia final ante la Comandante Rosa: presentas las evidencias completas que desmantelan la violencia digital.',
       icon: <Gavel className="w-5 h-5 text-[#D7263D]" />,
-      reward: 'Resolución favorable y Constelación Ética'
+      reward: 'Resolución favorable y Gran Constelación Ética'
     }
   ];
 
@@ -180,7 +196,7 @@ export const LevelMap: React.FC<LevelMapProps> = ({
               className="px-2.5 py-1 bg-[#F2B544]/15 hover:bg-[#F2B544]/25 text-[#F2B544] border border-[#F2B544]/50 rounded-xs flex items-center gap-1.5 transition-colors cursor-pointer font-bold"
             >
               <Award className="w-3.5 h-3.5" />
-              <span>Medallero ({medals.length}/5)</span>
+              <span>Medallero ({medals.length}/7)</span>
             </button>
           )}
         </div>
@@ -301,7 +317,7 @@ export const LevelMap: React.FC<LevelMapProps> = ({
       <div className="bg-[#0A0A1C] p-3.5 rounded-xs border border-[#5E4FA2]/40 text-xs">
         <div className="font-mono-tech font-bold text-[#EDEBFA] mb-2 flex items-center justify-between">
           <span className="text-[#4FD1C5]">PRUEBAS DISPONIBLES EN EL DATAPAD PARA EL JUICIO:</span>
-          <span className="text-[#8F8CA8]">{clues.length} / 4 RECOLECTADAS</span>
+          <span className="text-[#8F8CA8]">{clues.length} / 6 RECOLECTADAS</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

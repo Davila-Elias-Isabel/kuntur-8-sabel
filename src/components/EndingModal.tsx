@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RotateCcw, ExternalLink, ShieldCheck, AlertOctagon, HelpCircle, CheckCircle2, Lightbulb, BookOpen, Award, Volume2, Sparkles } from 'lucide-react';
 import { GameMetrics, DecisionLogEntry, PlayerGender, ActiveWitnessMedal } from '../types/game';
 import { ActiveWitnessMedalCard } from './ActiveWitnessMedalCard';
-import { calculateMedalForLevel5 } from '../services/medals';
+import { calculateMedalForLevel7 } from '../services/medals';
 import { sound } from '../services/audio';
 import { speech } from '../services/speech';
 
@@ -127,8 +127,8 @@ export const EndingModal: React.FC<EndingModalProps> = ({
 
         {/* 🏅 SECCIÓN DE MEDALLAS DE TESTIGO ACTIVO */}
         {(() => {
-          const lvl5Medal = calculateMedalForLevel5(puntos, gender);
-          const allUnlockedMedals = [...medals.filter(m => m.levelNumber !== 5), lvl5Medal];
+          const lvl7Medal = medals.find(m => m.levelNumber === 7) || calculateMedalForLevel7(puntos, gender);
+          const allUnlockedMedals = medals.length > 0 ? medals : [lvl7Medal];
 
           return (
             <div className="w-full bg-[#12122A] border-2 border-[#F2B544] p-4 rounded-xs mb-5 text-left space-y-4">
@@ -136,7 +136,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({
                 <div className="flex items-center gap-2">
                   <Award className="w-5 h-5 text-[#F2B544] animate-pulse" />
                   <span className="text-xs sm:text-sm font-bold font-mono-tech text-[#F2B544]">
-                    🏅 MEDALLERO DE TESTIGO ACTIVO CULMINADO (5/5 MEDALLAS)
+                    🏅 MEDALLERO DE TESTIGO ACTIVO CULMINADO (7/7 MEDALLAS)
                   </span>
                 </div>
                 <span className="text-xs font-mono-tech text-[#4FD1C5] bg-[#4FD1C5]/10 px-2 py-0.5 rounded-xs border border-[#4FD1C5]/30">
@@ -144,8 +144,8 @@ export const EndingModal: React.FC<EndingModalProps> = ({
                 </span>
               </div>
 
-              {/* Spotlight: Level 5 Supreme Medal */}
-              <ActiveWitnessMedalCard medal={lvl5Medal} autoSpeak={false} />
+              {/* Spotlight: Level 7 Supreme Medal */}
+              <ActiveWitnessMedalCard medal={lvl7Medal} autoSpeak={false} />
 
               {/* Grid of previous medals */}
               <div className="space-y-2 pt-1">
@@ -285,7 +285,7 @@ export const EndingModal: React.FC<EndingModalProps> = ({
         <div className="bg-[#0D0D24] p-3 rounded-xs border border-[#4FD1C5]/30 text-[11px] text-[#A6A2C5] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <span className="font-bold text-[#4FD1C5] font-mono-tech block">DISEÑO Y DIRECCIÓN DEL PROYECTO:</span>
-            <span className="text-[#EDEBFA] font-medium">Rocío Dávila Elías</span> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú.
+            <span className="text-[#EDEBFA] font-medium">R. Isabel Dávila Elías</span> — Administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú.
           </div>
           <span className="text-[10px] text-[#8F8CA8] font-mono-tech shrink-0 bg-[#161638] px-2 py-1 rounded">
             Recurso Educativo Abierto (REA)

@@ -336,6 +336,68 @@ class SoundEngine {
     });
   }
 
+  // --- 80s RETRO ARCADE SYNTH EFFECTS ---
+  public playRetroCoin() {
+    if (this.isMuted) return;
+    this.playTone(987.77, 'square', 0.08, 0.08); // B5
+    setTimeout(() => this.playTone(1318.51, 'square', 0.28, 0.1), 70); // E6
+  }
+
+  public playRetroLaser() {
+    if (this.isMuted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(1400, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.09, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+    } catch {}
+  }
+
+  public playRetroExplosion() {
+    if (this.isMuted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      // Noise burst combined with square drop
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, ctx.currentTime);
+      osc.frequency.linearRampToValueAtTime(40, ctx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.25);
+    } catch {}
+  }
+
+  public playRetroPowerUp() {
+    if (this.isMuted) return;
+    const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
+    notes.forEach((freq, idx) => {
+      setTimeout(() => {
+        this.playTone(freq, 'square', 0.09, 0.07);
+      }, idx * 45);
+    });
+  }
+
+  public playRetroShield() {
+    if (this.isMuted) return;
+    this.playTone(440, 'sine', 0.15, 0.08);
+    this.playTone(880, 'triangle', 0.15, 0.05);
+  }
+
   public startAmbient() {
     this.startMusic();
   }
