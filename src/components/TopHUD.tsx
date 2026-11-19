@@ -1,10 +1,8 @@
 import React from 'react';
-import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map, Award, Download } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, ShieldAlert, Heart, Lightbulb, Map, Award } from 'lucide-react';
 import { GameMetrics, PlayerGender } from '../types/game';
 import { CharacterPortrait } from './CharacterPortraits';
 import { speech } from '../services/speech';
-import { downloadStandaloneHtml } from '../services/downloadHtml';
-import { sound } from '../services/audio';
 
 interface TopHUDProps {
   gender: PlayerGender;
@@ -175,18 +173,6 @@ export const TopHUD: React.FC<TopHUDProps> = ({
           title="Líneas de ayuda reales (Línea 100 Perú, StopNCII)"
         >
           <ShieldAlert className="w-3.5 h-3.5" />
-        </button>
-
-        {/* Download Standalone HTML */}
-        <button
-          onClick={() => {
-            sound.playSignalUp();
-            downloadStandaloneHtml();
-          }}
-          className="p-1.5 rounded-xs border border-[#4FD1C5]/60 bg-[#4FD1C5]/10 text-[#4FD1C5] hover:bg-[#4FD1C5] hover:text-[#0B0B1A] transition-colors cursor-pointer flex items-center justify-center"
-          title="Descargar este juego en un solo archivo .html para jugar sin internet (Offline)"
-        >
-          <Download className="w-3.5 h-3.5" />
         </button>
 
         {/* Voice Narrator toggle with Galactic Voice */}

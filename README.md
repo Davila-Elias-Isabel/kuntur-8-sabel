@@ -10,7 +10,7 @@
 
 ## 👩‍🚀 Acerca del Proyecto, Autora y Créditos
 
-> Soy administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital; apasionada por el diseño de videojuegos con propósito social, creé **KUNTUR: Tu señal importa**, un videojuego narrativo y recurso educativo abierto (REA) que capacita a adolescentes y docentes para prevenir el ciberacoso y la violencia digital con sesgo de género, enseñando a desmitificar montajes con Inteligencia Artificial (*deepfakes*), recolectar pruebas periciales reales a través de cinco niveles espaciales y activar el rol del testigo activo (*upstander*). Aunque la propuesta nació inicialmente para un programa de UNESCO, decidí impulsarla a título personal e independiente para salvaguardar la autoría propia, conformar un equipo interdisciplinario y ampliar las oportunidades de financiamiento, escalabilidad y uso libre en escuelas sin restricciones institucionales de propiedad intelectual, logrando una herramienta ligera, gratuita y 100% offline que funciona en un único archivo HTML para llegar a cualquier comunidad sin barreras de conectividad.
+> Soy administradora técnica titulada, ingeniera empresarial y de sistemas en formación y voluntaria en UNESCO Perú en temas de Alfabetización Mediática e Informacional (AMI), género y prevención de la violencia digital; apasionada por el diseño de videojuegos con propósito social, creé **KUNTUR: Tu señal importa**, un videojuego narrativo y recurso educativo abierto (REA) que capacita a adolescentes y docentes para prevenir el ciberacoso y la violencia digital con sesgo de género, enseñando a desmitificar montajes con Inteligencia Artificial (*deepfakes*), recolectar pruebas periciales reales a través de cinco niveles espaciales y activar el rol del testigo activo (*upstander*). Aunque la propuesta nació inicialmente para un programa de UNESCO, decidí impulsarla a título personal e independiente para salvaguardar la autoría propia, conformar un equipo interdisciplinario y ampliar las oportunidades de financiamiento, escalabilidad y uso libre en escuelas sin restricciones institucionales de propiedad intelectual, logrando una herramienta ligera, gratuita y accesible directamente desde el navegador web.
 
 * **Dirección, Diseño Pedagógico y Desarrollo:** R. Isabel Dávila Elías
 * **Contacto institucional y colaboraciones:** davilaeliasisabel@gamil.com - r.davila@unesco.org
@@ -18,15 +18,13 @@
 
 ---
 
-## 🌐 1. Formas de Jugarlo y Compartirlo (Online y Offline en HTML)
+## 🌐 1. Cómo Jugarlo Online
 
-KUNTUR está construido como una aplicación cliente ligera (*Client-Side SPA*), lo que significa que **no requiere servidores de pago ni bases de datos**. Funciona tanto en la web como en un archivo HTML autónomo para escuelas y capacitaciones sin conexión:
+KUNTUR está construido como una aplicación cliente ligera (*Client-Side SPA*), lo que significa que **no requiere registros ni configuraciones complejas**. Se ejecuta directamente desde el navegador web:
 
 | Modalidad | Cómo Usarlo | Requisitos |
 | :--- | :--- | :--- |
 | **🚀 Enlace Web Directo (Online)** | [https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app](https://ais-pre-hf5mknkf3nedckyuabsz47-726729057059.us-west2.run.app) | Navegador web (Chrome, Edge, Safari, Firefox). Cero instalación. |
-| **📁 Archivo Único HTML (`kuntur_juego.html`)** | Descárgalo con el botón **`📥 Descargar archivo HTML (Offline)`** en el juego | **100% Offline.** Solo doble clic en el archivo. No necesita internet. |
-> 💡 **Portabilidad para capacitaciones docentes:** El archivo `kuntur_juego.html` pesa apenas ~520 KB. Puedes enviarlo por correo o WhatsApp, o copiarlo en una memoria USB (pendrive) para salas de cómputo escolares sin acceso a internet.
 
 ---
 
@@ -145,7 +143,7 @@ KUNTUR está alineado con los pilares del **Marco de Alfabetización Mediática 
 * **Frontend:** React 19, TypeScript, Tailwind CSS v4.
 * **Audio:** Sintetizador procedural con **Web Audio API** (sin librerías pesadas ni pistas de audio con derechos de autor).
 * **Voz:** **Web Speech API** nativa de los navegadores.
-* **Generador de Archivo Único:** Script propio en `scripts/make-single-html.js` que incrusta estilos y código compilado en un solo documento HTML (`dist/kuntur.html` y `public/kuntur.html`).
+* **Compilación:** Vite para empaquetado web optimizado (`dist/`).
 * **Servidor (Opcional):** Express + Vite en Node.js (`server.ts`) para desarrollo local y previsualización en la nube.
 
 ---
@@ -170,11 +168,10 @@ npm run dev
 ```
 Abre en tu navegador: `http://localhost:3000`
 
-### Generar el archivo HTML autónomo para USBs o talleres:
+### Compilar para producción:
 ```bash
 npm run build
 ```
-Este comando compila el proyecto y genera automáticamente el archivo **`dist/kuntur.html`**. Puedes copiar ese archivo directamente a un pendrive o compartirlo sin carpetas accesorias.
 
 ---
 
@@ -182,10 +179,7 @@ Este comando compila el proyecto y genera automáticamente el archivo **`dist/ku
 
 ```
 kuntur-isabel/
-├── scripts/
-│   └── make-single-html.js         # Empaquetador a un solo archivo HTML autónomo
 ├── public/
-│   ├── kuntur.html                 # Copia autónoma estática del juego
 │   └── screenshots/               # Capturas vectoriales de los niveles
 ├── src/
 │   ├── App.tsx                     # Gestor de pantallas, vidas, empatía y medallas
@@ -194,10 +188,9 @@ kuntur-isabel/
 │   ├── services/
 │   │   ├── audio.ts                # Sintetizador Web Audio API libre de copyright
 │   │   ├── speech.ts               # Servicio de voz narradora galáctica (Web Speech)
-│   │   ├── medals.ts               # Lógica de asignación de medallas del testigo activo
-│   │   └── downloadHtml.ts         # Descargador del HTML autónomo vía Blob
+│   │   └── medals.ts               # Lógica de asignación de medallas del testigo activo
 │   └── components/
-│       ├── TopHUD.tsx              # Barra superior con vidas, empatía, voz y descarga
+│       ├── TopHUD.tsx              # Barra superior con vidas, empatía y voz galáctica
 │       ├── GenderSelectionModal.tsx# Pantalla inicial de selección de cadete (Alex / Alexia)
 │       ├── LevelMap.tsx            # Mapa de misiones y datapad de pruebas
 │       ├── Level1Taller.tsx        # Nivel 1: Taller & Osciloscopio (opciones neutras)
